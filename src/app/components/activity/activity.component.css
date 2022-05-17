@@ -1,0 +1,9 @@
+.activity-card {
+  cursor: pointer;
+  margin: 20px 10px;
+  width:300px;
+}
+
+.activity-actions {
+  text-align: center;
+}

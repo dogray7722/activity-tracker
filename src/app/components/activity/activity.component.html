@@ -1,0 +1,18 @@
+<mat-card class="activity-card mat-elevation-z8">
+  <mat-card-title>
+    {{activity.title}}
+  </mat-card-title>
+  <mat-card-subtitle>
+    {{activity.date}}
+  </mat-card-subtitle>
+  <mat-card-content>
+    <h2 style="color:rgb(30, 21, 138);">{{activity.type}}</h2>
+    <p>{{activity.location}}</p>
+  </mat-card-content>
+
+  <mat-card-actions class="activity-actions">
+    <button mat-raised-button color="primary">Edit</button>
+    <button mat-raised-button color="warn">Delete</button>
+  </mat-card-actions>
+</mat-card>
+
