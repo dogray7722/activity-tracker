@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
@@ -24,13 +24,8 @@ export class CreateActivityComponent implements OnInit {
   }
 
   onSubmit() {
-
-    console.log(this.activityForm.value)
     this.addActivity(this.activityForm.value)
 
-
-    //blank out the form values
-    //redirect to the home page
   }
 
   addActivity(activity: Activity) {
