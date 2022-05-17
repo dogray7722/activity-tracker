@@ -25,7 +25,7 @@ export class CreateActivityComponent implements OnInit {
 
   onSubmit() {
     this.addActivity(this.activityForm.value)
-
+    //redirect to home page
   }
 
   addActivity(activity: Activity) {
