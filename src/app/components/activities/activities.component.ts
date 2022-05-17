@@ -28,4 +28,9 @@ export class ActivitiesComponent implements OnInit {
     )
     .subscribe()
   }
+
+  addActivity(activity: Activity) {
+    this.activityService.addActivity(activity).subscribe((act) => this.activities.push(act))
+  }
+
 }

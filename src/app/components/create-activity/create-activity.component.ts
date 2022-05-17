@@ -1,6 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { ActivityService } from 'src/app/services/activity.service';
 import { Activity } from 'src/app/Activity';
 
 @Component({
@@ -9,7 +8,6 @@ import { Activity } from 'src/app/Activity';
   styleUrls: ['./create-activity.component.css']
 })
 export class CreateActivityComponent implements OnInit {
-  activities: Activity[] = []
 
   form = this.fb.group({
     type: ['', Validators.required],
@@ -19,13 +17,26 @@ export class CreateActivityComponent implements OnInit {
     notes: ['']
   })
 
-  constructor(private fb: FormBuilder, private activityService: ActivityService) { }
+  @Output() onAddActivity: EventEmitter<Activity> = new EventEmitter
+
+  constructor(private fb: FormBuilder) { }
 
   ngOnInit(): void {
   }
 
-  onSubmit(activity: Activity) {
-    this.activityService.addActivity(activity).subscribe((act) => this.activities.push(act))
+  onSubmit() {
+    const newActivity = {
+      type: this.form.value('type'),
+      title: this.form.value('title'),
+      date: this.form.value('date'),
+      location: this.form.value('location'),
+      notes: this.form.value('notes')
+    }
+
+    this.onAddActivity.emit(newActivity)
+
   }
+
+
 
 }
