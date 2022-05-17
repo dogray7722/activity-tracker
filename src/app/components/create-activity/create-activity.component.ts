@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
+import { ActivityService } from 'src/app/services/activity.service';
+import { Activity } from 'src/app/Activity';
 
 @Component({
   selector: 'app-create-activity',
@@ -7,6 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./create-activity.component.css']
 })
 export class CreateActivityComponent implements OnInit {
+  activities: Activity[] = []
+
   form = this.fb.group({
     type: ['', Validators.required],
     title: ['', [Validators.required, Validators.maxLength(30)]],
@@ -15,9 +19,13 @@ export class CreateActivityComponent implements OnInit {
     notes: ['']
   })
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private activityService: ActivityService) { }
 
   ngOnInit(): void {
+  }
+
+  onSubmit(activity: Activity) {
+    this.activityService.addActivity(activity).subscribe((act) => this.activities.push(act))
   }
 
 }

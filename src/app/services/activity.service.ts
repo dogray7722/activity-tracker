@@ -3,6 +3,13 @@ import { HttpClient, HttpHeaders} from '@angular/common/http'
 import { Observable } from 'rxjs';
 import { Activity } from '../Activity';
 
+const httpOptions = {
+  headers: new HttpHeaders({
+    'Content-Type': 'application/json'
+  })
+}
+
+
 @Injectable({
   providedIn: 'root'
 })
@@ -13,6 +20,10 @@ export class ActivityService {
 
   getActivities(): Observable<Activity[]> {
     return this.http.get<Activity[]>(this.apiUrl)
+  }
+
+  addActivity(activity: Activity): Observable<Activity> {
+    return this.http.post<Activity>(this.apiUrl, activity, httpOptions)
   }
 
 }
