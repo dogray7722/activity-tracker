@@ -1,5 +1,5 @@
 <h1 class="heading">Add A New Outdoor Event</h1>
-<div [formGroup]="form" class="activity-details-form" (ngSubmit)="onSubmit()">
+<form [formGroup]="activityForm" class="activity-details-form" (ngSubmit)="onSubmit()">
   <mat-card class="mat-elevation-z8">
     <mat-card-title style="color:rgb(15, 15, 15);" >New Activity</mat-card-title> 
     <mat-card-content class="form-field">
@@ -35,10 +35,10 @@
           cdkTextareaAutosize></textarea>
       </mat-form-field>
       <mat-card-actions>
-        <button mat-raised-button color="primary">Submit</button>
+        <button type="submit" mat-raised-button color="primary">Submit</button>
       </mat-card-actions>
     </mat-card-content> 
   </mat-card>
-</div>
+</form>
   
 

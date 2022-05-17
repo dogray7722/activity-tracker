@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Activity } from 'src/app/Activity';
+import { ActivityService } from 'src/app/services/activity.service';
 
 @Component({
   selector: 'app-create-activity',
@@ -9,7 +10,7 @@ import { Activity } from 'src/app/Activity';
 })
 export class CreateActivityComponent implements OnInit {
 
-  form = this.fb.group({
+  activityForm = this.fb.group({
     type: ['', Validators.required],
     title: ['', [Validators.required, Validators.maxLength(30)]],
     date: [new Date(2022, 0, 1), Validators.required],
@@ -17,26 +18,23 @@ export class CreateActivityComponent implements OnInit {
     notes: ['']
   })
 
-  @Output() onAddActivity: EventEmitter<Activity> = new EventEmitter
-
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private activityService: ActivityService) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    const newActivity = {
-      type: this.form.value('type'),
-      title: this.form.value('title'),
-      date: this.form.value('date'),
-      location: this.form.value('location'),
-      notes: this.form.value('notes')
-    }
 
-    this.onAddActivity.emit(newActivity)
+    console.log(this.activityForm.value)
+    this.addActivity(this.activityForm.value)
 
+
+    //blank out the form values
+    //redirect to the home page
   }
 
-
+  addActivity(activity: Activity) {
+    this.activityService.addActivity(activity).subscribe()
+  }
 
 }
