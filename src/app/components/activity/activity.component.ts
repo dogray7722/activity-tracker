@@ -12,7 +12,6 @@ export class ActivityComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.activity)
   }
 
 }

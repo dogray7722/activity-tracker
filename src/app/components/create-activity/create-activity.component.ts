@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
+import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-create-activity',
@@ -18,14 +20,18 @@ export class CreateActivityComponent implements OnInit {
     notes: ['']
   })
 
-  constructor(private fb: FormBuilder, private activityService: ActivityService) { }
+  constructor(private fb: FormBuilder, 
+              private activityService: ActivityService,
+              private router: Router, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
   }
 
   onSubmit() {
-    this.addActivity(this.activityForm.value)
-    //redirect to home page
+    const body = this.activityForm.value
+    body.date = this.datePipe.transform(body.date, 'mediumDate')
+    this.addActivity(body)
+    this.router.navigate(['/'])
   }
 
   addActivity(activity: Activity) {
