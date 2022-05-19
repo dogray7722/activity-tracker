@@ -34,6 +34,7 @@ import { FooterComponent } from './components/footer/footer.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
 import { ActivityComponent } from './components/activity/activity.component';
 import { CreateActivityComponent } from './components/create-activity/create-activity.component';
+import { EditActivityComponent } from './components/edit-activity/edit-activity.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { CreateActivityComponent } from './components/create-activity/create-act
     FooterComponent,
     ActivitiesComponent,
     ActivityComponent,
-    CreateActivityComponent
+    CreateActivityComponent,
+    EditActivityComponent
   ],
   imports: [
     BrowserModule,
