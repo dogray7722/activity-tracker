@@ -1,0 +1,13 @@
+.activity-details-form {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+mat-form-field {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width:400px;
+  text-align: center;
+}

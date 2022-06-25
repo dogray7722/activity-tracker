@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder } from '@angular/forms';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 import { Activity } from 'src/app/Activity';
 
 @Component({
