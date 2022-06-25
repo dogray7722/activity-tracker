@@ -19,8 +19,8 @@ export class ActivityComponent implements OnInit {
   openEdit() {
     const dialogConfig = new MatDialogConfig();
     dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    this.dialog.open(EditActivityComponent)
+    // dialogConfig.autoFocus = true;
+    this.dialog.open(EditActivityComponent, dialogConfig)
   }
 
 }
