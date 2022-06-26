@@ -21,7 +21,7 @@ export class ActivityComponent implements OnInit {
     dialogConfig.disableClose = true;
     dialogConfig.autoFocus = true;
     dialogConfig.height = "auto"
-    dialogConfig.width = "60%"
+    dialogConfig.width = "52%"
     this.dialog.open(EditActivityComponent, dialogConfig)
   }
 

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Activity } from 'src/app/Activity';
 
@@ -14,5 +14,14 @@ export class EditActivityComponent implements OnInit {
 
   ngOnInit(): void {
   }
+
+  form: FormGroup = new FormGroup({
+    $key: new FormControl(null),
+    type: new FormControl('', Validators.required),
+    title: new FormControl('', Validators.required),
+    location: new FormControl('', Validators.required),
+    date: new FormControl(''),
+    notes: new FormControl('')
+  });
 
 }
