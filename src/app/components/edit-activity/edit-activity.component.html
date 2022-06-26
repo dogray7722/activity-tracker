@@ -1,34 +1,36 @@
 <div class="activity-details-form">
-  <form class="edit-form">
+  <mat-grid-list cols="3">
+    <form class="edit-form">
       <h1 style="color:rgb(15, 15, 15); text-align: center;">Edit Activity</h1> 
-        <mat-form-field style="margin-top: 20px;" [style.width.px]=327>
-          <mat-select formControlName="type" placeholder="Select activity type">
-  
-          </mat-select>
-        </mat-form-field>
-        <mat-form-field [style.width.px]=327>
-            <input matInput placeholder="Title" formControlName="title">
-        </mat-form-field>
-        <mat-form-field>
-          <input matInput placeholder="Location" formControlName="location">
-        </mat-form-field>
-        <mat-form-field [style.width.px]=327>
-          <mat-datepicker #datePicker></mat-datepicker>
-          <input 
-            matInput 
-            formControlName="date" 
-            placeholder="Event date"
-            [matDatepicker]="datePicker"
-          >
-          <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
-        </mat-form-field>
-        <mat-form-field [style.width.px]=327>
-          <textarea 
-            matInput 
-            placeholder="Add Notes" 
-            formControlName="notes"
-            cdkTextareaAutosize></textarea>
-        </mat-form-field>
+      <mat-form-field style="margin-top: 20px;" [style.width.px]=327>
+        <mat-select formControlName="type" placeholder="Select activity type">
+          
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field [style.width.px]=327>
+        <input matInput placeholder="Title" formControlName="title">
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Location" formControlName="location">
+      </mat-form-field>
+      <mat-form-field [style.width.px]=327>
+        <mat-datepicker #datePicker></mat-datepicker>
+        <input 
+        matInput 
+        formControlName="date" 
+        placeholder="Event date"
+        [matDatepicker]="datePicker"
+        >
+        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+      </mat-form-field>
+      <mat-form-field [style.width.px]=327>
+        <textarea 
+        matInput 
+        placeholder="Add Notes" 
+        formControlName="notes"
+        cdkTextareaAutosize></textarea>
+      </mat-form-field>
       <button type="submit" mat-raised-button color="primary">Submit</button>
-  </form>
+    </form>
+  </mat-grid-list>
 </div>

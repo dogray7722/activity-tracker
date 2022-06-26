@@ -27,6 +27,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatTooltipModule } from '@angular/material/tooltip';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DatePipe } from '@angular/common';
+import {MatGridListModule} from '@angular/material/grid-list';
 
 
 import { AppComponent } from './app.component';
@@ -71,7 +72,8 @@ import { EditActivityComponent } from './components/edit-activity/edit-activity.
     MatNativeDateModule,
     MatSliderModule,
     MatTooltipModule,
-    DragDropModule
+    DragDropModule,
+    MatGridListModule
   ],
   providers: [ DatePipe ],
   exports: [MatButtonModule],
