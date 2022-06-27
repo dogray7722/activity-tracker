@@ -29,7 +29,6 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DatePipe } from '@angular/common';
 
-
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ActivitiesComponent } from './components/activities/activities.component';
@@ -44,7 +43,7 @@ import { EditActivityComponent } from './components/edit-activity/edit-activity.
     ActivitiesComponent,
     ActivityComponent,
     CreateActivityComponent,
-    EditActivityComponent
+    EditActivityComponent,
   ],
   imports: [
     BrowserModule,

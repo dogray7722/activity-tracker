@@ -2,6 +2,8 @@ import { Component, OnInit, Input } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Activity } from 'src/app/Activity';
 import { EditActivityComponent } from '../edit-activity/edit-activity.component';
+import { openEditActivity } from '../edit-activity/edit-activity.component';
+import {filter} from 'rxjs/operators';
 
 @Component({
   selector: 'app-activity',
@@ -11,18 +13,19 @@ import { EditActivityComponent } from '../edit-activity/edit-activity.component'
 export class ActivityComponent implements OnInit {
   @Input() activity: Activity
 
-  constructor(public dialog: MatDialog) { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
-  openEdit() {
-    const dialogConfig = new MatDialogConfig();
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
-    dialogConfig.height = "auto"
-    dialogConfig.width = "52%"
-    this.dialog.open(EditActivityComponent, dialogConfig)
+  editActivity(activity:Activity) {
+    openEditActivity(this.dialog, activity)
+      .pipe(
+        filter(val => !!val)
+      )
+      .subscribe();
   }
+
+
 
 }
