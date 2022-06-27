@@ -16,11 +16,11 @@ export class EditActivityComponent implements OnInit {
   }
 
   form = this.fb.group({
-    type: new FormControl('', Validators.required),
-    title: new FormControl('', Validators.required),
-    location: new FormControl('', Validators.required),
-    date: new FormControl(''),
-    notes: new FormControl('')
+    type: ['', Validators.required],
+    title: ['', Validators.required],
+    location: ['', Validators.required],
+    date: [new Date(), Validators.required],
+    notes: [""]
   })
 
 }
