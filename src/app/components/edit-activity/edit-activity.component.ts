@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { FormGroup, FormControl, Validators, FormBuilder } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
 import { Activity } from 'src/app/Activity';
 
@@ -10,18 +10,17 @@ import { Activity } from 'src/app/Activity';
 })
 export class EditActivityComponent implements OnInit {
 
-  constructor(public dialogRef: MatDialogRef<EditActivityComponent>) { }
+  constructor(private fb: FormBuilder, public dialogRef: MatDialogRef<EditActivityComponent>) { }
 
   ngOnInit(): void {
   }
 
-  form: FormGroup = new FormGroup({
-    $key: new FormControl(null),
+  form = this.fb.group({
     type: new FormControl('', Validators.required),
     title: new FormControl('', Validators.required),
     location: new FormControl('', Validators.required),
     date: new FormControl(''),
     notes: new FormControl('')
-  });
+  })
 
 }
