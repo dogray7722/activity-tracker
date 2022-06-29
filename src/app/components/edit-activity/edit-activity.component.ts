@@ -9,6 +9,7 @@ import { Activity } from 'src/app/Activity';
   styleUrls: ['./edit-activity.component.css']
 })
 export class EditActivityComponent implements OnInit {
+  selected = this.activity.type
 
   constructor(private fb: FormBuilder, 
     @Inject(MAT_DIALOG_DATA) private activity: Activity,
