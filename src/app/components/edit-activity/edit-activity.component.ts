@@ -30,7 +30,7 @@ export class EditActivityComponent implements OnInit {
     type: [this.activity.type, Validators.required],
     title: [this.activity.title, Validators.required],
     location: [this.activity.location, Validators.required],
-    date: [this.activity.date, Validators.required],
+    date: [new Date(this.activity.date), Validators.required],
     notes: [this.activity.notes]
   })
 
