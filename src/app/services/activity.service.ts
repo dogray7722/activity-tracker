@@ -27,7 +27,8 @@ export class ActivityService {
   }
 
   putActivity(activity: Activity): Observable<Activity> {
-    return this.http.put<Activity>(`${this.apiUrl}/edit`, activity, httpOptions)
+    const url = `${this.apiUrl}/${activity.id}`
+    return this.http.put<Activity>(url, activity, httpOptions)
   }
 
 }

@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { Activity } from 'src/app/Activity';
 import { openEditActivity } from '../edit-activity/edit-activity.component';
 import {filter} from 'rxjs/operators';
+import { ActivityService } from 'src/app/services/activity.service';
 
 @Component({
   selector: 'app-activity',
@@ -12,17 +13,13 @@ import {filter} from 'rxjs/operators';
 export class ActivityComponent implements OnInit {
   @Input() activity: Activity
 
-  constructor(private dialog: MatDialog, private dialogRef: MatDialogRef<Activity>) { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
   }
 
   editActivity(activity:Activity) {
     openEditActivity(this.dialog, activity)
-      .pipe(
-        filter(val => !!val)
-      )
-      .subscribe();
   }
 
 

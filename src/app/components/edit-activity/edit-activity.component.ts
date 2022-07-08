@@ -2,6 +2,9 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Activity } from 'src/app/Activity';
+import { ActivityService } from 'src/app/services/activity.service';
+import { Router } from '@angular/router';
+import { DatePipe } from '@angular/common';
 
 @Component({
   selector: 'app-edit-activity',
@@ -13,7 +16,10 @@ export class EditActivityComponent implements OnInit {
 
   constructor(private fb: FormBuilder, 
     @Inject(MAT_DIALOG_DATA) private activity: Activity,
-    private dialogRef: MatDialogRef<EditActivityComponent>) { }
+    private dialogRef: MatDialogRef<EditActivityComponent>,
+    private activityService: ActivityService,
+    private router: Router,
+    private datePipe: DatePipe) { }
 
   ngOnInit(): void {
   }
@@ -23,10 +29,15 @@ export class EditActivityComponent implements OnInit {
   }
 
   save() {
-    this.dialogRef.close(this.form.value);
+    const newDate = this.datePipe.transform(this.form.value["date"],  'mediumDate')
+    this.form.value["date"] = newDate
+    this.activityService.putActivity(this.form.value).subscribe()
+    this.dialogRef.close();
+    window.location.reload();
   }
 
   form = this.fb.group({
+    id: [this.activity.id],
     type: [this.activity.type, Validators.required],
     title: [this.activity.title, Validators.required],
     location: [this.activity.location, Validators.required],
