@@ -9,6 +9,8 @@ import { ActivityService } from 'src/app/services/activity.service';
   styleUrls: ['./delete-activity.component.css']
 })
 export class DeleteActivityComponent implements OnInit {
+  act = this.activity
+
 
   constructor(
               @Inject(MAT_DIALOG_DATA) private activity: Activity,
@@ -22,8 +24,8 @@ export class DeleteActivityComponent implements OnInit {
     this.dialogRef.close();
   }
 
-  delete(activity) {
-    this.activityService.deleteActivity(activity).subscribe();
+  delete(act) {
+    this.activityService.deleteActivity(act).subscribe();
     this.dialogRef.close();
     window.location.reload();
   }

@@ -2,9 +2,9 @@
   <h1 mat-dialog-title>Delete Activity</h1>
 </div>
 <mat-dialog-content>
-  <h3>Are you sure you want to delete activity: {{activity.title}}</h3>
+  <h3>Are you sure you want to delete activity: {{act.title}}</h3>
   <mat-dialog-actions>
     <button (click)="cancel()" mat-raised-button color="secondary">Cancel</button>
-    <button (click)="delete()" mat-raised-button color="primary">Delete</button>
+    <button (click)="delete(act)" mat-raised-button color="primary">Delete</button>
   </mat-dialog-actions>
 </mat-dialog-content>
