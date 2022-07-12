@@ -1,9 +1,8 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
+import { MatDialog } from '@angular/material/dialog';
 import { Activity } from 'src/app/Activity';
 import { openEditActivity } from '../edit-activity/edit-activity.component';
-import {filter} from 'rxjs/operators';
-import { ActivityService } from 'src/app/services/activity.service';
+import { openDeleteActivity } from '../delete-activity/delete-activity.component';
 
 @Component({
   selector: 'app-activity',
@@ -22,6 +21,8 @@ export class ActivityComponent implements OnInit {
     openEditActivity(this.dialog, activity)
   }
 
-
+  deleteActivity(activity:Activity) {
+    openDeleteActivity(this.dialog, activity)
+  }
 
 }

@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
-import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog'
+import { Component, Inject, OnInit } from '@angular/core';
+import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
 
@@ -10,8 +10,9 @@ import { ActivityService } from 'src/app/services/activity.service';
 })
 export class DeleteActivityComponent implements OnInit {
 
-  constructor(private dialogRef: MatDialogRef<DeleteActivityComponent>,
-              private activity: Activity,
+  constructor(
+              @Inject(MAT_DIALOG_DATA) private activity: Activity,
+              private dialogRef: MatDialogRef<DeleteActivityComponent>,
               private activityService: ActivityService) { }
 
   ngOnInit(): void {
@@ -22,11 +23,10 @@ export class DeleteActivityComponent implements OnInit {
   }
 
   delete(activity) {
-    this.activityService.deleteActivity(activity);
+    this.activityService.deleteActivity(activity).subscribe();
     this.dialogRef.close();
     window.location.reload();
   }
-
 }
 
 export function openDeleteActivity(dialog: MatDialog, activity: Activity) {
