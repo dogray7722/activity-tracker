@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MatDialogRef } from '@angular/material/dialog'
+import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog'
 import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
 
@@ -27,6 +27,17 @@ export class DeleteActivityComponent implements OnInit {
     window.location.reload();
   }
 
+}
+
+export function openDeleteActivity(dialog: MatDialog, activity: Activity) {
+  const dialogConfig = new MatDialogConfig();
+  dialogConfig.disableClose = true;
+  dialogConfig.width = "30%";
+  dialogConfig.data = {
+    ...activity
+  }
+  const dialogRef = dialog.open(DeleteActivityComponent, dialogConfig)
+  return dialogRef.afterClosed();
 }
 
 
