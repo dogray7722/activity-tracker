@@ -31,4 +31,9 @@ export class ActivityService {
     return this.http.put<Activity>(url, activity, httpOptions)
   }
 
+  deleteActivity(activity: Activity): Observable<Activity> {
+    const url = `${this.apiUrl}/${activity.id}`
+    return this.http.delete<Activity>(url)
+  }
+
 }
