@@ -36,6 +36,7 @@ import { ActivityComponent } from './components/activity/activity.component';
 import { CreateActivityComponent } from './components/create-activity/create-activity.component';
 import { EditActivityComponent } from './components/edit-activity/edit-activity.component';
 import { DeleteActivityComponent } from './components/delete-activity/delete-activity.component';
+import { ActivityTypesComponent } from './components/activity-types/activity-types.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { DeleteActivityComponent } from './components/delete-activity/delete-act
     CreateActivityComponent,
     EditActivityComponent,
     DeleteActivityComponent,
+    ActivityTypesComponent,
   ],
   imports: [
     BrowserModule,
