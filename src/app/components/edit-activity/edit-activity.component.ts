@@ -3,7 +3,6 @@ import { Validators, FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
-import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
 @Component({
@@ -18,7 +17,6 @@ export class EditActivityComponent implements OnInit {
     @Inject(MAT_DIALOG_DATA) private activity: Activity,
     private dialogRef: MatDialogRef<EditActivityComponent>,
     private activityService: ActivityService,
-    private router: Router,
     private datePipe: DatePipe) { }
 
   ngOnInit(): void {
