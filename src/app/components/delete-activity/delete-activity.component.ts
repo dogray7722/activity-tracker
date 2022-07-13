@@ -1,5 +1,6 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
+import { flatMap } from 'rxjs';
 import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
 
@@ -34,7 +35,6 @@ export class DeleteActivityComponent implements OnInit {
 export function openDeleteActivity(dialog: MatDialog, activity: Activity) {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = true;
-  dialogConfig.width = "30%";
   dialogConfig.data = {
     ...activity
   }
