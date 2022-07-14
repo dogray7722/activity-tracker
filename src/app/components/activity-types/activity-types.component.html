@@ -1,5 +1,7 @@
-<h1>Activities List</h1>
-<div *ngFor="let type of activityTypes">
-  <div>{{type.name}}</div>
+<div class="center">
+  <h1>Activities List</h1>
+  <h3 *ngFor="let type of activityTypes" class="activity">
+    {{type.name}}
+  </h3>
+  <button mat-raised-button color="primary">New Activity</button>
 </div>
-<button mat-raised-button color="primary">New Activity</button>
