@@ -1,4 +1,18 @@
 {
+    "activity_types": [
+    {
+      "id": 1,
+      "name": "Fishing"
+    },
+    {
+      "id": 2,
+      "name": "Hiking"
+    },
+    {
+      "id": 3,
+      "name": "Mountain Biing"
+    }
+  ],
   "activities": [
     {
       "id": 1,
