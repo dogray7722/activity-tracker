@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivityType } from 'src/app/ActivityType';
+import { ActivityTypeService } from 'src/app/services/activity-type.service';
 
 @Component({
   selector: 'app-activity-types',
@@ -6,10 +8,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./activity-types.component.css']
 })
 export class ActivityTypesComponent implements OnInit {
-
-  constructor() { }
+  activityTypes: ActivityType[] = []
+  types = []
+  
+  constructor(private activityTypeService: ActivityTypeService) { }
 
   ngOnInit(): void {
+    this.activityTypeService.getActivityTypes().subscribe(resp => this.activityTypes = resp)
   }
 
 }
