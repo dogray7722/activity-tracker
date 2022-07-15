@@ -14,4 +14,9 @@ export class ActivityTypeService {
   getActivityTypes(): Observable<ActivityType[]> {
     return this.http.get<ActivityType[]>(this.apiUrl)
   }
+
+  createActivityType(activityType: ActivityType): Observable<ActivityType> {
+    return this.http.post<ActivityType>(this.apiUrl, activityType)
+  }
+  
 }
