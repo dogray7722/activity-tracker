@@ -28,6 +28,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DatePipe } from '@angular/common';
+import {MatDividerModule} from '@angular/material/divider';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -76,7 +77,8 @@ import { ActivityTypesComponent } from './components/activity-types/activity-typ
     MatSliderModule,
     MatTooltipModule,
     DragDropModule,
-    MatGridListModule
+    MatGridListModule,
+    MatDividerModule
   ],
   providers: [ DatePipe ],
   exports: [MatButtonModule],

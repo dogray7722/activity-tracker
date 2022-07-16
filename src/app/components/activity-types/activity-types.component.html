@@ -1,7 +1,22 @@
-<div class="center">
+<div class="top">
   <h1>Activities List</h1>
-  <h3 *ngFor="let type of activityTypes" class="activity">
-    {{type.name}}
-  </h3>
   <button mat-raised-button color="primary">New Activity</button>
+</div>
+<div class="center">
+  <div *ngFor="let type of activityTypes" class="activity">
+    <div class="top">
+      <mat-card class="card">
+        <img mat-card-sm-image src="https://material.angular.io/assets/img/examples/shiba2.jpg" >
+        <mat-card-title class="title">{{type.name}}</mat-card-title>  
+        <mat-card-actions>
+          <button mat-icon-button>
+            <mat-icon class="icon" style="color: #8b41ff;">mode_edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn">
+            <mat-icon class="icon" style="color: #ff8b41">delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+    </div>
+  </div>
 </div>
