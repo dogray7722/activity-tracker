@@ -17,4 +17,12 @@ export class ActivityTypesComponent implements OnInit {
     this.activityTypeService.getActivityTypes().subscribe(resp => this.activityTypes = resp)
   }
 
+  editType() {
+
+  }
+
+  deleteType() {
+    
+  }
+
 }
