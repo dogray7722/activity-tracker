@@ -9,12 +9,16 @@ import { ActivityTypeService } from 'src/app/services/activity-type.service';
 })
 export class ActivityTypesComponent implements OnInit {
   activityTypes: ActivityType[] = []
-  types = []
   
   constructor(private activityTypeService: ActivityTypeService) { }
 
   ngOnInit(): void {
-    this.activityTypeService.getActivityTypes().subscribe(resp => this.activityTypes = resp)
+    this.activityTypeService.getActivityTypes().subscribe((resp) => resp.map(at => {
+      at.photo = `../../../assets/${at.photo}`
+      this.activityTypes.push(at)
+    }))
+
+    
   }
 
   editType() {
@@ -22,7 +26,7 @@ export class ActivityTypesComponent implements OnInit {
   }
 
   deleteType() {
-    
+
   }
 
 }

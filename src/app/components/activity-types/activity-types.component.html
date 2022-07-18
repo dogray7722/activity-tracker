@@ -6,7 +6,7 @@
   <div *ngFor="let type of activityTypes" class="activity">
     <div class="align">
       <mat-card class="card">
-        <img mat-card-sm-image src="../../../assets/toomas-tartes-Yizrl9N_eDA-unsplash.jpg" >
+        <img mat-card-sm-image src={{type.photo}} >
         <mat-card-title class="title">{{type.name}}</mat-card-title>  
         <mat-card-actions>
           <button mat-icon-button>
