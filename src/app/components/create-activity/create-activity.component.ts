@@ -4,6 +4,8 @@ import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+import { ActivityTypeService } from 'src/app/services/activity-type.service';
+import { ActivityType } from 'src/app/ActivityType';
 
 @Component({
   selector: 'app-create-activity',
@@ -11,6 +13,7 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./create-activity.component.css']
 })
 export class CreateActivityComponent implements OnInit {
+  activityTypes: ActivityType[] = [];
 
   activityForm = this.fb.group({
     type: ['', Validators.required],
@@ -22,9 +25,14 @@ export class CreateActivityComponent implements OnInit {
 
   constructor(private fb: FormBuilder, 
               private activityService: ActivityService,
+              private activityTypeService: ActivityTypeService,
               private router: Router, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
+    this.activityTypeService.getActivityTypes().subscribe((resp) => resp.map(at => {
+      at.photo = `../../../assets/${at.photo}`
+      this.activityTypes.push(at)
+  }))
   }
 
   onSubmit() {

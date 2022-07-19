@@ -5,10 +5,7 @@
     <mat-card-content class="form-field">
       <mat-form-field style="margin-top: 20px;">
         <mat-select formControlName="type" placeholder="Select activity type">
-          <mat-option>None</mat-option>
-          <mat-option value="Fishing">Fishing</mat-option>
-          <mat-option value="Hiking">Hiking</mat-option>
-          <mat-option value="Mountain Biking">Mountain Biking</mat-option>
+          <mat-option *ngFor="let type of activityTypes" [value]="type">{{type.name}}</mat-option>
         </mat-select>
       </mat-form-field>
       <mat-form-field>
