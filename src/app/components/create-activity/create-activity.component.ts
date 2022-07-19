@@ -29,10 +29,7 @@ export class CreateActivityComponent implements OnInit {
               private router: Router, private datePipe: DatePipe) { }
 
   ngOnInit(): void {
-    this.activityTypeService.getActivityTypes().subscribe((resp) => resp.map(at => {
-      at.photo = `../../../assets/${at.photo}`
-      this.activityTypes.push(at)
-  }))
+    this.activityTypeService.getActivityTypes().subscribe(resp => this.activityTypes = resp)
   }
 
   onSubmit() {

@@ -2,8 +2,10 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Activity } from 'src/app/Activity';
+import { ActivityType } from 'src/app/ActivityType';
 import { ActivityService } from 'src/app/services/activity.service';
 import { DatePipe } from '@angular/common';
+import { ActivityTypeService } from 'src/app/services/activity-type.service';
 
 @Component({
   selector: 'app-edit-activity',
@@ -11,15 +13,18 @@ import { DatePipe } from '@angular/common';
   styleUrls: ['./edit-activity.component.css']
 })
 export class EditActivityComponent implements OnInit {
+  activityTypes: ActivityType[] = [];
   selected = this.activity.type
 
   constructor(private fb: FormBuilder, 
     @Inject(MAT_DIALOG_DATA) private activity: Activity,
     private dialogRef: MatDialogRef<EditActivityComponent>,
     private activityService: ActivityService,
+    private activityTypeService: ActivityTypeService,
     private datePipe: DatePipe) { }
 
   ngOnInit(): void {
+    this.activityTypeService.getActivityTypes().subscribe(resp => this.activityTypes = resp)
   }
 
   close() {

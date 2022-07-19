@@ -5,10 +5,8 @@
   <h1 mat-dialog-title>Edit Activity</h1> 
   <mat-dialog-content [formGroup]="form">
     <mat-form-field [style.width.px]=300>
-      <mat-select formControlName="type" placeholder="Select activity type">
-        <mat-option value="Fishing">Fishing</mat-option>
-        <mat-option value="Mountain Biking">Mountain Biking</mat-option>
-        <mat-option value="Hiking">Hiking</mat-option>
+      <mat-select formControlName="type"  placeholder="Select activity type">
+        <mat-option *ngFor="let actType of activityTypes" [value]="actType.name">{{actType.name}}</mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field [style.width.px]=300>
