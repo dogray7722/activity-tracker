@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { ActivityType } from 'src/app/ActivityType';
 
 @Component({
   selector: 'app-activity-type-create',
@@ -9,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ActivityTypeCreateComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
+  ) { }
 
   ngOnInit(): void {
   }
+
+}
+
+export function openCreateActivityType(dialog: MatDialog, activityType: ActivityType) {
 
 }
