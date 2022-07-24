@@ -1,0 +1,14 @@
+{
+  "projects": {
+    "default": "activitytracker-21247"
+  },
+  "targets": {
+    "activitytracker-21247": {
+      "hosting": {
+        "activity-tracker": [
+          "activitytracker-21247"
+        ]
+      }
+    }
+  }
+}

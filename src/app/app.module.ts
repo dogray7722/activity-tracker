@@ -39,6 +39,11 @@ import { EditActivityComponent } from './components/edit-activity/edit-activity.
 import { DeleteActivityComponent } from './components/delete-activity/delete-activity.component';
 import { ActivityTypesComponent } from './components/activity-types/activity-types.component';
 import { ActivityTypeEditComponent } from './components/activity-type-edit/activity-type-edit.component';
+import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
+import { environment } from '../environments/environment';
+import { provideAuth,getAuth } from '@angular/fire/auth';
+import { provideStorage,getStorage } from '@angular/fire/storage';
+import { ActivityTypeCreateComponent } from './components/activity-type-create/activity-type-create.component';
 
 @NgModule({
   declarations: [
@@ -51,6 +56,7 @@ import { ActivityTypeEditComponent } from './components/activity-type-edit/activ
     DeleteActivityComponent,
     ActivityTypesComponent,
     ActivityTypeEditComponent,
+    ActivityTypeCreateComponent,
   ],
   imports: [
     BrowserModule,
@@ -80,7 +86,10 @@ import { ActivityTypeEditComponent } from './components/activity-type-edit/activ
     MatTooltipModule,
     DragDropModule,
     MatGridListModule,
-    MatDividerModule
+    MatDividerModule,
+    provideFirebaseApp(() => initializeApp(environment.firebase)),
+    provideAuth(() => getAuth()),
+    provideStorage(() => getStorage())
   ],
   providers: [ DatePipe ],
   exports: [MatButtonModule],
