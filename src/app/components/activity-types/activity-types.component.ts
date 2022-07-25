@@ -22,8 +22,8 @@ export class ActivityTypesComponent implements OnInit {
     }))
   }
 
-  createType(activityType: ActivityType) {
-    openCreateActivityType(this.dialog, activityType)
+  createType() {
+    openCreateActivityType(this.dialog)
   }
 
   editType() {
@@ -34,8 +34,6 @@ export class ActivityTypesComponent implements OnInit {
 
   }
 
-  close() {
 
-  }
 
 }
