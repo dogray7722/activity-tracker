@@ -47,7 +47,6 @@ export class EditActivityComponent implements OnInit {
     date: [new Date(this.activity.date), Validators.required],
     notes: [this.activity.notes]
   })
-
 }
 
 export function openEditActivity(dialog: MatDialog, activity: Activity) {

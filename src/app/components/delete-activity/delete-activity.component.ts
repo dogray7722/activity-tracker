@@ -1,6 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
-import { flatMap } from 'rxjs';
 import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
 

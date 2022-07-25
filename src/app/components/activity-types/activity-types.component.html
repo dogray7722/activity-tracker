@@ -1,6 +1,6 @@
 <div class="vert">
   <h1 class="heading">Activity Types</h1>
-  <button mat-raised-button class="newType">New Type</button>
+  <button mat-raised-button class="newType" (click)="createType()">New Type</button>
 </div>
 <div>
   <div *ngFor="let type of activityTypes" class="activity">
