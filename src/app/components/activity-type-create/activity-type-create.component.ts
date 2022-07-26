@@ -11,6 +11,7 @@ import { ActivityTypeService } from 'src/app/services/activity-type.service';
   ]
 })
 export class ActivityTypeCreateComponent implements OnInit {
+  fileName = "";
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService,
@@ -29,9 +30,21 @@ export class ActivityTypeCreateComponent implements OnInit {
     this.dialogRef.close();
   }
 
+  fileChangeEvent(event) {
+    const file: File = event.target.files[0]
+
+    if (file) {
+      console.log(file)
+      this.fileName = file.name;
+      const formData = new FormData();
+      formData.append("thumbnail", file)
+      //add call to firebase cloud store service here
+      //subscribe to the result
+    }
+  }
+
   form = this.fb.group({
-    name: [Validators.required],
-    // photo: [Validators.required]
+    name: ["", Validators.required],
   });
 
 
