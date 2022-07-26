@@ -26,13 +26,13 @@ export class ActivityTypeCreateComponent implements OnInit {
   }
 
   save() {
-    this.dialogRef.close()
+    this.dialogRef.close();
   }
 
   form = this.fb.group({
     name: [Validators.required],
-    photo: [Validators.required]
-  })
+    // photo: [Validators.required]
+  });
 
 
 }
@@ -41,7 +41,7 @@ export function openCreateActivityType(dialog: MatDialog) {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = true;
   dialogConfig.autoFocus = true;
-  dialogConfig.width = "50%"
+  dialogConfig.width = "50%";
   const dialogRef = dialog.open(ActivityTypeCreateComponent, dialogConfig)
   return dialogRef.afterClosed();
 }
