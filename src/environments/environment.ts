@@ -10,7 +10,6 @@ export const environment = {
     locationId: 'us-central',
     apiKey: 'AIzaSyBLi98jytycQ2mbV9s_Xrpj-j8HZQOcn_A',
     authDomain: 'activitytracker-21247.firebaseapp.com',
-    messagingSenderId: '1048702504377',
     measurementId: 'G-DCLFY8KN2K',
   },
   production: false

@@ -55,7 +55,7 @@ export function openCreateActivityType(dialog: MatDialog) {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = true;
   dialogConfig.autoFocus = true;
-  dialogConfig.width = "50%";
+  dialogConfig.width = "30%";
   const dialogRef = dialog.open(ActivityTypeCreateComponent, dialogConfig)
   return dialogRef.afterClosed();
 }

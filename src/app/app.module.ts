@@ -29,7 +29,10 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DatePipe } from '@angular/common';
-import {MatDividerModule} from '@angular/material/divider';
+import { MatDividerModule } from '@angular/material/divider';
+import { AngularFireModule } from '@angular/fire/compat'
+import { environment } from '../environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -40,10 +43,6 @@ import { EditActivityComponent } from './components/edit-activity/edit-activity.
 import { DeleteActivityComponent } from './components/delete-activity/delete-activity.component';
 import { ActivityTypesComponent } from './components/activity-types/activity-types.component';
 import { ActivityTypeEditComponent } from './components/activity-type-edit/activity-type-edit.component';
-import { initializeApp,provideFirebaseApp } from '@angular/fire/app';
-import { environment } from '../environments/environment';
-import { provideAuth,getAuth } from '@angular/fire/auth';
-import { provideStorage,getStorage } from '@angular/fire/storage';
 import { ActivityTypeCreateComponent } from './components/activity-type-create/activity-type-create.component';
 
 @NgModule({
@@ -89,9 +88,8 @@ import { ActivityTypeCreateComponent } from './components/activity-type-create/a
     MatGridListModule,
     MatDividerModule,
     MatProgressBarModule,
-    provideFirebaseApp(() => initializeApp(environment.firebase)),
-    provideAuth(() => getAuth()),
-    provideStorage(() => getStorage())
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule
   ],
   providers: [ DatePipe ],
   exports: [MatButtonModule],
