@@ -12,6 +12,7 @@ import { ActivityTypeService } from 'src/app/services/activity-type.service';
 })
 export class ActivityTypeCreateComponent implements OnInit {
   fileName = "";
+  color = "green"
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService,
