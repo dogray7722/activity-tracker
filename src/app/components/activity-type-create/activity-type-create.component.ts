@@ -3,6 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { v4 as uuid } from 'uuid';
 
 @Component({
   selector: 'app-activity-type-create',
@@ -11,12 +13,11 @@ import { ActivityTypeService } from 'src/app/services/activity-type.service';
   ]
 })
 export class ActivityTypeCreateComponent implements OnInit {
-  fileName = "";
-  color = "green"
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService,
-              private fb: FormBuilder
+              private fb: FormBuilder,
+              private storage: AngularFireStorage
               
   ) { }
 
@@ -35,12 +36,11 @@ export class ActivityTypeCreateComponent implements OnInit {
     const file: File = event.target.files[0]
 
     if (file) {
-      console.log(file)
-      this.fileName = file.name;
-      const formData = new FormData();
-      formData.append("thumbnail", file)
-      //add call to firebase cloud store service here
-      //subscribe to the result
+      const picFileName = uuid()
+      let fileExt = file.name.split('.').pop();
+      const filePath = `activityTypes/${picFileName}.${fileExt}`
+      console.log(filePath)
+      this.storage.upload(filePath, file)
     }
   }
 
