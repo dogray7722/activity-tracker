@@ -12,27 +12,22 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
-import { MatListModule } from "@angular/material/list";
-import { MatPaginatorModule } from "@angular/material/paginator";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSelectModule } from "@angular/material/select";
-import { MatSidenavModule } from "@angular/material/sidenav";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
-import { MatSliderModule } from '@angular/material/slider';
-import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatGridListModule } from '@angular/material/grid-list';
-import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { DatePipe } from '@angular/common';
 import { MatDividerModule } from '@angular/material/divider';
 import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
+import { AngularFireStorageModule } from '@angular/fire/compat/storage'
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -62,7 +57,6 @@ import { ActivityTypeCreateComponent } from './components/activity-type-create/a
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    MatSidenavModule,
     MatIconModule,
     MatToolbarModule,
     HttpClientModule,
@@ -73,8 +67,6 @@ import { ActivityTypeCreateComponent } from './components/activity-type-create/a
     MatDatepickerModule,
     MatDialogModule,
     MatInputModule,
-    MatListModule,
-    MatPaginatorModule,
     MatProgressSpinnerModule,
     MatSelectModule,
     MatSortModule,
@@ -82,14 +74,12 @@ import { ActivityTypeCreateComponent } from './components/activity-type-create/a
     MatCheckboxModule,
     MatRadioModule,
     MatNativeDateModule,
-    MatSliderModule,
-    MatTooltipModule,
     DragDropModule,
     MatGridListModule,
     MatDividerModule,
-    MatProgressBarModule,
     AngularFireModule.initializeApp(environment.firebase),
-    AngularFireAuthModule
+    AngularFireAuthModule,
+    AngularFireStorageModule
   ],
   providers: [ DatePipe ],
   exports: [MatButtonModule],
