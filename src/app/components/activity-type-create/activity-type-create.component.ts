@@ -12,6 +12,7 @@ import { v4 as uuid } from 'uuid';
   styleUrls: ['./activity-type-create.component.css']
 })
 export class ActivityTypeCreateComponent implements OnInit {
+  fileName = ""
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService,
@@ -36,6 +37,7 @@ export class ActivityTypeCreateComponent implements OnInit {
 
     if (file) {
       const picFileName = uuid()
+      this.fileName = file.name
       let fileExt = file.name.split('.').pop();
       const filePath = `activityTypes/${picFileName}.${fileExt}`
       console.log(filePath)
@@ -54,7 +56,7 @@ export function openCreateActivityType(dialog: MatDialog) {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = true;
   dialogConfig.autoFocus = true;
-  dialogConfig.width = "30%";
+  dialogConfig.width = "40%";
   const dialogRef = dialog.open(ActivityTypeCreateComponent, dialogConfig)
   return dialogRef.afterClosed();
 }

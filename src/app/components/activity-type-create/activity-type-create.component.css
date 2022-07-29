@@ -1,5 +1,6 @@
 h1 {
   text-align: center;
+  margin-top: 15px;
   margin-bottom: 30px;
 }
 
@@ -11,4 +12,8 @@ h1 {
 
 .upload {
   display: none;
+}
+
+.file-upload {
+  margin: 30px;
 }

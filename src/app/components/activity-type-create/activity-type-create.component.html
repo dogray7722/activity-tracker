@@ -10,13 +10,14 @@
     <div>
       <input class="upload" type="file" name="fileUpload" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)">
       <div class="file-upload">
-        <button mat-mini-fab color="primary" class="upload-btn" (click)="UploadFileInput.click()">
+        {{fileName || "No file uploaded yet."}}
+        <button mat-mini-fab color="primary" style="margin-left: 8px;" (click)="UploadFileInput.click()">
           <mat-icon>attach_file</mat-icon>
         </button>
       </div>
     </div>
   </mat-dialog-content>
   <mat-dialog-actions align="center">
-    <button class="submit" (click)="save()" mat-raised-button color="primary">Submit</button>
+    <button class="submit" (click)="save()" mat-raised-button color="accent">Submit</button>
   </mat-dialog-actions>  
 </div>
