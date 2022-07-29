@@ -3,7 +3,8 @@ import { FormBuilder, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
-import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { PictureUploaderService } from 'src/app/services/picture-uploader.service';
+
 import { v4 as uuid } from 'uuid';
 
 @Component({
@@ -12,13 +13,15 @@ import { v4 as uuid } from 'uuid';
   styleUrls: ['./activity-type-create.component.css']
 })
 export class ActivityTypeCreateComponent implements OnInit {
-  fileName = ""
+  fileName: string
+  file: File
+  filePath: string
+  
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService,
-              private fb: FormBuilder,
-              private storage: AngularFireStorage
-              
+              private fb: FormBuilder,  
+              private picUploadService: PictureUploaderService
   ) { }
 
   ngOnInit(): void {
@@ -29,19 +32,21 @@ export class ActivityTypeCreateComponent implements OnInit {
   }
 
   save() {
+    this.picUploadService.uploadPhoto(this.filePath, this.file)
+    this.activityTypeService.createActivityType()
     this.dialogRef.close();
   }
 
   fileChangeEvent(event) {
-    const file: File = event.target.files[0]
+    const newFile: File = event.target.files[0]
 
-    if (file) {
+    if (newFile) {
       const picFileName = uuid()
-      this.fileName = file.name
-      let fileExt = file.name.split('.').pop();
-      const filePath = `activityTypes/${picFileName}.${fileExt}`
-      console.log(filePath)
-      this.storage.upload(filePath, file)
+      this.fileName = newFile.name
+      let fileExt = newFile.name.split('.').pop();
+      const newFilePath = `activityTypes/${picFileName}.${fileExt}`
+      this.file = newFile
+      this.filePath = newFilePath
     }
   }
 
@@ -56,7 +61,7 @@ export function openCreateActivityType(dialog: MatDialog) {
   const dialogConfig = new MatDialogConfig();
   dialogConfig.disableClose = true;
   dialogConfig.autoFocus = true;
-  dialogConfig.width = "40%";
+  dialogConfig.width = "35%";
   const dialogRef = dialog.open(ActivityTypeCreateComponent, dialogConfig)
   return dialogRef.afterClosed();
 }
