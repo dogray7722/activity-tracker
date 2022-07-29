@@ -16,11 +16,11 @@ export class ActivityTypeCreateComponent implements OnInit {
   fileName: string
   file: File
   filePath: string
+  activityTypeName: string
   
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
-              private activityTypeService: ActivityTypeService,
-              private fb: FormBuilder,  
+              private activityTypeService: ActivityTypeService, 
               private picUploadService: PictureUploaderService
   ) { }
 
@@ -33,7 +33,7 @@ export class ActivityTypeCreateComponent implements OnInit {
 
   save() {
     this.picUploadService.uploadPhoto(this.filePath, this.file)
-    this.activityTypeService.createActivityType()
+    // this.activityTypeService.createActivityType().subscribe
     this.dialogRef.close();
   }
 
@@ -49,11 +49,6 @@ export class ActivityTypeCreateComponent implements OnInit {
       this.filePath = newFilePath
     }
   }
-
-  form = this.fb.group({
-    name: ["", Validators.required],
-  });
-
 
 }
 

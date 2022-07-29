@@ -8,7 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field'
-import { ReactiveFormsModule } from "@angular/forms";
+import { ReactiveFormsModule, FormsModule } from "@angular/forms";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
@@ -64,6 +64,7 @@ import { ActivityTypeCreateComponent } from './components/activity-type-create/a
     MatCardModule,
     MatFormFieldModule,
     ReactiveFormsModule,
+    FormsModule,
     MatDatepickerModule,
     MatDialogModule,
     MatInputModule,
