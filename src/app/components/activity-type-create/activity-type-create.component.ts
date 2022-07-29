@@ -9,8 +9,7 @@ import { v4 as uuid } from 'uuid';
 @Component({
   selector: 'app-activity-type-create',
   templateUrl: './activity-type-create.component.html',
-  styles: [
-  ]
+  styleUrls: ['./activity-type-create.component.css']
 })
 export class ActivityTypeCreateComponent implements OnInit {
 
