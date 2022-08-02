@@ -59,18 +59,14 @@ export class ActivityTypeCreateComponent implements OnInit {
           fileRef.getDownloadURL().subscribe((url) => {
             formValue['photo'] = url
             console.log(formValue)
-            // this.addType(formValue)
-            // this.resetForm();
+            this.addType(formValue)
           })
         })
-      ).subscribe();
+        ).subscribe();
+        this.dialogRef.close();
     }
 
-    
-    //if the file fails to save, pop an error
-    // this.dialogRef.close();
   }
-
 
   resetForm() {
     this.activityTypeForm.reset()

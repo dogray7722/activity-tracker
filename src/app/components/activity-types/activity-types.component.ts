@@ -17,7 +17,6 @@ export class ActivityTypesComponent implements OnInit {
 
   ngOnInit(): void {
     this.activityTypeService.getActivityTypes().subscribe((resp) => resp.map(at => {
-      at.photo = `../../../assets/${at.photo}`
       this.activityTypes.push(at)
     }))
   }
