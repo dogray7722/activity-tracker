@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
-import { PictureUploaderService } from 'src/app/services/picture-uploader.service';
-
+import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { finalize } from 'rxjs';
 import { v4 as uuid } from 'uuid';
 
 @Component({
@@ -16,42 +16,68 @@ export class ActivityTypeCreateComponent implements OnInit {
   fileName: string
   file: File
   filePath: string
-  activityTypeName: string
-  
+  activityTypeForm = new FormGroup({
+    name: new FormControl(''),
+    photo: new FormControl('')
+  })
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService, 
-              private picUploadService: PictureUploaderService
+              private storage: AngularFireStorage
   ) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
+    this.resetForm()
   }
 
   close() {
     this.dialogRef.close();
   }
 
-  save() {
-    this.picUploadService.uploadPhoto(this.filePath, this.file).snapshotChanges().subscribe(res => {
-      console.log(res)
-    })
-    
-    // this.activityTypeService.createActivityType().subscribe
-  
-    this.dialogRef.close();
+  addType(activityType: ActivityType) {
+    this.activityTypeService.createActivityType(activityType).subscribe()
   }
 
   fileChangeEvent(event) {
     const newFile: File = event.target.files[0]
-
     if (newFile) {
       const picFileName = uuid()
       this.fileName = newFile.name
       let fileExt = newFile.name.split('.').pop();
-      const newFilePath = `activityTypes/${picFileName}.${fileExt}`
+      let newFilePath = `activityTypes/${picFileName}.${fileExt}`
       this.file = newFile
       this.filePath = newFilePath
     }
+  }
+
+  onSubmit(formValue) {
+    //if there's no file or it's invalid, pop a warning message
+    if (this.filePath && this.file) {
+      const fileRef = this.storage.ref(this.filePath)
+      this.storage.upload(this.filePath, this.file).snapshotChanges().pipe(
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            formValue['photo'] = url
+            console.log(formValue)
+            // this.addType(formValue)
+            // this.resetForm();
+          })
+        })
+      ).subscribe();
+    }
+
+    
+    //if the file fails to save, pop an error
+    // this.dialogRef.close();
+  }
+
+
+  resetForm() {
+    this.activityTypeForm.reset()
+    this.activityTypeForm.setValue({
+      name: '',
+      photo: ''
+    })
   }
 
 }

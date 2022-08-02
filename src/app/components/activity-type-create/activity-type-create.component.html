@@ -1,25 +1,24 @@
 <div>
-  <div mat-dialog-actions align="end">
-    <mat-icon style="cursor: pointer;" (click)="close()">close</mat-icon>
-  </div>
-  <h1 mat-dialog-title>Create New Activity Type</h1>
-  <mat-dialog-content class="content">
-    <form>
+  <form [formGroup]="activityTypeForm" (ngSubmit)="onSubmit(activityTypeForm.value)">
+    <div mat-dialog-actions align="end">
+      <mat-icon style="cursor: pointer;" (click)="close()">close</mat-icon>
+    </div>
+    <h1 mat-dialog-title>Create New Activity Type</h1>
+    <mat-dialog-content class="content">
       <mat-form-field [style.width.px]=300>
-        <input matInput placeholder="New Type Name" name="name" [(ngModel)]="activityTypeName" required />
+        <input matInput placeholder="New Type Name" name="name" formControlName="name" />
       </mat-form-field>
-      <div>
-        <input class="upload" type="file" accept="image/*" name="fileUpload" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" required >
+      
+        <input class="upload" type="file" #UploadFileInput (change)="fileChangeEvent($event)" formControlName="photo" />
         <div class="file-upload">
           {{fileName || "Upload activity type photo"}}
           <button mat-mini-fab color="primary" style="margin-left: 8px;" (click)="UploadFileInput.click()">
             <mat-icon>attach_file</mat-icon>
           </button>
         </div>
-      </div>
-    </form>
-  </mat-dialog-content>
-  <mat-dialog-actions align="center">
-    <button class="submit" (click)="save()" mat-raised-button color="accent">Submit</button>
-  </mat-dialog-actions>  
+      </mat-dialog-content>
+      <mat-dialog-actions align="center">
+        <button mat-raised-button type="submit" color="accent">Submit</button>
+      </mat-dialog-actions>  
+  </form>
 </div>
