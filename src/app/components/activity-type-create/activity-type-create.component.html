@@ -9,7 +9,7 @@
         <input matInput placeholder="New Type Name" name="name" [(ngModel)]="activityTypeName" required />
       </mat-form-field>
       <div>
-        <input class="upload" type="file" name="fileUpload" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" required >
+        <input class="upload" type="file" accept="image/*" name="fileUpload" #UploadFileInput id="fileUpload" (change)="fileChangeEvent($event)" required >
         <div class="file-upload">
           {{fileName || "Upload activity type photo"}}
           <button mat-mini-fab color="primary" style="margin-left: 8px;" (click)="UploadFileInput.click()">

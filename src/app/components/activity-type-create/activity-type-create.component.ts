@@ -32,8 +32,12 @@ export class ActivityTypeCreateComponent implements OnInit {
   }
 
   save() {
-    this.picUploadService.uploadPhoto(this.filePath, this.file)
+    this.picUploadService.uploadPhoto(this.filePath, this.file).snapshotChanges().subscribe(res => {
+      console.log(res)
+    })
+    
     // this.activityTypeService.createActivityType().subscribe
+  
     this.dialogRef.close();
   }
 
