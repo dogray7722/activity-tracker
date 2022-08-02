@@ -5,8 +5,7 @@ import { ActivityService } from 'src/app/services/activity.service';
 
 @Component({
   selector: 'app-delete-activity',
-  templateUrl: './delete-activity.component.html',
-  styleUrls: ['./delete-activity.component.css']
+  templateUrl: './delete-activity.component.html'
 })
 export class DeleteActivityComponent implements OnInit {
   act = this.activity
