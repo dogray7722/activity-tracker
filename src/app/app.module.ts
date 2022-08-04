@@ -17,8 +17,6 @@ import { MatSelectModule } from "@angular/material/select";
 import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
-import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatRadioModule } from '@angular/material/radio';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DragDropModule } from '@angular/cdk/drag-drop';
@@ -72,8 +70,6 @@ import { ActivityTypeCreateComponent } from './components/activity-type-create/a
     MatSelectModule,
     MatSortModule,
     MatTableModule,
-    MatCheckboxModule,
-    MatRadioModule,
     MatNativeDateModule,
     DragDropModule,
     MatGridListModule,
