@@ -13,13 +13,14 @@ import { v4 as uuid } from 'uuid';
   styleUrls: ['./activity-type-create.component.css']
 })
 export class ActivityTypeCreateComponent implements OnInit {
-  fileName: string
-  file: File
-  filePath: string
+  fileName: string;
+  file: File;
+  filePath: string;
   activityTypeForm = new FormGroup({
     name: new FormControl(''),
     photo: new FormControl('')
-  })
+  });
+  isLoading = false;
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService, 
@@ -58,7 +59,6 @@ export class ActivityTypeCreateComponent implements OnInit {
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
             formValue['photo'] = url
-            console.log(formValue)
             this.addType(formValue)
           })
         })

@@ -16,9 +16,8 @@ export class ActivityTypesComponent implements OnInit {
               private dialog: MatDialog) { }
 
   ngOnInit(): void {
-    this.activityTypeService.getActivityTypes().subscribe((resp) => resp.map(at => {
-      this.activityTypes.push(at)
-    }))
+    this.activityTypeService.getActivityTypes().subscribe(
+      (resp) => this.activityTypes = resp)
   }
 
   createType() {
