@@ -52,7 +52,6 @@ export class ActivityTypeCreateComponent implements OnInit {
   }
 
   onSubmit(formValue) {
-    //if there's no file or it's invalid, pop a warning message
     if (this.filePath && this.file) {
       const fileRef = this.storage.ref(this.filePath)
       this.storage.upload(this.filePath, this.file).snapshotChanges().pipe(
