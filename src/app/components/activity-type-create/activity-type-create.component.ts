@@ -21,6 +21,7 @@ export class ActivityTypeCreateComponent implements OnInit {
     photo: new FormControl('')
   });
   isLoading = false;
+  completed: number;
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService, 
@@ -54,17 +55,20 @@ export class ActivityTypeCreateComponent implements OnInit {
   onSubmit(formValue) {
     if (this.filePath && this.file) {
       const fileRef = this.storage.ref(this.filePath)
+      this.isLoading = true
       this.storage.upload(this.filePath, this.file).snapshotChanges().pipe(
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
             formValue['photo'] = url
             this.addType(formValue)
+            this.isLoading = false
+            this.dialogRef.close();
           })
         })
-        ).subscribe();
-        this.dialogRef.close();
+        ).subscribe((res) => {
+          this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)
+        });
     }
-
   }
 
   resetForm() {
@@ -74,7 +78,6 @@ export class ActivityTypeCreateComponent implements OnInit {
       photo: ''
     })
   }
-
 }
 
 export function openCreateActivityType(dialog: MatDialog) {

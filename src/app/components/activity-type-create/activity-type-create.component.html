@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!isLoading;else spinner">
   <form [formGroup]="activityTypeForm" (ngSubmit)="onSubmit(activityTypeForm.value)">
     <div mat-dialog-actions align="end">
       <mat-icon style="cursor: pointer;" (click)="close()">close</mat-icon>
@@ -22,4 +22,17 @@
       </mat-dialog-actions>  
   </form>
 </div>
-<div></div>
+<ng-template #spinner>
+  <mat-card>
+    <mat-card-content>
+      <h2 class="example-h2">Result</h2>
+      <mat-progress-spinner
+        color="primary"
+        mode="determinate" 
+        [value]="completed">
+      >
+    </mat-progress-spinner>
+    </mat-card-content>
+  </mat-card>
+</ng-template>
+
