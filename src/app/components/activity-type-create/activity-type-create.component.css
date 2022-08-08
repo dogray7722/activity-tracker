@@ -17,3 +17,9 @@ h1 {
 .file-upload {
   margin: 30px;
 }
+
+.spinner {
+  display: flex;
+  flex-direction: column;
+  margin-left: 35%;
+}

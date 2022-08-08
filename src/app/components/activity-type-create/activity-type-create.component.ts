@@ -6,6 +6,7 @@ import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { finalize } from 'rxjs';
 import { v4 as uuid } from 'uuid';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-activity-type-create',
@@ -25,7 +26,8 @@ export class ActivityTypeCreateComponent implements OnInit {
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService, 
-              private storage: AngularFireStorage
+              private storage: AngularFireStorage,
+              private router: Router
   ) { }
 
   ngOnInit() {
@@ -62,7 +64,9 @@ export class ActivityTypeCreateComponent implements OnInit {
             formValue['photo'] = url
             this.addType(formValue)
             this.isLoading = false
-            this.dialogRef.close();
+            this.dialogRef.close()
+            this.resetForm();
+            this.reloadComponent();
           })
         })
         ).subscribe((res) => {
@@ -70,6 +74,14 @@ export class ActivityTypeCreateComponent implements OnInit {
         });
     }
   }
+
+
+  reloadComponent() {
+    let currentUrl = this.router.url;
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([currentUrl]);
+    }
 
   resetForm() {
     this.activityTypeForm.reset()
