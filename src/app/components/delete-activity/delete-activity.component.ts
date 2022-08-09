@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-delete-activity',
@@ -10,11 +11,11 @@ import { ActivityService } from 'src/app/services/activity.service';
 export class DeleteActivityComponent implements OnInit {
   act = this.activity
 
-
   constructor(
               @Inject(MAT_DIALOG_DATA) private activity: Activity,
               private dialogRef: MatDialogRef<DeleteActivityComponent>,
-              private activityService: ActivityService) { }
+              private activityService: ActivityService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -26,8 +27,16 @@ export class DeleteActivityComponent implements OnInit {
   delete(act) {
     this.activityService.deleteActivity(act).subscribe();
     this.dialogRef.close();
-    window.location.reload();
+    this.reloadComponent();
   }
+
+  reloadComponent() {
+    let currentUrl = this.router.url;
+        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+        this.router.onSameUrlNavigation = 'reload';
+        this.router.navigate([currentUrl]);
+    }
+
 }
 
 export function openDeleteActivity(dialog: MatDialog, activity: Activity) {
