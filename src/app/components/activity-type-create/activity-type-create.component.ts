@@ -1,25 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize } from 'rxjs';
+import { catchError, finalize, pipe } from 'rxjs';
 import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarSuccessComponent } from '../snack-bar-success/snack-bar-success.component';
 
 @Component({
   selector: 'app-activity-type-create',
   templateUrl: './activity-type-create.component.html',
   styleUrls: ['./activity-type-create.component.css']
 })
-export class ActivityTypeCreateComponent implements OnInit {
+export class ActivityTypeCreateComponent {
   fileName: string;
   file: File;
   filePath: string;
   activityTypeForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    photo: new FormControl('')
+    photo: new FormControl('', Validators.required)
   });
   isLoading = false;
   completed: number;
@@ -27,12 +29,10 @@ export class ActivityTypeCreateComponent implements OnInit {
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService, 
               private storage: AngularFireStorage,
-              private router: Router
+              private router: Router,
+              private snackBar: MatSnackBar
+              
   ) { }
-
-  ngOnInit() {
-    this.resetForm()
-  }
 
   close() {
     this.dialogRef.close();
@@ -65,13 +65,14 @@ export class ActivityTypeCreateComponent implements OnInit {
             this.addType(formValue)
             this.isLoading = false
             this.dialogRef.close()
-            this.resetForm();
             this.reloadComponent();
+            this.openSnackBarSuccess();
           })
         })
-        ).subscribe((res) => {
-          this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)
-        });
+        ).subscribe({
+          next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100),
+          error: () => this.snackBar.open("There was a problem saving new type.")  
+      })
     }
   }
 
@@ -82,13 +83,10 @@ export class ActivityTypeCreateComponent implements OnInit {
         this.router.navigate([currentUrl]);
     }
 
-  resetForm() {
-    this.activityTypeForm.reset()
-    this.activityTypeForm.setValue({
-      name: '',
-      photo: ''
-    })
+  openSnackBarSuccess() {
+    this.snackBar.openFromComponent(SnackBarSuccessComponent, {duration: 3 * 1000 })
   }
+  
 }
 
 export function openCreateActivityType(dialog: MatDialog) {
@@ -99,3 +97,7 @@ export function openCreateActivityType(dialog: MatDialog) {
   const dialogRef = dialog.open(ActivityTypeCreateComponent, dialogConfig)
   return dialogRef.afterClosed();
 }
+
+
+
+

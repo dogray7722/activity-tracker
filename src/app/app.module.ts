@@ -26,6 +26,7 @@ import { AngularFireModule } from '@angular/fire/compat'
 import { environment } from '../environments/environment';
 import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage'
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -37,6 +38,7 @@ import { DeleteActivityComponent } from './components/delete-activity/delete-act
 import { ActivityTypesComponent } from './components/activity-types/activity-types.component';
 import { ActivityTypeEditComponent } from './components/activity-type-edit/activity-type-edit.component';
 import { ActivityTypeCreateComponent } from './components/activity-type-create/activity-type-create.component';
+import { SnackBarSuccessComponent } from './components/snack-bar-success/snack-bar-success.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { ActivityTypeCreateComponent } from './components/activity-type-create/a
     DeleteActivityComponent,
     ActivityTypesComponent,
     ActivityTypeEditComponent,
-    ActivityTypeCreateComponent
+    ActivityTypeCreateComponent,
+    SnackBarSuccessComponent
   ],
   imports: [
     BrowserModule,
@@ -76,7 +79,8 @@ import { ActivityTypeCreateComponent } from './components/activity-type-create/a
     MatDividerModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFireStorageModule
+    AngularFireStorageModule,
+    MatSnackBarModule
   ],
   providers: [ DatePipe ],
   exports: [MatButtonModule],
