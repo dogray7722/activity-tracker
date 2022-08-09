@@ -8,7 +8,7 @@ import { catchError, finalize, pipe } from 'rxjs';
 import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarSuccessComponent } from '../snack-bar-success/snack-bar-success.component';
+import { SnackBarComponent } from '../snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-activity-type-create',
@@ -84,7 +84,7 @@ export class ActivityTypeCreateComponent {
     }
 
   openSnackBarSuccess() {
-    this.snackBar.openFromComponent(SnackBarSuccessComponent, {duration: 3 * 1000 })
+    this.snackBar.openFromComponent(SnackBarComponent, {duration: 3 * 1000 })
   }
   
 }

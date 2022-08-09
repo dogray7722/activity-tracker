@@ -38,7 +38,7 @@ import { DeleteActivityComponent } from './components/delete-activity/delete-act
 import { ActivityTypesComponent } from './components/activity-types/activity-types.component';
 import { ActivityTypeEditComponent } from './components/activity-type-edit/activity-type-edit.component';
 import { ActivityTypeCreateComponent } from './components/activity-type-create/activity-type-create.component';
-import { SnackBarSuccessComponent } from './components/snack-bar-success/snack-bar-success.component';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +52,7 @@ import { SnackBarSuccessComponent } from './components/snack-bar-success/snack-b
     ActivityTypesComponent,
     ActivityTypeEditComponent,
     ActivityTypeCreateComponent,
-    SnackBarSuccessComponent
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,
