@@ -18,7 +18,7 @@ export class ActivityTypeCreateComponent implements OnInit {
   file: File;
   filePath: string;
   activityTypeForm = new FormGroup({
-    name: new FormControl(''),
+    name: new FormControl('', Validators.required),
     photo: new FormControl('')
   });
   isLoading = false;
@@ -74,7 +74,6 @@ export class ActivityTypeCreateComponent implements OnInit {
         });
     }
   }
-
 
   reloadComponent() {
     let currentUrl = this.router.url;

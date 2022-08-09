@@ -23,20 +23,13 @@
   </form>
 </div>
 <ng-template #spinner>
-  <mat-card>
-    <mat-card-title>
-      <h2 style="text-align: center;">New Activity Creation Progress</h2>
-
-    </mat-card-title>
-    <mat-card-content>
-      <mat-progress-spinner
-        class="spinner"
-        color="primary"
-        mode="determinate" 
-        [value]="completed">
-      >
+  <div style="background-color: hsl(40, 60%, 98%);"></div>
+    <h2 style="text-align: center;">New Activity Creation Progress</h2>
+    <mat-progress-spinner
+      class="spinner"
+      color="primary"
+      mode="determinate" 
+      [value]="completed">
     </mat-progress-spinner>
-    </mat-card-content>
-  </mat-card>
 </ng-template>
 
