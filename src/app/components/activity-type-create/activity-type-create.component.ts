@@ -4,7 +4,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dial
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { catchError, finalize, pipe } from 'rxjs';
+import { finalize } from 'rxjs';
 import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
@@ -25,6 +25,7 @@ export class ActivityTypeCreateComponent {
   });
   isLoading = false;
   completed: number;
+  snackBarData: {}
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService, 
@@ -70,10 +71,9 @@ export class ActivityTypeCreateComponent {
           })
         })
         ).subscribe({
-          next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100),
-          error: () => this.snackBar.open("There was a problem saving new type.")  
+          next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)
       })
-    }
+    } 
   }
 
   reloadComponent() {
@@ -84,9 +84,24 @@ export class ActivityTypeCreateComponent {
     }
 
   openSnackBarSuccess() {
-    this.snackBar.openFromComponent(SnackBarComponent, {duration: 3 * 1000 })
+    this.snackBarData = {
+        wasSuccessful: true,
+        message: "Activity Type Created Successfully!" 
+    }
+    this.snackBar.openFromComponent(SnackBarComponent, {duration: 4 * 1000, 
+      data: this.snackBarData
+     })
   }
-  
+
+  openSnackBarError() {
+    this.snackBarData = {
+      wasSuccessful: false,
+      message: "There was a problem creating activity type." 
+    }
+    this.snackBar.openFromComponent(SnackBarComponent,{duration: 4 * 1000, 
+      data: this.snackBarData
+    })
+  }
 }
 
 export function openCreateActivityType(dialog: MatDialog) {
