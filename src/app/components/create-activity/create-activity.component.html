@@ -32,7 +32,7 @@
           cdkTextareaAutosize></textarea>
       </mat-form-field>
       <mat-card-actions>
-        <button type="submit" mat-raised-button color="primary">Submit</button>
+        <button type="submit" mat-raised-button color="primary" [disabled]="activityForm.invalid">Submit</button>
       </mat-card-actions>
     </mat-card-content> 
   </mat-card>
