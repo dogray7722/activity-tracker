@@ -30,15 +30,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { ActivitiesComponent } from './components/activities/activities.component';
-import { ActivityComponent } from './components/activity/activity.component';
-import { CreateActivityComponent } from './components/create-activity/create-activity.component';
-import { EditActivityComponent } from './components/edit-activity/edit-activity.component';
-import { DeleteActivityComponent } from './components/delete-activity/delete-activity.component';
-import { ActivityTypesComponent } from './components/activity-types/activity-types.component';
-import { ActivityTypeEditComponent } from './components/activity-type-edit/activity-type-edit.component';
-import { ActivityTypeCreateComponent } from './components/activity-type-create/activity-type-create.component';
+import { ActivitiesComponent } from './components/Events/activities/activities.component';
+import { ActivityComponent } from './components/Events/activity/activity.component';
+import { CreateActivityComponent } from './components/Events/create-activity/create-activity.component';
+import { EditActivityComponent } from './components/Events/edit-activity/edit-activity.component';
+import { DeleteActivityComponent } from './components/Events/delete-activity/delete-activity.component';
+import { ActivityTypesComponent } from './components/Types/activity-types/activity-types.component';
+import { ActivityTypeEditComponent } from './components/Types/activity-type-edit/activity-type-edit.component';
+import { ActivityTypeCreateComponent } from './components/Types/activity-type-create/activity-type-create.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
+import { ActivityTypeDeleteComponent } from './components/Types/activity-type-delete/activity-type-delete.component';
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
     ActivityTypesComponent,
     ActivityTypeEditComponent,
     ActivityTypeCreateComponent,
-    SnackBarComponent
+    SnackBarComponent,
+    ActivityTypeDeleteComponent
   ],
   imports: [
     BrowserModule,

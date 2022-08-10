@@ -3,6 +3,7 @@ import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { openCreateActivityType } from '../activity-type-create/activity-type-create.component';
 import { MatDialog } from '@angular/material/dialog';
+import { openDeleteActivityType } from '../activity-type-delete/activity-type-delete.component';
 
 @Component({
   selector: 'app-activity-types',
@@ -28,8 +29,8 @@ export class ActivityTypesComponent implements OnInit {
 
   }
 
-  deleteType() {
-
+  deleteType(type: ActivityType) {
+    openDeleteActivityType(this.dialog, type)
   }
 
 
