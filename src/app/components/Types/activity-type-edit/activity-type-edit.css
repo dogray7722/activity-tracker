@@ -1,0 +1,15 @@
+h1 {
+  color:rgb(15, 15, 15); 
+  text-align: center
+}
+
+mat-form-field {
+  margin-left: 25px;
+  margin-top: 15px;
+  padding: 5px;
+}
+
+.submit {
+  display: grid;
+  margin: auto;
+}

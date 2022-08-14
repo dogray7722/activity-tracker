@@ -14,7 +14,6 @@ import { ActivityTypeService } from 'src/app/services/activity-type.service';
 })
 export class EditActivityComponent implements OnInit {
   activityTypes: ActivityType[] = [];
-  selected = this.activity.type
 
   constructor(private fb: FormBuilder, 
     @Inject(MAT_DIALOG_DATA) private activity: Activity,

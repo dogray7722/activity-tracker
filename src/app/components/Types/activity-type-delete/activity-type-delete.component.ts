@@ -1,4 +1,4 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Activity } from 'src/app/Activity';
 import { ActivityType } from 'src/app/ActivityType';
@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   templateUrl: './activity-type-delete.component.html',
   styleUrls: ['./activity-type-delete.component.css']
 })
-export class ActivityTypeDeleteComponent implements OnInit {
+export class ActivityTypeDeleteComponent {
   type = this.activityType
   activities: Activity[] = []
   snackBarData: {}
@@ -27,9 +27,6 @@ export class ActivityTypeDeleteComponent implements OnInit {
     private snackBar: MatSnackBar,
     private router: Router
   ) { }
-
-  ngOnInit(): void {
-  }
 
   cancel() {
     this.dialogRef.close()
