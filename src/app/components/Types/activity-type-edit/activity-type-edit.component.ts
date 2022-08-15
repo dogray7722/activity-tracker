@@ -12,7 +12,7 @@ import { v4 as uuid } from 'uuid';
   ]
 })
 export class ActivityTypeEditComponent {
-  fileName: string;
+  fileName = this.type.photo
   file: File;
   filePath: string;
 
