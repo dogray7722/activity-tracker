@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
@@ -12,15 +12,14 @@ import { v4 as uuid } from 'uuid';
   ]
 })
 export class ActivityTypeEditComponent {
-  fileName = this.type.photo
+  fileName = this.type.fileName
   file: File;
   filePath: string;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public type: ActivityType,
     private dialogRef: MatDialogRef<ActivityTypeEditComponent>,
-    private activityTypeService: ActivityTypeService,
-    private fb: FormBuilder
+    private activityTypeService: ActivityTypeService
   ) { }
 
   close() {
@@ -45,8 +44,9 @@ export class ActivityTypeEditComponent {
   }
 
   activityTypeForm = new FormGroup({
-    name: new FormControl(this.type.name),
-    photo: new FormControl(this.type.photo)
+    name: new FormControl(this.type.name, Validators.required),
+    photo: new FormControl(this.type.photo, Validators.required),
+    fileName: new FormControl(this.type.fileName)
   })
 }
 

@@ -21,7 +21,8 @@ export class ActivityTypeCreateComponent {
   filePath: string;
   activityTypeForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    photo: new FormControl('', Validators.required)
+    photo: new FormControl('', Validators.required),
+    fileName: new FormControl('')
   });
   isLoading = false;
   completed: number;
@@ -63,6 +64,7 @@ export class ActivityTypeCreateComponent {
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
             formValue['photo'] = url
+            formValue['fileName'] = this.fileName
             this.addType(formValue)
             this.isLoading = false
             this.dialogRef.close()
