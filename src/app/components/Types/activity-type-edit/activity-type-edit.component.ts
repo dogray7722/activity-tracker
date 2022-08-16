@@ -86,6 +86,8 @@ export class ActivityTypeEditComponent {
 export function openEditActivityType(dialog: MatDialog, type: ActivityType) {
   const dialogConfig = new MatDialogConfig()
   dialogConfig.disableClose = true;
+  dialogConfig.autoFocus = true;
+  dialogConfig.width = "35%";
   dialogConfig.data = {
     ...type
   }
