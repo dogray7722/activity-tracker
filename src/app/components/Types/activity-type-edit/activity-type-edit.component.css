@@ -1,6 +1,7 @@
 h1 {
-  color:rgb(15, 15, 15); 
-  text-align: center
+  text-align: center;
+  margin-top: 15px;
+  margin-bottom: 30px;
 }
 
 mat-form-field {

@@ -8,13 +8,13 @@ import { v4 as uuid } from 'uuid';
 @Component({
   selector: 'app-activity-type-edit',
   templateUrl: './activity-type-edit.component.html',
-  styles: [
-  ]
+  styleUrls: ['./activity-type-edit.component.css']
 })
 export class ActivityTypeEditComponent {
   fileName = this.type.fileName
   file: File;
   filePath: string;
+  preview = this.type.photo
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public type: ActivityType,
