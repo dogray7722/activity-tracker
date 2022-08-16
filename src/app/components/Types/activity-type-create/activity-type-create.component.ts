@@ -9,6 +9,7 @@ import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
+import { ReloadComponentService } from 'src/app/services/reload-component.service';
 
 @Component({
   selector: 'app-activity-type-create',
@@ -32,7 +33,8 @@ export class ActivityTypeCreateComponent {
               private activityTypeService: ActivityTypeService, 
               private storage: AngularFireStorage,
               private router: Router,
-              private snackBar: MatSnackBar
+              private snackBar: MatSnackBar,
+              private reloadService: ReloadComponentService
               
   ) { }
 
@@ -68,7 +70,7 @@ export class ActivityTypeCreateComponent {
             this.addType(formValue)
             this.isLoading = false
             this.dialogRef.close()
-            this.reloadComponent();
+            this.reloadService.reloadComponent(this.router.url);
             this.openSnackBarSuccess();
           })
         })
