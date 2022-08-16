@@ -21,7 +21,7 @@ export class ActivityTypeCreateComponent {
   filePath: string;
   activityTypeForm = new FormGroup({
     name: new FormControl('', Validators.required),
-    photo: new FormControl('', Validators.required),
+    photo: new FormControl(null),
     fileName: new FormControl('')
   });
   isLoading = false;
