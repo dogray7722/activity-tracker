@@ -7,6 +7,7 @@ import { ActivityService } from 'src/app/services/activity.service';
 import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
+import { ReloadComponentService } from 'src/app/services/reload-component.service';
 
 @Component({
   selector: 'app-activity-type-delete',
@@ -25,7 +26,8 @@ export class ActivityTypeDeleteComponent {
     private activityTypeService: ActivityTypeService,
     private dialogRef: MatDialogRef<ActivityTypeDeleteComponent>,
     private snackBar: MatSnackBar,
-    private router: Router
+    private router: Router,
+    private reloadService: ReloadComponentService
   ) { }
 
   cancel() {
@@ -39,7 +41,7 @@ export class ActivityTypeDeleteComponent {
       this.activityTypeService.deleteActivityType(type).subscribe();
     }
     this.dialogRef.close()
-    this.reloadComponent()
+    this.reloadService.reloadComponent(this.router.url)
   }
 
   delete(type) {
@@ -71,14 +73,6 @@ export class ActivityTypeDeleteComponent {
       data: this.snackBarData
     })
   }
-
-  reloadComponent() {
-    let currentUrl = this.router.url;
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate([currentUrl]);
-    }
-
 }
 
 export function openDeleteActivityType(dialog: MatDialog, type: ActivityType) {

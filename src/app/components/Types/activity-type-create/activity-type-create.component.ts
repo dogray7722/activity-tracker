@@ -80,13 +80,6 @@ export class ActivityTypeCreateComponent {
     } 
   }
 
-  reloadComponent() {
-    let currentUrl = this.router.url;
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate([currentUrl]);
-    }
-
   openSnackBarSuccess() {
     this.snackBarData = {
         wasSuccessful: true,

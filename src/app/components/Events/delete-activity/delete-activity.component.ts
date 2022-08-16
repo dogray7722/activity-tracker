@@ -1,24 +1,23 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog'
 import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Router } from '@angular/router';
+import { ReloadComponentService } from 'src/app/services/reload-component.service';
 
 @Component({
   selector: 'app-delete-activity',
   templateUrl: './delete-activity.component.html'
 })
-export class DeleteActivityComponent implements OnInit {
+export class DeleteActivityComponent {
   act = this.activity
 
   constructor(
               @Inject(MAT_DIALOG_DATA) private activity: Activity,
               private dialogRef: MatDialogRef<DeleteActivityComponent>,
               private activityService: ActivityService,
-              private router: Router) { }
-
-  ngOnInit(): void {
-  }
+              private router: Router,
+              private reloadService: ReloadComponentService) { }
 
   cancel() {
     this.dialogRef.close();
@@ -27,15 +26,8 @@ export class DeleteActivityComponent implements OnInit {
   delete(act) {
     this.activityService.deleteActivity(act).subscribe();
     this.dialogRef.close();
-    this.reloadComponent();
+    this.reloadService.reloadComponent(this.router.url)
   }
-
-  reloadComponent() {
-    let currentUrl = this.router.url;
-        this.router.routeReuseStrategy.shouldReuseRoute = () => false;
-        this.router.onSameUrlNavigation = 'reload';
-        this.router.navigate([currentUrl]);
-    }
 
 }
 
