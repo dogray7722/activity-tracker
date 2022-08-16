@@ -8,6 +8,7 @@ import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
+import { AngularFireStorage } from '@angular/fire/compat/storage';
 
 @Component({
   selector: 'app-activity-type-delete',
@@ -27,7 +28,8 @@ export class ActivityTypeDeleteComponent {
     private dialogRef: MatDialogRef<ActivityTypeDeleteComponent>,
     private snackBar: MatSnackBar,
     private router: Router,
-    private reloadService: ReloadComponentService
+    private reloadService: ReloadComponentService,
+    private storage: AngularFireStorage
   ) { }
 
   cancel() {
@@ -38,6 +40,7 @@ export class ActivityTypeDeleteComponent {
     if (typeInUse) {
       this.openSnackBarError()
     } else {
+      this.storage.refFromURL(type.photo).delete().subscribe()
       this.activityTypeService.deleteActivityType(type).subscribe();
     }
     this.dialogRef.close()
