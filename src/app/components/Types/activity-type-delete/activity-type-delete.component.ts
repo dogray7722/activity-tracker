@@ -40,7 +40,7 @@ export class ActivityTypeDeleteComponent {
     if (typeInUse) {
       this.openSnackBarError()
     } else {
-      this.storage.refFromURL(type.photo).delete().subscribe()
+      this.storage.ref(type.photo).delete().subscribe()
       this.activityTypeService.deleteActivityType(type).subscribe();
     }
     this.dialogRef.close()

@@ -5,7 +5,7 @@ import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { v4 as uuid } from 'uuid';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize } from 'rxjs';
+import { finalize, pipe, tap } from 'rxjs';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 import { Router } from '@angular/router';
 import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
@@ -55,7 +55,7 @@ export class ActivityTypeEditComponent {
     this.storage.upload(this.filePath, this.file).snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
-          this.activityTypeForm.value['photo'] = url
+          this.activityTypeForm['photo'] = url
           this.activityTypeForm.value['fileName'] = this.fileName
           this.activityTypeService.updateActivityType(this.activityTypeForm.value).subscribe()
           this.dialogRef.close()
@@ -63,6 +63,10 @@ export class ActivityTypeEditComponent {
           this.openSnackBarSuccess();
         })
       })
+    ).subscribe(
+      pipe(
+        tap => {console.log()}
+      )
     )
   }
 
@@ -79,7 +83,8 @@ export class ActivityTypeEditComponent {
   activityTypeForm = new FormGroup({
     name: new FormControl(this.type.name, Validators.required),
     photo: new FormControl(this.type.photo),
-    fileName: new FormControl(this.type.fileName)
+    fileName: new FormControl(this.type.fileName),
+    id: new FormControl(this.type.id)
   })
 }
 

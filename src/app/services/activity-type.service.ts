@@ -32,6 +32,6 @@ export class ActivityTypeService {
 
   updateActivityType(activityType: ActivityType): Observable<ActivityType> {
     const url = `${this.apiUrl}/${activityType.id}`
-    return this.http.put<ActivityType>(url, httpOptions)
+    return this.http.put<ActivityType>(url, activityType, httpOptions)
   }
 }
