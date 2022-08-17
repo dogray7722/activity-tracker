@@ -41,10 +41,12 @@ export class ActivityTypeEditComponent {
     const newFile: File = event.target.files[0]
     if (newFile) {
       const picFileName = uuid()
-      this.fileName = newFile.name
-      let fileExt = newFile.name.split('.').pop();
-      let newFilePath = `activityTypes/${picFileName}.${fileExt}`
+      const reader = new FileReader();
+      const fileExt = newFile.name.split('.').pop();
+      const newFilePath = `activityTypes/${picFileName}.${fileExt}`
+      
       this.file = newFile
+      this.fileName = newFile.name
       this.filePath = newFilePath
     }
   }
@@ -55,7 +57,7 @@ export class ActivityTypeEditComponent {
     this.storage.upload(this.filePath, this.file).snapshotChanges().pipe(
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
-          this.activityTypeForm['photo'] = url
+          this.activityTypeForm.value['photo'] = url
           this.activityTypeForm.value['fileName'] = this.fileName
           this.activityTypeService.updateActivityType(this.activityTypeForm.value).subscribe()
           this.dialogRef.close()
@@ -63,11 +65,7 @@ export class ActivityTypeEditComponent {
           this.openSnackBarSuccess();
         })
       })
-    ).subscribe(
-      pipe(
-        tap => {console.log()}
-      )
-    )
+    ).subscribe()
   }
 
   openSnackBarSuccess() {
