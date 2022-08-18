@@ -1,4 +1,4 @@
-<div>
+<div *ngIf="!isLoading;else spinner">
   <div mat-dialog-actions align="end">
     <mat-icon style="cursor: pointer;" (click)="close()">close</mat-icon>
   </div>
@@ -22,3 +22,13 @@
       <button class="submit" (click)="save()" mat-raised-button color="primary" [disabled]="activityTypeForm.invalid">Submit</button>
     </mat-dialog-actions>
 </div>
+<ng-template #spinner>
+  <div style="background-color: hsl(40, 60%, 98%);"></div>
+  <h2 style="text-align: center;">Activity Type Update Progress</h2>
+  <mat-progress-spinner
+    class="spinner"
+    color="primary"
+    mode="determinate" 
+    [value]="completed">
+  </mat-progress-spinner>
+</ng-template>

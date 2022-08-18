@@ -71,6 +71,11 @@ export class ActivityTypeCreateComponent {
       this.storage.upload(this.filePath, this.file).snapshotChanges()
         .subscribe({
           next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100),
+          // error: () => {
+          //   this.dialogRef.close()
+          //   this.reloadService.reloadComponent(this.router.url);
+          //   this.openSnackBarError()
+          // },
           complete: () => {
             fileRef.getDownloadURL().subscribe((url) => {
               formValue['photo'] = url
@@ -99,9 +104,9 @@ export class ActivityTypeCreateComponent {
   openSnackBarError() {
     this.snackBarData = {
       wasSuccessful: false,
-      message: "There was a problem creating activity type." 
+      message: "There was a problem creating activity type. Please try again later." 
     }
-    this.snackBar.openFromComponent(SnackBarComponent,{duration: 4 * 1000, 
+    this.snackBar.openFromComponent(SnackBarComponent,{duration: 6 * 1000, 
       data: this.snackBarData
     })
   }
