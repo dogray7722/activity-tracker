@@ -5,7 +5,7 @@ import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { v4 as uuid } from 'uuid';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize, pipe, tap } from 'rxjs';
+import { finalize } from 'rxjs';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 import { Router } from '@angular/router';
 import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
@@ -44,9 +44,12 @@ export class ActivityTypeEditComponent {
       const reader = new FileReader();
       const fileExt = newFile.name.split('.').pop();
       const newFilePath = `activityTypes/${picFileName}.${fileExt}`
-      
-      this.file = newFile
+      reader.readAsDataURL(newFile)
+      reader.onload = () => {
+        this.preview = reader.result as string;
+      }
       this.fileName = newFile.name
+      this.file = newFile
       this.filePath = newFilePath
     }
   }

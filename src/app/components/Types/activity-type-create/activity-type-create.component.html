@@ -1,26 +1,31 @@
 <div *ngIf="!isLoading;else spinner">
-  <form [formGroup]="activityTypeForm" (ngSubmit)="onSubmit(activityTypeForm.value)">
-    <div mat-dialog-actions align="end">
-      <mat-icon style="cursor: pointer;" (click)="close()">close</mat-icon>
+  <div mat-dialog-actions align="end">
+    <mat-icon style="cursor: pointer;" (click)="close()">close</mat-icon>
+  </div>
+  <h1 mat-dialog-title>Create New Activity Type</h1>
+  <mat-dialog-content [formGroup]="activityTypeForm" class="content">
+    <mat-form-field [style.width.px]=300>
+      <input matInput placeholder="New Type Name" name="name" formControlName="name" />
+    </mat-form-field>
+    <div *ngIf="preview">
+      <img [src]="preview" style="height: 200px; width: 200px" alt="">
     </div>
-    <h1 mat-dialog-title>Create New Activity Type</h1>
-    <mat-dialog-content class="content">
-      <mat-form-field [style.width.px]=300>
-        <input matInput placeholder="New Type Name" name="name" formControlName="name" />
-      </mat-form-field>
-      
-        <input class="upload" type="file" #UploadFileInput (change)="fileChangeEvent($event)" accept="image/*"/>
-        <div class="file-upload">
-          {{fileName || "Upload activity type photo"}}
-          <button mat-mini-fab color="primary" style="margin-left: 8px;" (click)="UploadFileInput.click()">
-            <mat-icon>attach_file</mat-icon>
-          </button>
-        </div>
-      </mat-dialog-content>
-      <mat-dialog-actions align="center">
-        <button mat-raised-button type="submit" color="accent" [disabled]="activityTypeForm.invalid">Submit</button>
-      </mat-dialog-actions>  
-  </form>
+      <input class="upload" type="file" #UploadFileInput (change)="fileChangeEvent($event)" accept="image/*"/>
+      <div class="file-upload">
+        {{fileName || "Upload activity type photo"}}
+        <button mat-mini-fab color="primary" style="margin-left: 8px;" (click)="UploadFileInput.click()">
+          <mat-icon>attach_file</mat-icon>
+        </button>
+      </div>
+    </mat-dialog-content>
+    <mat-dialog-actions align="center">
+      <button 
+        mat-raised-button 
+        type="submit" 
+        color="accent" 
+        [disabled]="activityTypeForm.invalid"
+        (click)="save(activityTypeForm.value)">Submit</button>
+    </mat-dialog-actions>
 </div>
 <ng-template #spinner>
   <div style="background-color: hsl(40, 60%, 98%);"></div>

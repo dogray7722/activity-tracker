@@ -28,6 +28,7 @@ export class ActivityTypeCreateComponent {
   isLoading = false;
   completed: number;
   snackBarData: {}
+  preview = null
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService, 
@@ -49,33 +50,38 @@ export class ActivityTypeCreateComponent {
   fileChangeEvent(event) {
     const newFile: File = event.target.files[0]
     if (newFile) {
+      const reader = new FileReader();
       const picFileName = uuid()
       this.fileName = newFile.name
       let fileExt = newFile.name.split('.').pop();
       let newFilePath = `activityTypes/${picFileName}.${fileExt}`
+      reader.readAsDataURL(newFile)
+      reader.onload = () => {
+        this.preview = reader.result as string;
+      }
       this.file = newFile
       this.filePath = newFilePath
     }
   }
 
-  onSubmit(formValue) {
+  save(formValue) {
     if (this.filePath && this.file) {
       const fileRef = this.storage.ref(this.filePath)
       this.isLoading = true
-      this.storage.upload(this.filePath, this.file).snapshotChanges().pipe(
-        finalize(() => {
-          fileRef.getDownloadURL().subscribe((url) => {
-            formValue['photo'] = url
-            formValue['fileName'] = this.fileName
-            this.addType(formValue)
-            this.isLoading = false
-            this.dialogRef.close()
-            this.reloadService.reloadComponent(this.router.url);
-            this.openSnackBarSuccess();
-          })
-        })
-        ).subscribe({
-          next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)
+      this.storage.upload(this.filePath, this.file).snapshotChanges()
+        .subscribe({
+          next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100),
+          complete: () => {
+            fileRef.getDownloadURL().subscribe((url) => {
+              formValue['photo'] = url
+              formValue['fileName'] = this.fileName
+              this.addType(formValue)
+              this.isLoading = false
+              this.dialogRef.close()
+              this.reloadService.reloadComponent(this.router.url);
+              this.openSnackBarSuccess();
+          }
+        )}
       })
     } 
   }
