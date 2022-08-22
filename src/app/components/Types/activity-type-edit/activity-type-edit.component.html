@@ -1,6 +1,6 @@
 <div *ngIf="!isLoading;else spinner">
   <div mat-dialog-actions align="end">
-    <mat-icon style="cursor: pointer;" (click)="close()">close</mat-icon>
+    <mat-icon style="cursor: pointer;" mat-dialog-close>close</mat-icon>
   </div>
   <h1 mat-dialog-title>Edit Activity Type</h1>
   <mat-dialog-content class="content" [formGroup]="activityTypeForm">

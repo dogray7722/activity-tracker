@@ -35,10 +35,6 @@ export class ActivityTypeEditComponent {
     private snackBar: MatSnackBar,
   ) { }
 
-  close() {
-    this.dialogRef.close()
-  }
-
   fileChangeEvent(event) {
     const newFile: File = event.target.files[0]
     if (newFile) {
