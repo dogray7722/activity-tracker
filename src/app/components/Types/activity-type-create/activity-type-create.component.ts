@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
+import { catchError, finalize, of, tap } from 'rxjs';
 
 @Component({
   selector: 'app-activity-type-create',
@@ -63,26 +64,26 @@ export class ActivityTypeCreateComponent {
     if (this.filePath && this.file) {
       const fileRef = this.storage.ref(this.filePath)
       this.isLoading = true
-      this.storage.upload(this.filePath, this.file).snapshotChanges()
-        .subscribe({
-          next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100),
-          error: () => {
+      this.storage.upload(this.filePath, this.file).snapshotChanges().pipe(
+        tap({next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100),}),
+        catchError(() => {
+          this.openSnackBarError()
             this.dialogRef.close()
             this.reloadService.reloadComponent(this.router.url);
-            this.openSnackBarError()
-          },
-          complete: () => {
-            fileRef.getDownloadURL().subscribe((url) => {
-              formValue['photo'] = url
-              formValue['fileName'] = this.fileName
-              this.addType(formValue)
-              this.isLoading = false
-              this.dialogRef.close()
-              this.reloadService.reloadComponent(this.router.url);
-              this.openSnackBarSuccess();
-          }
-        )}
-      })
+            return of([])
+        }),
+        finalize(() => {
+          fileRef.getDownloadURL().subscribe((url) => {
+            formValue['photo'] = url
+            formValue['fileName'] = this.fileName
+            this.addType(formValue)
+            this.isLoading = false
+            this.dialogRef.close()
+            this.reloadService.reloadComponent(this.router.url);
+            this.openSnackBarSuccess();
+          })
+        })
+      ).subscribe()
     } 
   }
 
