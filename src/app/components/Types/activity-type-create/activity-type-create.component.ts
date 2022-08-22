@@ -38,10 +38,6 @@ export class ActivityTypeCreateComponent {
               
   ) { }
 
-  close() {
-    this.dialogRef.close();
-  }
-
   addType(activityType: ActivityType) {
     this.activityTypeService.createActivityType(activityType).subscribe()
   }

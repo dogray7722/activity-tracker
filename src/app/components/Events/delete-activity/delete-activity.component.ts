@@ -19,10 +19,6 @@ export class DeleteActivityComponent {
               private router: Router,
               private reloadService: ReloadComponentService) { }
 
-  cancel() {
-    this.dialogRef.close();
-  }
-
   delete(act) {
     this.activityService.deleteActivity(act).subscribe();
     this.dialogRef.close();

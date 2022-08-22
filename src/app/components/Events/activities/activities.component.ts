@@ -1,8 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Activity } from 'src/app/Activity';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
 
 @Component({
   selector: 'app-activities',
@@ -14,8 +12,7 @@ export class ActivitiesComponent implements OnInit {
   loading = false;
   snackBarData: {};
 
-  constructor(private activityService: ActivityService,
-    private snackBar: MatSnackBar) { }
+  constructor(private activityService: ActivityService) { }
 
   ngOnInit(): void {
     this.loading = true;

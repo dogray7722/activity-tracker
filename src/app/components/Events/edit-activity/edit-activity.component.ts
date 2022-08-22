@@ -26,10 +26,6 @@ export class EditActivityComponent implements OnInit {
     this.activityTypeService.getActivityTypes().subscribe(resp => this.activityTypes = resp)
   }
 
-  close() {
-    this.dialogRef.close();
-  }
-
   save() {
     const newDate = this.datePipe.transform(this.form.value["date"],  'mediumDate')
     this.form.value["date"] = newDate

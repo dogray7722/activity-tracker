@@ -4,7 +4,7 @@
     <h3>Are you sure you want to delete activity type: {{type.name}}</h3>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button (click)="cancel()" mat-raised-button color="basic">Cancel</button>
+    <button mat-dialog-close mat-raised-button color="basic">Cancel</button>
     <button (click)="delete(type)" mat-raised-button color="warn">Delete</button>
   </mat-dialog-actions>
 </div>

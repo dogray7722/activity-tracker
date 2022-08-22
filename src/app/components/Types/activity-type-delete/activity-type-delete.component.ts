@@ -32,10 +32,6 @@ export class ActivityTypeDeleteComponent {
     private storage: AngularFireStorage
   ) { }
 
-  cancel() {
-    this.dialogRef.close()
-  }
-
   handleDelete(typeInUse: boolean, type: ActivityType) {
     if (typeInUse) {
       this.openSnackBarError()
