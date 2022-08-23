@@ -9,6 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
+import { catchError, finalize, of } from 'rxjs';
 
 @Component({
   selector: 'app-activity-type-delete',
@@ -34,10 +35,17 @@ export class ActivityTypeDeleteComponent {
 
   handleDelete(typeInUse: boolean, type: ActivityType) {
     if (typeInUse) {
-      this.openSnackBarError()
+      this.openInUseSnackBarError()
     } else {
-      this.storage.refFromURL(type.photo).delete().subscribe()
-      this.activityTypeService.deleteActivityType(type).subscribe();
+      this.storage.refFromURL(type.photo).delete().pipe(
+        catchError(() => {
+          this.openSnackBarError()
+          return of([])
+        }), 
+        finalize(() => {
+          this.activityTypeService.deleteActivityType(type).subscribe();
+        })
+      )
     }
     this.dialogRef.close()
     this.reloadService.reloadComponent(this.router.url)
@@ -63,10 +71,20 @@ export class ActivityTypeDeleteComponent {
       })
     }
 
-  openSnackBarError() {
+  openInUseSnackBarError() {
     this.snackBarData = {
       wasSuccessful: false,
       message: "Cannot delete type while applied to existing activities.  Please remove this activity type from all activities and try again." 
+    }
+    this.snackBar.openFromComponent(SnackBarComponent,{duration: 6 * 1000, 
+      data: this.snackBarData
+    })
+  }
+
+  openSnackBarError() {
+    this.snackBarData = {
+      wasSuccessful: false,
+      message: "There was a problem deleting activity type.  Please try again later" 
     }
     this.snackBar.openFromComponent(SnackBarComponent,{duration: 6 * 1000, 
       data: this.snackBarData
