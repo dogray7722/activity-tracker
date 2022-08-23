@@ -1,11 +1,11 @@
-import { Component, Inject, OnInit } from '@angular/core';
+import { Component, Inject } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { v4 as uuid } from 'uuid';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { finalize} from 'rxjs';
+import { catchError, finalize, of, tap } from 'rxjs';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 import { Router } from '@angular/router';
 import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
@@ -53,13 +53,15 @@ export class ActivityTypeEditComponent {
   }
 
   save() {
-    this.storage.refFromURL(this.type.photo).delete().subscribe()
     const fileRef = this.storage.ref(this.filePath)
     this.isLoading = true
-    this.storage.upload(this.filePath, this.file).snapshotChanges()
-    .subscribe({
-      next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100),
-      complete: () => {
+    this.storage.refFromURL(this.type.photo).put(fileRef).snapshotChanges().pipe(
+      tap({next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)}),
+      catchError(() => {
+        this.dialogRef.close()
+        return of([])
+      }),
+      finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
           this.activityTypeForm.value['photo'] = url
           this.activityTypeForm.value['fileName'] = this.fileName
@@ -69,8 +71,8 @@ export class ActivityTypeEditComponent {
           this.reloadService.reloadComponent(this.router.url)
           this.openSnackBarSuccess();
         })
-      }
-    })
+      })
+    ).subscribe()
   }
 
   openSnackBarSuccess() {

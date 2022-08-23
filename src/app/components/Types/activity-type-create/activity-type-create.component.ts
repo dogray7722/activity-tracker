@@ -65,7 +65,7 @@ export class ActivityTypeCreateComponent {
       const fileRef = this.storage.ref(this.filePath)
       this.isLoading = true
       this.storage.upload(this.filePath, this.file).snapshotChanges().pipe(
-        tap({next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100),}),
+        tap({next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)}),
         catchError(() => {
           this.openSnackBarError()
             this.dialogRef.close()
