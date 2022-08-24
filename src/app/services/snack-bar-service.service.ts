@@ -10,10 +10,21 @@ export class SnackBarService {
   constructor(private snackBar: MatSnackBar) { }
   snackBarData: {}
 
-  activityCreateError() {
+  listActivitiesError() {
     this.snackBarData = {
       wasSuccessful: false,
       message: "There was a problem listing activities.  Please try again later."
+    }
+    return this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 4 *1000,
+      data: this.snackBarData
+    })
+  }
+
+  createActivityError() {
+    this.snackBarData = {
+      wasSuccessful: false,
+      message: "There was a problem creating your activity.  Please try again later."
     }
     return this.snackBar.openFromComponent(SnackBarComponent, {
       duration: 4 *1000,

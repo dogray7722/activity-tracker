@@ -22,7 +22,7 @@ export class ActivitiesComponent implements OnInit {
     this.activityService.getActivities().subscribe({
       next: (resp) => this.activities = resp,
       error: () => {
-        this.snackBarService.activityCreateError()
+        this.snackBarService.listActivitiesError()
       },
       complete: () => this.loading = false
     })
