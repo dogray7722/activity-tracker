@@ -6,8 +6,7 @@ import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
+import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 import { catchError, finalize, of, tap } from 'rxjs';
 
@@ -27,14 +26,13 @@ export class ActivityTypeCreateComponent {
   });
   isLoading = false;
   completed: number;
-  snackBarData: {}
   preview = null
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService, 
               private storage: AngularFireStorage,
               private router: Router,
-              private snackBar: MatSnackBar,
+              private snackBarService: SnackBarService,
               private reloadService: ReloadComponentService
               
   ) { }
@@ -65,9 +63,9 @@ export class ActivityTypeCreateComponent {
       const fileRef = this.storage.ref(this.filePath)
       this.isLoading = true
       this.storage.upload(this.filePath, this.file).snapshotChanges().pipe(
-        tap({next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)}),
+        tap(res => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)),
         catchError(() => {
-          this.openSnackBarError()
+          this.snackBarService.activityTypeCreateError()
             this.dialogRef.close()
             this.reloadService.reloadComponent(this.router.url);
             return of([])
@@ -80,31 +78,11 @@ export class ActivityTypeCreateComponent {
             this.isLoading = false
             this.dialogRef.close()
             this.reloadService.reloadComponent(this.router.url);
-            this.openSnackBarSuccess();
+            this.snackBarService.activityTypeCreateSuccess();
           })
         })
       ).subscribe()
     } 
-  }
-
-  openSnackBarSuccess() {
-    this.snackBarData = {
-        wasSuccessful: true,
-        message: "Activity Type Created Successfully!" 
-    }
-    this.snackBar.openFromComponent(SnackBarComponent, {duration: 4 * 1000, 
-      data: this.snackBarData
-     })
-  }
-
-  openSnackBarError() {
-    this.snackBarData = {
-      wasSuccessful: false,
-      message: "There was a problem creating activity type. Please try again later." 
-    }
-    this.snackBar.openFromComponent(SnackBarComponent,{duration: 6 * 1000, 
-      data: this.snackBarData
-    })
   }
 }
 

@@ -8,8 +8,7 @@ import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { catchError, finalize, of, tap } from 'rxjs';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 import { Router } from '@angular/router';
-import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
+import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
   selector: 'app-activity-type-edit',
@@ -32,7 +31,7 @@ export class ActivityTypeEditComponent {
     private storage: AngularFireStorage,
     private reloadService: ReloadComponentService,
     private router: Router,
-    private snackBar: MatSnackBar,
+    private snackBarService: SnackBarService,
   ) { }
 
   fileChangeEvent(event) {
@@ -53,36 +52,28 @@ export class ActivityTypeEditComponent {
   }
 
   save() {
-    const fileRef = this.storage.ref(this.filePath)
     this.isLoading = true
-    this.storage.refFromURL(this.type.photo).put(fileRef).snapshotChanges().pipe(
-      tap({next: (res) => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)}),
+    const fileRef = this.storage.refFromURL(this.type.photo)
+    fileRef.put(this.file).snapshotChanges().pipe(
+      tap(res => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)),
       catchError(() => {
+        this.snackBarService.activityTypeEditError()
         this.dialogRef.close()
+        this.reloadService.reloadComponent(this.router.url)
         return of([])
       }),
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
+          this.isLoading = false
           this.activityTypeForm.value['photo'] = url
           this.activityTypeForm.value['fileName'] = this.fileName
           this.activityTypeService.updateActivityType(this.activityTypeForm.value).subscribe()
           this.dialogRef.close()
-          this.isLoading = false
           this.reloadService.reloadComponent(this.router.url)
-          this.openSnackBarSuccess();
+          this.snackBarService.activityTypeEditSuccess();
         })
       })
     ).subscribe()
-  }
-
-  openSnackBarSuccess() {
-    this.snackBarData = {
-        wasSuccessful: true,
-        message: "Activity Type Updated Successfully!" 
-    }
-    this.snackBar.openFromComponent(SnackBarComponent, {duration: 4 * 1000, 
-      data: this.snackBarData
-     })
   }
 
   activityTypeForm = new FormGroup({

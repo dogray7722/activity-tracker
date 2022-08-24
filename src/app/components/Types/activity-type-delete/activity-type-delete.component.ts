@@ -4,12 +4,11 @@ import { Activity } from 'src/app/Activity';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { ActivityService } from 'src/app/services/activity.service';
-import { SnackBarComponent } from '../../snack-bar/snack-bar.component';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { catchError, finalize, of } from 'rxjs';
+import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
   selector: 'app-activity-type-delete',
@@ -19,7 +18,6 @@ import { catchError, finalize, of } from 'rxjs';
 export class ActivityTypeDeleteComponent {
   type = this.activityType
   activities: Activity[] = []
-  snackBarData: {}
   typeInUse: boolean = false
   
   constructor(
@@ -27,7 +25,7 @@ export class ActivityTypeDeleteComponent {
     private activityService: ActivityService,
     private activityTypeService: ActivityTypeService,
     private dialogRef: MatDialogRef<ActivityTypeDeleteComponent>,
-    private snackBar: MatSnackBar,
+    private snackBarService: SnackBarService,
     private router: Router,
     private reloadService: ReloadComponentService,
     private storage: AngularFireStorage
@@ -35,18 +33,26 @@ export class ActivityTypeDeleteComponent {
 
   handleDelete(typeInUse: boolean, type: ActivityType) {
     if (typeInUse) {
-      this.openInUseSnackBarError()
+      this.snackBarService.activityTypeDeleteInUseError()
     } else {
       this.storage.refFromURL(type.photo).delete().pipe(
         catchError(() => {
-          this.openSnackBarError()
+          this.snackBarService.activityTypeDeleteError()
+          this.dialogRef.close()
+          this.reloadService.reloadComponent(this.router.url)
           return of([])
         }), 
         finalize(() => {
-          this.activityTypeService.deleteActivityType(type).subscribe();
+          this.activityTypeService.deleteActivityType(type).subscribe()
+          this.snackBarService.activityTypeDeleteSuccess()
+          this.cleanup()
         })
-      )
+      ).subscribe()
     }
+    this.cleanup()
+  }
+
+  cleanup() {
     this.dialogRef.close()
     this.reloadService.reloadComponent(this.router.url)
   }
@@ -70,26 +76,6 @@ export class ActivityTypeDeleteComponent {
       }
       })
     }
-
-  openInUseSnackBarError() {
-    this.snackBarData = {
-      wasSuccessful: false,
-      message: "Cannot delete type while applied to existing activities.  Please remove this activity type from all activities and try again." 
-    }
-    this.snackBar.openFromComponent(SnackBarComponent,{duration: 6 * 1000, 
-      data: this.snackBarData
-    })
-  }
-
-  openSnackBarError() {
-    this.snackBarData = {
-      wasSuccessful: false,
-      message: "There was a problem deleting activity type.  Please try again later" 
-    }
-    this.snackBar.openFromComponent(SnackBarComponent,{duration: 6 * 1000, 
-      data: this.snackBarData
-    })
-  }
 }
 
 export function openDeleteActivityType(dialog: MatDialog, type: ActivityType) {
