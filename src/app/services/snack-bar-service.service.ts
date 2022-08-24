@@ -16,7 +16,7 @@ export class SnackBarService {
       message: "There was a problem listing activities.  Please try again later."
     }
     return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 6 *1000,
+      duration: 6 * 1000,
       data: this.snackBarData
     })
   }
@@ -38,7 +38,7 @@ export class SnackBarService {
       message: "There was a problem creating your activity.  Please try again later."
     }
     return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 6 *1000,
+      duration: 6 * 1000,
       data: this.snackBarData
     })
   }
@@ -46,10 +46,21 @@ export class SnackBarService {
   deleteActivitySuccess() {
     this.snackBarData = {
       wasSuccessful: true,
-      message: "Activity deleted successfully!"
+      message: "Activity was deleted successfully!"
     }
     return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 4 *1000,
+      duration: 4 * 1000,
+      data: this.snackBarData
+    })
+  }
+
+  editActivitySuccess() {
+    this.snackBarData = {
+      wasSuccessful: true,
+      message: "Activity updated successfully!"
+    }
+    return this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 4 * 1000,
       data: this.snackBarData
     })
   }
@@ -70,7 +81,8 @@ export class SnackBarService {
       wasSuccessful: false,
       message: "There was a problem creating activity type. Please try again later." 
     }
-    return this.snackBar.openFromComponent(SnackBarComponent,{duration: 6 * 1000, 
+    return this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 6 * 1000, 
       data: this.snackBarData
     })
   }
@@ -80,7 +92,8 @@ export class SnackBarService {
       wasSuccessful: true,
       message: "Activity Type Deleted Successfully!"
     }
-    return this.snackBar.openFromComponent(SnackBarComponent,{duration: 4 * 1000,
+    return this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 4 * 1000,
       data: this.snackBarData
     })
   }
@@ -90,7 +103,8 @@ export class SnackBarService {
       wasSuccessful: false,
       message: "Cannot delete type while applied to existing activities.  Please remove this activity type from all activities and try again." 
     }
-    return this.snackBar.openFromComponent(SnackBarComponent,{duration: 6 * 1000, 
+    return this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 6 * 1000, 
       data: this.snackBarData
     })
   }
@@ -100,7 +114,8 @@ export class SnackBarService {
       wasSuccessful: false,
       message: "There was a problem deleting activity type.  Please try again later" 
     }
-    return this.snackBar.openFromComponent(SnackBarComponent,{duration: 6 * 1000, 
+    return this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 6 * 1000, 
       data: this.snackBarData
     })
   }
@@ -110,7 +125,8 @@ export class SnackBarService {
       wasSuccessful: true,
       message: "Activity Type Updated Successfully!" 
   }
-  return this.snackBar.openFromComponent(SnackBarComponent, {duration: 4 * 1000, 
+  return this.snackBar.openFromComponent(SnackBarComponent, {
+    duration: 4 * 1000, 
     data: this.snackBarData
    })
   }
@@ -120,7 +136,8 @@ export class SnackBarService {
       wasSuccessful: false,
       message: "There was a problem editing activity type.  Please try again later." 
   }
-  return this.snackBar.openFromComponent(SnackBarComponent, {duration: 4 * 1000, 
+  return this.snackBar.openFromComponent(SnackBarComponent, {
+    duration: 6 * 1000, 
     data: this.snackBarData
    })
   }

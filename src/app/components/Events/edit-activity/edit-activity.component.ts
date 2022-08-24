@@ -5,7 +5,10 @@ import { Activity } from 'src/app/Activity';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityService } from 'src/app/services/activity.service';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
+import { ReloadComponentService } from 'src/app/services/reload-component.service';
+import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
   selector: 'app-edit-activity',
@@ -20,7 +23,10 @@ export class EditActivityComponent implements OnInit {
     private dialogRef: MatDialogRef<EditActivityComponent>,
     private activityService: ActivityService,
     private activityTypeService: ActivityTypeService,
-    private datePipe: DatePipe) { }
+    private datePipe: DatePipe,
+    private router: Router,
+    private reloadService: ReloadComponentService,
+    private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
     this.activityTypeService.getActivityTypes().subscribe(resp => this.activityTypes = resp)
@@ -29,9 +35,10 @@ export class EditActivityComponent implements OnInit {
   save() {
     const newDate = this.datePipe.transform(this.form.value["date"],  'mediumDate')
     this.form.value["date"] = newDate
+    //todo update to use firebase
     this.activityService.putActivity(this.form.value).subscribe()
     this.dialogRef.close();
-    window.location.reload();
+    this.reloadService.reloadComponent(this.router.url)
   }
 
   form = this.fb.group({
