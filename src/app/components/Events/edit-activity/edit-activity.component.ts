@@ -37,8 +37,10 @@ export class EditActivityComponent implements OnInit {
     this.form.value["date"] = newDate
     //todo update to use firebase
     this.activityService.putActivity(this.form.value).subscribe()
+    this.snackBarService.editActivitySuccess()
     this.dialogRef.close();
     this.reloadService.reloadComponent(this.router.url)
+
   }
 
   form = this.fb.group({
