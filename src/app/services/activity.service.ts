@@ -13,7 +13,7 @@ const httpOptions = {
   providedIn: 'root'
 })
 export class ActivityService {
-  private apiUrl = 'http://localhost:9000/activities'
+  private apiUrl = 'https://activitytracker-21247-default-rtdb.firebaseio.com/activities.json'
 
   constructor(private http: HttpClient) { }
 
