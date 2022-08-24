@@ -20,11 +20,13 @@ export class ActivitiesComponent implements OnInit {
     this.loading = true;
 
     this.activityService.getActivities().subscribe({
-      next: (resp) => this.activities = resp,
+      next: (resp) => {
+        this.activities = resp
+        this.loading = false
+      },
       error: () => {
         this.snackBarService.listActivitiesError()
-      },
-      complete: () => this.loading = false
+      }
     })
   }
 }

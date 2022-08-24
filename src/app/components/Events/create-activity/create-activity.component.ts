@@ -39,6 +39,7 @@ export class CreateActivityComponent implements OnInit {
     const body = this.activityForm.value
     body.date = this.datePipe.transform(body.date, 'mediumDate')
     this.addActivity(body)
+    this.snackBarService.createActivitySuccess()
     this.router.navigate(['/'])
   }
 

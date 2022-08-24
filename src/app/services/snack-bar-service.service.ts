@@ -16,7 +16,18 @@ export class SnackBarService {
       message: "There was a problem listing activities.  Please try again later."
     }
     return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 4 *1000,
+      duration: 6 *1000,
+      data: this.snackBarData
+    })
+  }
+
+  createActivitySuccess() {
+    this.snackBarData = {
+      wasSuccessful: true,
+      message: "New Activity Created Successfully!"
+    }
+    return this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 4 * 1000,
       data: this.snackBarData
     })
   }
@@ -25,6 +36,17 @@ export class SnackBarService {
     this.snackBarData = {
       wasSuccessful: false,
       message: "There was a problem creating your activity.  Please try again later."
+    }
+    return this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 6 *1000,
+      data: this.snackBarData
+    })
+  }
+
+  deleteActivitySuccess() {
+    this.snackBarData = {
+      wasSuccessful: true,
+      message: "Activity deleted successfully!"
     }
     return this.snackBar.openFromComponent(SnackBarComponent, {
       duration: 4 *1000,
