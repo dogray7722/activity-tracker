@@ -25,7 +25,9 @@ export class DeleteActivityComponent {
     this.activityService.deleteActivity(act).subscribe();
     this.snackBarService.deleteActivitySuccess()
     this.dialogRef.close();
-    this.reloadService.reloadComponent(this.router.url)
+    setTimeout(() => {
+      this.reloadService.reloadComponent(this.router.url)
+    }, 1000);
   }
 }
 

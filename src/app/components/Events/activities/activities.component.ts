@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Activity } from 'src/app/Activity';
 
@@ -12,8 +12,7 @@ export class ActivitiesComponent implements OnInit {
   loading = false;
   
 
-  constructor(private activityService: ActivityService,
-              private _changeDetectorRef: ChangeDetectorRef) { }
+  constructor(private activityService: ActivityService) { }
 
   ngOnInit(): void {
     this.loading = true;
@@ -21,8 +20,6 @@ export class ActivitiesComponent implements OnInit {
       res => {
         this.loading = false
         this.activities = res
-        console.log(this.activities)
-        this._changeDetectorRef.detectChanges();
       }
     )  
   }
