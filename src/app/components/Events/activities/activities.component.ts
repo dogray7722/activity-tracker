@@ -1,7 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Activity } from 'src/app/Activity';
-import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
   selector: 'app-activities',
@@ -14,19 +13,17 @@ export class ActivitiesComponent implements OnInit {
   
 
   constructor(private activityService: ActivityService,
-              private snackBarService: SnackBarService) { }
+              private _changeDetectorRef: ChangeDetectorRef) { }
 
   ngOnInit(): void {
     this.loading = true;
-
-    this.activityService.getActivities().subscribe({
-      next: (resp) => {
-        this.activities = resp
+    this.activityService.getActivities().subscribe(
+      res => {
         this.loading = false
-      },
-      error: () => {
-        this.snackBarService.listActivitiesError()
+        this.activities = res
+        console.log(this.activities)
+        this._changeDetectorRef.detectChanges();
       }
-    })
+    )  
   }
 }

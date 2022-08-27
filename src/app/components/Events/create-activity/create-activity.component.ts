@@ -7,7 +7,6 @@ import { DatePipe } from '@angular/common';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { ActivityType } from 'src/app/ActivityType';
 import { SnackBarService } from 'src/app/services/snack-bar-service.service';
-import { catchError, of, throwError } from 'rxjs';
 
 @Component({
   selector: 'app-create-activity',
@@ -40,16 +39,10 @@ export class CreateActivityComponent implements OnInit {
     body.date = this.datePipe.transform(body.date, 'mediumDate')
     this.addActivity(body)
     this.snackBarService.createActivitySuccess()
-    // this.router.navigate(['/'])
+    this.router.navigate(['/'])
   }
 
   addActivity(activity: Activity) {
-    this.activityService.addActivity(activity).pipe(
-      catchError((error) => {
-        this.snackBarService.createActivityError()
-        return throwError(() => new Error(error))
-      })
-    ).subscribe(res => console.log(res))
+    this.activityService.addActivity(activity)
   }
-
 }
