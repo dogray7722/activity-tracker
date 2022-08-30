@@ -6,9 +6,8 @@ import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
 import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
-import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
-import { catchError, finalize, of, tap } from 'rxjs';
+import { catchError, EMPTY, finalize, tap } from 'rxjs';
 
 @Component({
   selector: 'app-activity-type-create',
@@ -26,14 +25,12 @@ export class ActivityTypeCreateComponent {
   });
   isLoading = false;
   completed: number;
-
   preview = null
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService, 
               private storage: AngularFireStorage,
               private router: Router,
-              private snackBarService: SnackBarService,
               private reloadService: ReloadComponentService
               
   ) { }
@@ -66,10 +63,9 @@ export class ActivityTypeCreateComponent {
       this.storage.upload(this.filePath, this.file).snapshotChanges().pipe(
         tap(res => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)),
         catchError(() => {
-          this.snackBarService.activityTypeCreateError()
             this.dialogRef.close()
             this.reloadService.reloadComponent(this.router.url);
-            return of([])
+            return EMPTY
         }),
         finalize(() => {
           fileRef.getDownloadURL().subscribe((url) => {
@@ -79,11 +75,10 @@ export class ActivityTypeCreateComponent {
             this.isLoading = false
             this.dialogRef.close()
             this.reloadService.reloadComponent(this.router.url);
-            this.snackBarService.activityTypeCreateSuccess();
           })
         })
       ).subscribe()
-    } 
+    } console.log("something fucked up happened")
   }
 }
 

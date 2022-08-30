@@ -3,8 +3,7 @@ import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angu
 import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Router } from '@angular/router';
-import { ReloadComponentService } from 'src/app/services/reload-component.service';
-import { SnackBarService } from 'src/app/services/snack-bar-service.service';  
+import { ReloadComponentService } from 'src/app/services/reload-component.service'; 
 
 @Component({
   selector: 'app-delete-activity',
@@ -18,12 +17,11 @@ export class DeleteActivityComponent {
               private dialogRef: MatDialogRef<DeleteActivityComponent>,
               private activityService: ActivityService,
               private router: Router,
-              private reloadService: ReloadComponentService,
-              private snackBarService: SnackBarService) { }
+              private reloadService: ReloadComponentService
+              ) { }
 
   delete(act) {
     this.activityService.deleteActivity(act);
-    this.snackBarService.deleteActivitySuccess()
     this.dialogRef.close();
     setTimeout(() => {
       this.reloadService.reloadComponent(this.router.url)

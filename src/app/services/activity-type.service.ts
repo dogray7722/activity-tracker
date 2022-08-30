@@ -23,6 +23,10 @@ export class ActivityTypeService {
           }
         }
         return activityTypes;
+      }),
+      catchError(() => {
+        this.snackBarService.snackBarMessage(false, "activityTypeListError")
+        return EMPTY
       })
     )
   }
@@ -30,12 +34,12 @@ export class ActivityTypeService {
   createActivityType(activityType: ActivityType){
     this.http.post<ActivityType>(`${this.baseUrl}.json`, activityType).pipe(
       catchError(() => {
-        this.snackBarService.activityTypeCreateError()
+        this.snackBarService.snackBarMessage(false, "activityTypeCreateError")
         return EMPTY
       })
     ).subscribe(
       () => {
-        this.snackBarService.activityTypeCreateSuccess()
+        this.snackBarService.snackBarMessage(true, "activityTypeCreateSuccess")
       }
     )
   }

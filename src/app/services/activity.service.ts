@@ -25,7 +25,7 @@ export class ActivityService {
         return activities;
       }),
       catchError(() => {
-        this.snackBarService.listActivitiesError()
+        this.snackBarService.snackBarMessage(false, "listActivitiesError")
         return EMPTY
       })
     )
@@ -34,11 +34,11 @@ export class ActivityService {
   addActivity(activity: Activity) {
     this.http.post<Activity>(`${this.baseUrl}.json`, activity).pipe(
       catchError(() => {
-        this.snackBarService.createActivityError()
+        this.snackBarService.snackBarMessage(false, "createActivityError")
         return EMPTY
       })
     ).subscribe(() => {
-      this.snackBarService.createActivitySuccess()
+      this.snackBarService.snackBarMessage(true, "createActivitySuccess")
     })
   }
 
@@ -46,11 +46,11 @@ export class ActivityService {
     const url = `${this.baseUrl}/${activity.id}.json`
     return this.http.put<Activity>(url, activity).pipe(
       catchError(() => {
-        this.snackBarService.editActivityError()
+        this.snackBarService.snackBarMessage(false, "editActivityError")
         return EMPTY
       })
     ).subscribe(() => {
-      this.snackBarService.editActivitySuccess()
+      this.snackBarService.snackBarMessage(true, "editActivitySuccess")
     })
   }
 
@@ -58,11 +58,11 @@ export class ActivityService {
     const url = `${this.baseUrl}/${activity.id}.json`
     this.http.delete<Activity>(url).pipe(
       catchError(() => {
-        this.snackBarService.deleteActivityError()
+        this.snackBarService.snackBarMessage(false, "deleteActivityError")
         return EMPTY
       })
     ).subscribe(() => {
-      this.snackBarService.deleteActivitySuccess()
+      this.snackBarService.snackBarMessage(true, "deleteActivitySuccess")
     })
   }
 }

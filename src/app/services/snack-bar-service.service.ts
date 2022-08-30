@@ -9,113 +9,67 @@ export class SnackBarService {
 
   constructor(private snackBar: MatSnackBar) { }
   snackBarData: {}
+  duration: number;
+  message: string;
 
-  listActivitiesError() {
-    this.snackBarData = {
-      wasSuccessful: false,
-      message: "There was a problem listing activities.  Please try again later."
+  snackBarMessage(success: boolean, messageType: string) {
+    switch (messageType) {
+      case "listActivitiesError": {
+        this.message = "There was a problem listing activities.  Please try again later."
+        break;
+      }
+      case "createActivitySuccess": {
+        this.message = "New Activity Created Successfully!"
+        break
+      }
+      case "createActivityError": {
+        this.message = "There was a problem creating your activity.  Please try again later."
+        break
+      }
+      case "deleteActivitySuccess": {
+        this.message = "Activity deleted successfully!"
+        break
+      }
+      case "deleteActivityError": {
+        this.message = "There was a problem deleting your activity.  Please try again later."
+        break
+      }
+      case "editActivitySuccess": {
+        this.message = "Activity updated successfully!"
+        break
+      }
+      case "editActivityError": {
+        this.message = "There was as problem updating the activity.  Please try again later."
+        break
+      }
+      case "activityTypeListError": {
+        this.message = "There was a problem listing activity types.  Please try again later."
+        break
+      }
+      case "activityTypeCreateSuccess": {
+        this.message = "Activity Type Created Successfully!"
+        break
+      }
+      case "activityTypeCreateError": {
+        this.message = "There was a problem creating activity type. Please try again later."
+        break
+      }
+
     }
-    return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 6 * 1000,
-      data: this.snackBarData
-    })
-  }
-
-  createActivitySuccess() {
+    
     this.snackBarData = {
-      wasSuccessful: true,
-      message: "New Activity Created Successfully!"
+      wasSuccessful: success,
+      message: this.message
     }
-    return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 4 * 1000,
-      data: this.snackBarData
-    })
-  }
 
-  createActivityError() {
-    this.snackBarData = {
-      wasSuccessful: false,
-      message: "There was a problem creating your activity.  Please try again later."
+    if (success) {
+      this.duration = 4 * 1000 
+    } else {
+      this.duration = 6 * 1000
     }
-    return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 6 * 1000,
-      data: this.snackBarData
-    })
-  }
 
-  deleteActivitySuccess() {
-    this.snackBarData = {
-      wasSuccessful: true,
-      message: "Activity was deleted successfully!"
-    }
     return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 4 * 1000,
-      data: this.snackBarData
-    })
-  }
-
-  deleteActivityError() {
-    this.snackBarData = {
-      wasSuccessful: false,
-      message: "There was a problem deleting your activity.  Please try again later."
-    }
-    return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 6 * 1000,
-      data: this.snackBarData
-    })
-  }
-
-  editActivitySuccess() {
-    this.snackBarData = {
-      wasSuccessful: true,
-      message: "Activity updated successfully!"
-    }
-    return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 4 * 1000,
-      data: this.snackBarData
-    })
-  }
-
-  editActivityError() {
-    this.snackBarData = {
-      wasSuccessful: false,
-      message: "There was as problem updating the activity.  Please try again later."
-    }
-    return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 6 * 1000,
-      data: this.snackBarData
-    })
-  }
-  
-  activityTypeListError() {
-    this.snackBarData = {
-      wasSuccessful: false,
-      message: "There was a problem listing activity types.  Please try again later." 
-  }
-  return this.snackBar.openFromComponent(SnackBarComponent, {
-    duration: 4 * 1000, 
-    data: this.snackBarData
-   })
-  }
-
-  activityTypeCreateSuccess() {
-    this.snackBarData = {
-      wasSuccessful: true,
-      message: "Activity Type Created Successfully!" 
-  }
-  return this.snackBar.openFromComponent(SnackBarComponent, {
-    duration: 4 * 1000, 
-    data: this.snackBarData
-   })
-  }
-
-  activityTypeCreateError() {
-    this.snackBarData = {
-      wasSuccessful: false,
-      message: "There was a problem creating activity type. Please try again later." 
-    }
-    return this.snackBar.openFromComponent(SnackBarComponent, {
-      duration: 6 * 1000, 
+      duration: this.duration,
       data: this.snackBarData
     })
   }
