@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http'
-import { Observable } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { Activity } from '../Activity';
 import { map, catchError, tap, finalize } from 'rxjs/operators';
 import { throwError } from 'rxjs';
@@ -30,15 +30,19 @@ export class ActivityService {
           }
         }
         return resultArray;
+      }),
+      catchError(() => {
+        this.snackBarService.listActivitiesError()
+        return EMPTY
       })
     )
   }
 
   addActivity(activity: Activity): void {
     this.http.post<Activity>(`${this.baseUrl}.json`, activity, httpOptions).pipe(
-      catchError((error) => {
+      catchError(() => {
         this.snackBarService.createActivityError()
-        return throwError(() => new Error(error))
+        return EMPTY
       })
     ).subscribe()
   }
