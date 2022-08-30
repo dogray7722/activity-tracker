@@ -5,7 +5,7 @@ import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { v4 as uuid } from 'uuid';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { catchError, finalize, of, tap } from 'rxjs';
+import { catchError, EMPTY, finalize, of, tap } from 'rxjs';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 import { Router } from '@angular/router';
 import { SnackBarService } from 'src/app/services/snack-bar-service.service';
@@ -59,15 +59,14 @@ export class ActivityTypeEditComponent {
       catchError(() => {
         this.snackBarService.activityTypeEditError()
         this.dialogRef.close()
-        this.reloadService.reloadComponent(this.router.url)
-        return of([])
+        return EMPTY
       }),
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
           this.isLoading = false
           this.activityTypeForm.value['photo'] = url
           this.activityTypeForm.value['fileName'] = this.fileName
-          this.activityTypeService.updateActivityType(this.activityTypeForm.value).subscribe()
+          this.activityTypeService.updateActivityType(this.activityTypeForm.value)
           this.dialogRef.close()
           this.reloadService.reloadComponent(this.router.url)
           this.snackBarService.activityTypeEditSuccess();

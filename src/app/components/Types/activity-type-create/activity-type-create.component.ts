@@ -26,6 +26,7 @@ export class ActivityTypeCreateComponent {
   });
   isLoading = false;
   completed: number;
+
   preview = null
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
@@ -38,7 +39,7 @@ export class ActivityTypeCreateComponent {
   ) { }
 
   addType(activityType: ActivityType) {
-    this.activityTypeService.createActivityType(activityType).subscribe()
+    this.activityTypeService.createActivityType(activityType)
   }
 
   fileChangeEvent(event) {

@@ -7,7 +7,7 @@ import { ActivityService } from 'src/app/services/activity.service';
 import { Router } from '@angular/router';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { catchError, finalize, of } from 'rxjs';
+import { catchError, EMPTY, finalize, of } from 'rxjs';
 import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
@@ -39,12 +39,10 @@ export class ActivityTypeDeleteComponent {
         catchError(() => {
           this.snackBarService.activityTypeDeleteError()
           this.dialogRef.close()
-          this.reloadService.reloadComponent(this.router.url)
-          return of([])
+          return EMPTY
         }), 
         finalize(() => {
-          this.activityTypeService.deleteActivityType(type).subscribe()
-          this.snackBarService.activityTypeDeleteSuccess()
+          this.activityTypeService.deleteActivityType(type)
           this.cleanup()
         })
       ).subscribe()
@@ -54,7 +52,9 @@ export class ActivityTypeDeleteComponent {
 
   cleanup() {
     this.dialogRef.close()
-    this.reloadService.reloadComponent(this.router.url)
+    setTimeout(() => {
+      this.reloadService.reloadComponent(this.router.url)
+    }, 500);
   }
 
   delete(type) {
@@ -74,8 +74,8 @@ export class ActivityTypeDeleteComponent {
         )
         this.handleDelete(this.typeInUse, this.type)
       }
-      })
-    }
+    })
+  }
 }
 
 export function openDeleteActivityType(dialog: MatDialog, type: ActivityType) {

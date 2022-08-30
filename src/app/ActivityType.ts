@@ -1,5 +1,5 @@
 export interface ActivityType {
-  id?: number
+  id?: string
   name: string
   photo: string
   fileName: string

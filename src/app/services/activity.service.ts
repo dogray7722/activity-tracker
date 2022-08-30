@@ -5,12 +5,6 @@ import { Activity } from '../Activity';
 import { map, catchError} from 'rxjs/operators';
 import { SnackBarService } from './snack-bar-service.service';
 
-const httpOptions = {
-  headers: new HttpHeaders({
-    'Content-Type': 'application/json'
-  })
-}
-
 @Injectable({
   providedIn: 'root'
 })
@@ -22,13 +16,13 @@ export class ActivityService {
   getActivities() {
     return this.http.get<{ [key: string]: Activity }>(`${this.baseUrl}.json`).pipe(
       map(responseData => {
-        const resultArray: Activity[] = []
+        const activities: Activity[] = []
         for (const key in responseData) {
           if (responseData.hasOwnProperty(key)) {
-            resultArray.push({ ...responseData[key], id: key })
+            activities.push({ ...responseData[key], id: key })
           }
         }
-        return resultArray;
+        return activities;
       }),
       catchError(() => {
         this.snackBarService.listActivitiesError()

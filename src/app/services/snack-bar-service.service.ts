@@ -87,6 +87,17 @@ export class SnackBarService {
     })
   }
   
+  activityTypeListError() {
+    this.snackBarData = {
+      wasSuccessful: false,
+      message: "There was a problem listing activity types.  Please try again later." 
+  }
+  return this.snackBar.openFromComponent(SnackBarComponent, {
+    duration: 4 * 1000, 
+    data: this.snackBarData
+   })
+  }
+
   activityTypeCreateSuccess() {
     this.snackBarData = {
       wasSuccessful: true,
