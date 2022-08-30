@@ -33,11 +33,11 @@ export class ActivityTypeDeleteComponent {
 
   handleDelete(typeInUse: boolean, type: ActivityType) {
     if (typeInUse) {
-      this.snackBarService.activityTypeDeleteInUseError()
+      this.snackBarService.snackBarMessage(false, "activityTypeDeleteInUseError")
     } else {
       this.storage.refFromURL(type.photo).delete().pipe(
         catchError(() => {
-          this.snackBarService.activityTypeDeleteError()
+          this.snackBarService.snackBarMessage(false, "activityTypeDeleteError")
           this.dialogRef.close()
           return EMPTY
         }), 
