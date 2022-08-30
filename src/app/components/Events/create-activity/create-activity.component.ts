@@ -6,7 +6,6 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { ActivityType } from 'src/app/ActivityType';
-import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
   selector: 'app-create-activity',
@@ -28,7 +27,7 @@ export class CreateActivityComponent implements OnInit {
               private activityService: ActivityService,
               private activityTypeService: ActivityTypeService,
               private router: Router, private datePipe: DatePipe,
-              private snackBarService: SnackBarService) { }
+              ) { }
 
   ngOnInit(): void {
     this.activityTypeService.getActivityTypes().subscribe(resp => this.activityTypes = resp)
@@ -38,10 +37,9 @@ export class CreateActivityComponent implements OnInit {
     const body = this.activityForm.value
     body.date = this.datePipe.transform(body.date, 'mediumDate')
     this.addActivity(body)
-    this.snackBarService.createActivitySuccess()
     setTimeout(() => {
       this.router.navigate(['/'])
-    }, 1000);
+    }, 500);
   }
 
   addActivity(activity: Activity) {

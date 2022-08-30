@@ -2,8 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http'
 import { EMPTY, Observable } from 'rxjs';
 import { Activity } from '../Activity';
-import { map, catchError, tap, finalize } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { map, catchError} from 'rxjs/operators';
 import { SnackBarService } from './snack-bar-service.service';
 
 const httpOptions = {
@@ -38,23 +37,38 @@ export class ActivityService {
     )
   }
 
-  addActivity(activity: Activity): void {
-    this.http.post<Activity>(`${this.baseUrl}.json`, activity, httpOptions).pipe(
+  addActivity(activity: Activity) {
+    this.http.post<Activity>(`${this.baseUrl}.json`, activity).pipe(
       catchError(() => {
         this.snackBarService.createActivityError()
         return EMPTY
       })
-    ).subscribe()
+    ).subscribe(() => {
+      this.snackBarService.createActivitySuccess()
+    })
   }
 
-  putActivity(activity: Activity): Observable<Activity> {
-    const url = `${this.baseUrl}/${activity.id}`
-    return this.http.put<Activity>(url, activity, httpOptions)
-  }
-
-  deleteActivity(activity: Activity): Observable<Activity> {
+  putActivity(activity: Activity) {
     const url = `${this.baseUrl}/${activity.id}.json`
-    return this.http.delete<Activity>(url)
+    return this.http.put<Activity>(url, activity).pipe(
+      catchError(() => {
+        this.snackBarService.editActivityError()
+        return EMPTY
+      })
+    ).subscribe(() => {
+      this.snackBarService.editActivitySuccess()
+    })
   }
 
+  deleteActivity(activity: Activity) {
+    const url = `${this.baseUrl}/${activity.id}.json`
+    this.http.delete<Activity>(url).pipe(
+      catchError(() => {
+        this.snackBarService.deleteActivityError()
+        return EMPTY
+      })
+    ).subscribe(() => {
+      this.snackBarService.deleteActivitySuccess()
+    })
+  }
 }

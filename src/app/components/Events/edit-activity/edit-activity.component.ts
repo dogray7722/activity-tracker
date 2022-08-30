@@ -26,7 +26,7 @@ export class EditActivityComponent implements OnInit {
     private datePipe: DatePipe,
     private router: Router,
     private reloadService: ReloadComponentService,
-    private snackBarService: SnackBarService) { }
+   ) { }
 
   ngOnInit(): void {
     this.activityTypeService.getActivityTypes().subscribe(resp => this.activityTypes = resp)
@@ -35,12 +35,11 @@ export class EditActivityComponent implements OnInit {
   save() {
     const newDate = this.datePipe.transform(this.form.value["date"],  'mediumDate')
     this.form.value["date"] = newDate
-    //todo update to use firebase
-    this.activityService.putActivity(this.form.value).subscribe()
-    this.snackBarService.editActivitySuccess()
+    this.activityService.putActivity(this.form.value)
     this.dialogRef.close();
-    this.reloadService.reloadComponent(this.router.url)
-
+    setTimeout(() => {
+      this.reloadService.reloadComponent(this.router.url)
+    }, 500);
   }
 
   form = this.fb.group({

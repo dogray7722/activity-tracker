@@ -54,6 +54,17 @@ export class SnackBarService {
     })
   }
 
+  deleteActivityError() {
+    this.snackBarData = {
+      wasSuccessful: false,
+      message: "There was a problem deleting your activity.  Please try again later."
+    }
+    return this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 6 * 1000,
+      data: this.snackBarData
+    })
+  }
+
   editActivitySuccess() {
     this.snackBarData = {
       wasSuccessful: true,
@@ -61,6 +72,17 @@ export class SnackBarService {
     }
     return this.snackBar.openFromComponent(SnackBarComponent, {
       duration: 4 * 1000,
+      data: this.snackBarData
+    })
+  }
+
+  editActivityError() {
+    this.snackBarData = {
+      wasSuccessful: false,
+      message: "There was as problem updating the activity.  Please try again later."
+    }
+    return this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 6 * 1000,
       data: this.snackBarData
     })
   }

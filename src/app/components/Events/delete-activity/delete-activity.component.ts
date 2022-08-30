@@ -22,12 +22,12 @@ export class DeleteActivityComponent {
               private snackBarService: SnackBarService) { }
 
   delete(act) {
-    this.activityService.deleteActivity(act).subscribe();
+    this.activityService.deleteActivity(act);
     this.snackBarService.deleteActivitySuccess()
     this.dialogRef.close();
     setTimeout(() => {
       this.reloadService.reloadComponent(this.router.url)
-    }, 1000);
+    }, 500);
   }
 }
 
