@@ -11,7 +11,6 @@ export class ActivitiesComponent implements OnInit {
   activities: Activity[] = []
   loading = false;
   
-
   constructor(private activityService: ActivityService) { }
 
   ngOnInit(): void {

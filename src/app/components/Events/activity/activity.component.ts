@@ -24,5 +24,4 @@ export class ActivityComponent implements OnInit {
   deleteActivity(activity:Activity) {
     openDeleteActivity(this.dialog, activity)
   }
-
 }

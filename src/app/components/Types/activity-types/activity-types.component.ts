@@ -33,7 +33,4 @@ export class ActivityTypesComponent implements OnInit {
   deleteType(type: ActivityType) {
     openDeleteActivityType(this.dialog, type)
   }
-
-
-
 }

@@ -31,8 +31,7 @@ export class ActivityTypeCreateComponent {
               private activityTypeService: ActivityTypeService, 
               private storage: AngularFireStorage,
               private router: Router,
-              private reloadService: ReloadComponentService
-              
+              private reloadService: ReloadComponentService    
   ) { }
 
   addType(activityType: ActivityType) {

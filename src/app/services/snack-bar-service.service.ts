@@ -11,7 +11,7 @@ export class SnackBarService {
   snackBarData: {}
   duration: number;
   message: string;
-
+  
   snackBarMessage(success: boolean, messageType: string) {
     switch (messageType) {
       case "listActivitiesError": {

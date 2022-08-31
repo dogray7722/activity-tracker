@@ -62,5 +62,4 @@ export function openEditActivity(dialog: MatDialog, activity: Activity) {
   }
   const dialogRef = dialog.open(EditActivityComponent, dialogConfig)
   return dialogRef.afterClosed();
-
 }
