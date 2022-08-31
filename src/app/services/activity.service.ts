@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders} from '@angular/common/http'
-import { EMPTY, Observable } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { Activity } from '../Activity';
 import { map, catchError} from 'rxjs/operators';
 import { SnackBarService } from './snack-bar-service.service';

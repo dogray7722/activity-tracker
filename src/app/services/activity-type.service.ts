@@ -1,6 +1,6 @@
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, Observable, EMPTY, map } from 'rxjs';
+import { catchError, EMPTY, map } from 'rxjs';
 import { ActivityType } from '../ActivityType';
 import { SnackBarService } from './snack-bar-service.service';
 
