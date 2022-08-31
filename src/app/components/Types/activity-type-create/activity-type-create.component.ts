@@ -74,11 +74,13 @@ export class ActivityTypeCreateComponent {
             this.addType(formValue)
             this.isLoading = false
             this.dialogRef.close()
-            this.reloadService.reloadComponent(this.router.url);
+            setTimeout(() => {
+              this.reloadService.reloadComponent(this.router.url);
+            }, 500);
           })
         })
       ).subscribe()
-    } console.log("something fucked up happened")
+    }
   }
 }
 

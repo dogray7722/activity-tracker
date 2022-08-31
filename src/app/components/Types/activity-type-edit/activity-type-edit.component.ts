@@ -5,10 +5,9 @@ import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { v4 as uuid } from 'uuid';
 import { AngularFireStorage } from '@angular/fire/compat/storage';
-import { catchError, EMPTY, finalize, of, tap } from 'rxjs';
+import { catchError, EMPTY, finalize, tap } from 'rxjs';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 import { Router } from '@angular/router';
-import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
   selector: 'app-activity-type-edit',
@@ -30,12 +29,12 @@ export class ActivityTypeEditComponent {
     private activityTypeService: ActivityTypeService,
     private storage: AngularFireStorage,
     private reloadService: ReloadComponentService,
-    private router: Router,
-    private snackBarService: SnackBarService,
+    private router: Router
   ) { }
 
   fileChangeEvent(event) {
     const newFile: File = event.target.files[0]
+    console.log(newFile)
     if (newFile) {
       const picFileName = uuid()
       const reader = new FileReader();
@@ -57,19 +56,19 @@ export class ActivityTypeEditComponent {
     fileRef.put(this.file).snapshotChanges().pipe(
       tap(res => this.completed = Math.round(res.bytesTransferred / res.totalBytes * 100)),
       catchError(() => {
-        this.snackBarService.activityTypeEditError()
         this.dialogRef.close()
         return EMPTY
       }),
       finalize(() => {
         fileRef.getDownloadURL().subscribe((url) => {
-          this.isLoading = false
           this.activityTypeForm.value['photo'] = url
           this.activityTypeForm.value['fileName'] = this.fileName
           this.activityTypeService.updateActivityType(this.activityTypeForm.value)
+          this.isLoading = false
           this.dialogRef.close()
-          this.reloadService.reloadComponent(this.router.url)
-          this.snackBarService.activityTypeEditSuccess();
+          setTimeout(() => {
+            this.reloadService.reloadComponent(this.router.url)
+          }, 500);
         })
       })
     ).subscribe()

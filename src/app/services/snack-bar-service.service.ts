@@ -39,7 +39,7 @@ export class SnackBarService {
         break
       }
       case "editActivityError": {
-        this.message = "There was as problem updating the activity.  Please try again later."
+        this.message = "There was a problem updating the activity.  Please try again later."
         break
       }
       case "activityTypeListError": {

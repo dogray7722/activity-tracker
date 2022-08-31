@@ -44,13 +44,31 @@ export class ActivityTypeService {
     )
   }
 
-  deleteActivityType(activityType: ActivityType): Observable<ActivityType> {
+  deleteActivityType(activityType: ActivityType) {
     const url = `${this.baseUrl}/${activityType.id}.json`
-    return this.http.delete<ActivityType>(url)
+    this.http.delete<ActivityType>(url).pipe(
+      catchError(() => {
+        this.snackBarService.snackBarMessage(false, "activityTypeDeleteError")
+        return EMPTY
+      })
+    ).subscribe(
+      () => {
+        this.snackBarService.snackBarMessage(true, "activityTypeDeleteSuccess")
+      }
+    )
   }
 
-  updateActivityType(activityType: ActivityType): Observable<ActivityType> {
+  updateActivityType(activityType: ActivityType) {
     const url = `${this.baseUrl}/${activityType.id}.json`
-    return this.http.put<ActivityType>(url, activityType)
+    this.http.put<ActivityType>(url, activityType).pipe(
+      catchError(() => {
+        this.snackBarService.snackBarMessage(false, "activityTypeEditError")
+        return EMPTY
+      })
+    ).subscribe(
+      () => {
+        this.snackBarService.snackBarMessage(true, "activityTypeEditSuccess")
+      }
+    )
   }
 }
