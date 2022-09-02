@@ -4,7 +4,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatIconModule } from '@angular/material/icon';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatFormFieldModule } from '@angular/material/form-field'
@@ -42,6 +42,7 @@ import { ActivityTypeCreateComponent } from './components/Types/activity-type-cr
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { ActivityTypeDeleteComponent } from './components/Types/activity-type-delete/activity-type-delete.component';
 import { LoginComponent } from './components/login/login.component';
+import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,13 @@ import { LoginComponent } from './components/login/login.component';
     MatSnackBarModule,
     MatTabsModule
   ],
-  providers: [ DatePipe ],
+  providers: [ DatePipe, {
+    provide: HTTP_INTERCEPTORS,
+    useClass: AuthInterceptorService,
+    multi: true
+
+  } 
+],
   exports: [MatButtonModule],
   bootstrap: [AppComponent]
 })
