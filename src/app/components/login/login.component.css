@@ -26,11 +26,16 @@ mat-form-field {
 }
 
 .login {
-  height: 150px;
+  height: 200px;
   width: 300px;
 }
 
 .register {
   height: 300px;
   width: 300px;
+}
+
+.submit {
+  display: flex;
+  justify-content: center;
 }
