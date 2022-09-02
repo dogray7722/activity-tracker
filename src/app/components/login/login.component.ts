@@ -15,14 +15,14 @@ export class LoginComponent implements OnInit {
 
   loginForm = this.fb.group({
     username: ['', Validators.required],
-    password: ['', Validators.required]
+    password: ['', [Validators.required, Validators.minLength(6)]]
   })
 
   registerForm = this.fb.group({
     username: ['', Validators.required ],
     email: ['', Validators.email],
-    password: ['', Validators.required, Validators.minLength(6)],
-    confirmation: ['', Validators.required]
+    password: ['', [Validators.required, Validators.minLength(6)]],
+    confirmation: ['', [Validators.required, Validators.minLength(6)]]
   })
 
   onSubmitLogin() {
@@ -31,6 +31,10 @@ export class LoginComponent implements OnInit {
 
   onSubmitRegister() {
     console.log(this.registerForm.value)
+    if (this.registerForm.value["password"] !== this.registerForm.value["confirmation"]) {
+      //more to snackbar once service is built
+      alert("Passwords do not match!")
+    }
   }
 
 }
