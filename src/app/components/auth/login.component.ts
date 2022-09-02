@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/services/auth.service';
   styleUrls: ['./login.component.css']
 })
 export class LoginComponent implements OnInit {
+  loading = false
 
   constructor(private fb: FormBuilder,
               private authService: AuthService) { }
@@ -32,11 +33,14 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmitRegister() {
+    this.loading = true
     if (this.registrationForm.value["password"] !== this.registrationForm.value["confirmation"]) {
       //more to snackbar once service is built
       alert("Passwords do not match!")
+      this.loading = false
       return
     } else {
+      this.loading = true
       const email = this.registrationForm.value["email"]
       const password = this.registrationForm.value["password"]
       this.authService.register(email, password).subscribe({
@@ -48,6 +52,7 @@ export class LoginComponent implements OnInit {
         }
       })
       this.registrationForm.reset()
+      this.loading = false
     }
   }
 }
