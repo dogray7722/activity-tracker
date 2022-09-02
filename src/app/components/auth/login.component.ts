@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms'
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-login',
@@ -8,7 +9,8 @@ import { FormBuilder, Validators } from '@angular/forms'
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder,
+              private authService: AuthService) { }
 
   ngOnInit(): void {
   }
@@ -33,10 +35,19 @@ export class LoginComponent implements OnInit {
     if (this.registrationForm.value["password"] !== this.registrationForm.value["confirmation"]) {
       //more to snackbar once service is built
       alert("Passwords do not match!")
+      return
     } else {
-      console.log(this.registrationForm.value)
+      const email = this.registrationForm.value["email"]
+      const password = this.registrationForm.value["password"]
+      this.authService.register(email, password).subscribe({
+        next: resData => {
+          console.log("responseData", resData)
+        },
+        error: (error) => {
+          console.log(error)
+        }
+      })
       this.registrationForm.reset()
     }
   }
-
 }

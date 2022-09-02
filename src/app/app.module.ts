@@ -41,7 +41,7 @@ import { ActivityTypeEditComponent } from './components/Types/activity-type-edit
 import { ActivityTypeCreateComponent } from './components/Types/activity-type-create/activity-type-create.component';
 import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 import { ActivityTypeDeleteComponent } from './components/Types/activity-type-delete/activity-type-delete.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/auth/login.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 
 @NgModule({
@@ -93,7 +93,6 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
     provide: HTTP_INTERCEPTORS,
     useClass: AuthInterceptorService,
     multi: true
-
   } 
 ],
   exports: [MatButtonModule],

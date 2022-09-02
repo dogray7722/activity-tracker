@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ActivitiesComponent } from './components/Events/activities/activities.component';
 import { ActivityTypesComponent } from './components/Types/activity-types/activity-types.component';
 import { CreateActivityComponent } from './components/Events/create-activity/create-activity.component';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './components/auth/login.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
