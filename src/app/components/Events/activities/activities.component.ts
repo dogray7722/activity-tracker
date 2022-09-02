@@ -15,11 +15,14 @@ export class ActivitiesComponent implements OnInit {
 
   ngOnInit(): void {
     this.loading = true;
-    this.activityService.getActivities().subscribe(
-      res => {
+    this.activityService.getActivities().subscribe({
+      next: res => {
         this.loading = false
         this.activities = res
+      },
+      error: () => {
+        this.loading = false
       }
-    )  
+    })  
   }
 }

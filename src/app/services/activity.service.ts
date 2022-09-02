@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http'
-import { EMPTY } from 'rxjs';
+import { EMPTY, throwError } from 'rxjs';
 import { Activity } from '../Activity';
 import { map, catchError} from 'rxjs/operators';
 import { SnackBarService } from './snack-bar-service.service';
@@ -24,9 +24,9 @@ export class ActivityService {
         }
         return activities;
       }),
-      catchError(() => {
+      catchError((error) => {
         this.snackBarService.snackBarMessage(false, "listActivitiesError")
-        return EMPTY
+        return throwError(() => new Error(error))
       })
     )
   }
