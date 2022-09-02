@@ -16,6 +16,7 @@ mat-card {
   width: 600px;
   text-align: center;
   background-color: hsl(40, 60%, 98%);
+  border-radius: 8px;
 }
 
 mat-form-field {

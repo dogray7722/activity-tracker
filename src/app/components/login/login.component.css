@@ -1,18 +1,32 @@
-.example-small-box, .example-large-box {
+.heading {
+  text-align: center; 
+  margin-top: 50px; 
+  font-size: 50px; 
+  color: rgb(103,58,183);
+}
+
+.registration-form {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+}
+
+.login, .register {
   display: flex;
   align-items: center;
   justify-content: center;
   margin: 16px;
   padding: 16px;
   border-radius: 8px;
+  background-color: hsl(40, 60%, 98%);
 }
 
-.example-small-box {
+.login {
   height: 100px;
-  width: 100px;
+  width: 300px;
 }
 
-.example-large-box {
+.register {
   height: 300px;
   width: 300px;
 }
