@@ -1,15 +1,35 @@
 
 <h1 class="heading">Log In Or Register</h1>
 <div class="registration-form">
-  <mat-tab-group dynamicHeight>
+  <mat-tab-group dynamicHeight mat-align-tabs="center">
     <mat-tab label="Log In">
       <div class="login mat-elevation-z4">
-        Small content
+        <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="username" formControlName="username">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="password" formControlName="password">
+          </mat-form-field>
+        </form>
       </div>
     </mat-tab>
     <mat-tab label="Register">
       <div class="register mat-elevation-z4">
-        Large content
+        <form [formGroup]="registerForm" (ngSubmit)="onSubmitRegister()">
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="username" formControlName="username">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="email" formControlName="email">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="password" formControlName="password">
+          </mat-form-field>
+          <mat-form-field appearance="fill">
+            <input matInput placeholder="confirm password" formControlName="confirmation">
+          </mat-form-field>
+        </form>
       </div>
     </mat-tab>
   </mat-tab-group>
