@@ -38,7 +38,7 @@ export class CreateActivityComponent implements OnInit {
     body.date = this.datePipe.transform(body.date, 'mediumDate')
     this.addActivity(body)
     setTimeout(() => {
-      this.router.navigate(['/'])
+      this.router.navigate(['/events'])
     }, 500);
   }
 

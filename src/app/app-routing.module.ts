@@ -3,9 +3,11 @@ import { RouterModule, Routes } from '@angular/router';
 import { ActivitiesComponent } from './components/Events/activities/activities.component';
 import { ActivityTypesComponent } from './components/Types/activity-types/activity-types.component';
 import { CreateActivityComponent } from './components/Events/create-activity/create-activity.component';
+import { LoginComponent } from './components/login/login.component';
 
 const routes: Routes = [
-  {path: '', component: ActivitiesComponent},
+  {path: '', component: LoginComponent},
+  {path: 'events', component: ActivitiesComponent},
   {path: 'create', component: CreateActivityComponent},
   {path: 'types', component: ActivityTypesComponent}
 ];
