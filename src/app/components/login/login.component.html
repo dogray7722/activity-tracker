@@ -6,7 +6,7 @@
       <div class="login mat-elevation-z4">
         <form [formGroup]="loginForm" (ngSubmit)="onSubmitLogin()">
           <mat-form-field appearance="fill">
-            <input matInput placeholder="username" formControlName="username">
+            <input matInput placeholder="email" formControlName="email">
           </mat-form-field>
           <mat-form-field appearance="fill">
             <input matInput placeholder="password" formControlName="password">
@@ -21,9 +21,6 @@
       <div class="register mat-elevation-z4" >
         <form [formGroup]="registrationForm" (ngSubmit)="onSubmitRegister()">
           <mat-form-field appearance="fill">
-            <input matInput placeholder="username" formControlName="username">
-          </mat-form-field>
-          <mat-form-field appearance="fill">
             <input matInput placeholder="email" formControlName="email">
           </mat-form-field>
           <mat-form-field appearance="fill">
@@ -33,7 +30,7 @@
             <input matInput placeholder="confirm password" formControlName="confirmation">
           </mat-form-field>
           <div class="submit">
-            <button type="submit" mat-raised-button color="primary" [disabled]="registerForm.invalid">Submit</button>
+            <button type="submit" mat-raised-button color="primary" [disabled]="registrationForm.invalid">Submit</button>
           </div>
         </form>
       </div>
