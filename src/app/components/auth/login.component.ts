@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
+import { catchError, throwError } from 'rxjs';
+import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +15,8 @@ export class LoginComponent implements OnInit {
 
   constructor(private fb: FormBuilder,
               private authService: AuthService,
-              private router: Router) { }
+              private router: Router,
+              private snackBarService: SnackBarService) { }
 
   ngOnInit(): void {
   }
@@ -45,13 +48,16 @@ export class LoginComponent implements OnInit {
       this.loading = true
       const email = this.registrationForm.value["email"]
       const password = this.registrationForm.value["password"]
-      this.authService.register(email, password).subscribe({
+      this.authService.register(email, password).pipe(
+        catchError(error => {
+          this.snackBarService.snackBarMessage(false, "registrationError")
+          this.loading = false
+          return throwError(() => new Error(error))
+        })
+      ).subscribe({
         next: resData => {
           console.log("responseData", resData)
           this.router.navigate(['/events'])
-        },
-        error: (error) => {
-          console.log(error)
         }
       })
       this.registrationForm.reset()

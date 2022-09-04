@@ -74,6 +74,10 @@ export class SnackBarService {
         this.message = "There was a problem editing activity type.  Please try again later."
         break
       }
+      case "registrationError": {
+        this.message = "There was a problem registering your account.  Please try again later."
+        break
+      }
       default: {
         success = false
         this.message = "An unhandled error occurred."
