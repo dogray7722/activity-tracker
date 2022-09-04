@@ -1,5 +1,7 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { catchError, throwError } from 'rxjs';
+import { SnackBarService } from './snack-bar-service.service';
 
 export interface AuthResponseData {
   kind: string;
@@ -14,7 +16,8 @@ export interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthService {
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient,
+              private snackBarService: SnackBarService) { }
 
   url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBLi98jytycQ2mbV9s_Xrpj-j8HZQOcn_A`
 
@@ -25,6 +28,17 @@ export class AuthService {
         password: password,
         returnSecureToken: true
       }
+    ).pipe(
+      catchError(errorRes => {
+        switch (errorRes.error.error.message) {
+          case 'EMAIL_EXISTS':
+            this.snackBarService.snackBarMessage(false, "emailTaken")
+            break
+          default:
+            this.snackBarService.snackBarMessage(false, "registrationError")
+        }
+        return throwError(() => new Error(errorRes))
+      })
     )
   }
 }

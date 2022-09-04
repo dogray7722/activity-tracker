@@ -40,7 +40,7 @@ export class LoginComponent implements OnInit {
   onSubmitRegister() {
     this.loading = true
     if (this.registrationForm.value["password"] !== this.registrationForm.value["confirmation"]) {
-      //more to snackbar once service is built
+      //handle this as a validation error
       alert("Passwords do not match!")
       this.loading = false
       return
@@ -48,20 +48,18 @@ export class LoginComponent implements OnInit {
       this.loading = true
       const email = this.registrationForm.value["email"]
       const password = this.registrationForm.value["password"]
-      this.authService.register(email, password).pipe(
-        catchError(error => {
-          this.snackBarService.snackBarMessage(false, "registrationError")
-          this.loading = false
-          return throwError(() => new Error(error))
-        })
-      ).subscribe({
+      this.authService.register(email, password)
+        .subscribe({
         next: resData => {
+          //Activity and Activity type services should both
+          //subscribe and set the user token respectively
           console.log("responseData", resData)
+          this.registrationForm.reset()
           this.router.navigate(['/events'])
+        }, error: () => {
+          this.loading = false
         }
       })
-      this.registrationForm.reset()
-      this.loading = false
     }
   }
 }
