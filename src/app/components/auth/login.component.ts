@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -11,7 +12,8 @@ export class LoginComponent implements OnInit {
   loading = false
 
   constructor(private fb: FormBuilder,
-              private authService: AuthService) { }
+              private authService: AuthService,
+              private router: Router) { }
 
   ngOnInit(): void {
   }
@@ -46,6 +48,7 @@ export class LoginComponent implements OnInit {
       this.authService.register(email, password).subscribe({
         next: resData => {
           console.log("responseData", resData)
+          this.router.navigate(['/events'])
         },
         error: (error) => {
           console.log(error)
