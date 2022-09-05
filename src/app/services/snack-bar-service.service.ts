@@ -82,6 +82,18 @@ export class SnackBarService {
         this.message = "There was a problem registering your account.  Please try again later."
         break
       }
+      case "unregistered": {
+        this.message = "The email address does not exist.  Please try again or register to continue."
+        break
+      }
+      case "invalidPassword": {
+        this.message = "The password is incorrect.  Please try again."
+        break
+      }
+      case "loginError": {
+        this.message = "There was a problem logging in.  Please try again later."
+        break
+      }
       default: {
         success = false
         this.message = "An unhandled error occurred."

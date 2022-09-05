@@ -33,8 +33,19 @@ export class LoginComponent implements OnInit {
   })
 
   onSubmitLogin() {
-    console.log(this.loginForm.value)
-    this.loginForm.reset()
+    this.loading = true
+    const email = this.loginForm.value["email"]
+    const password = this.loginForm.value["password"]
+    this.authService.login(email, password)
+      .subscribe({
+        next: resData => {
+          console.log("responseData", resData)
+          this.loginForm.reset()
+          this.router.navigate(['/events'])
+        }, error: () => {
+          this.loading = false
+        }
+    })
   }
 
   onSubmitRegister() {
@@ -51,7 +62,7 @@ export class LoginComponent implements OnInit {
       this.authService.register(email, password)
         .subscribe({
         next: resData => {
-          //Activity and Activity type services should both
+          //Activity and Activity Type services should both
           //subscribe and set the user token respectively
           console.log("responseData", resData)
           this.registrationForm.reset()
