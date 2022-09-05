@@ -41,7 +41,8 @@ export class LoginComponent implements OnInit {
         next: resData => {
           console.log("responseData", resData)
           this.loginForm.reset()
-          this.router.navigate(['/events'])
+          this.loading = false
+          // this.router.navigate(['/events'])
         }, error: () => {
           this.loading = false
         }
