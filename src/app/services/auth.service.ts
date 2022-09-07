@@ -1,6 +1,7 @@
-import { HttpClient, HttpErrorResponse, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, EMPTY, throwError } from 'rxjs';
+import { catchError, tap, Subject, throwError } from 'rxjs';
+import { User } from '../components/auth/user.model';
 import { SnackBarService } from './snack-bar-service.service';
 
 interface AuthResponseData {
@@ -17,10 +18,10 @@ interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthService {
+  user = new Subject<User>()
+
   constructor(private http: HttpClient,
               private snackBarService: SnackBarService) { }
-
-  
 
   register(email: string, password: string) {
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBLi98jytycQ2mbV9s_Xrpj-j8HZQOcn_A`
@@ -44,7 +45,15 @@ export class AuthService {
             this.snackBarService.snackBarMessage(false, "registrationError")
         }
         return throwError(() => new Error())
-      })
+      }),
+        tap(resData => {
+          this.handleAuthentication(
+            resData.email, 
+            resData.localId, 
+            resData.idToken, 
+            +resData.expiresIn)
+        }
+      )
     )
   }
 
@@ -73,8 +82,22 @@ export class AuthService {
             this.snackBarService.snackBarMessage(false, "loginError")
         }
         return throwError(() => new Error())
-      })
-    )
+      }),
+      tap(resData => {
+        this.handleAuthentication(
+          resData.email, 
+          resData.localId, 
+          resData.idToken, 
+          +resData.expiresIn)
+      }
+    ))
   }
+
+  private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
+    const expirationDate = new Date(new Date().getTime() + expiresIn * 1000);
+    const user = new User(email, userId, token, expirationDate);
+    this.user.next(user);
+  }
+
 }
 

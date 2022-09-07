@@ -1,7 +1,12 @@
 <mat-toolbar color="accent">
-  <a routerLink="/" mat-button>
+  <a routerLink="/" mat-button *ngIf="!isLoggedIn">
     <mat-icon>account_circle</mat-icon>
     Login
+  </a>
+
+  <a routerLink="/" mat-button *ngIf="isLoggedIn">
+    <mat-icon>account_box</mat-icon>
+    Logout
   </a>  
   
   <a routerLink="/events" mat-button>

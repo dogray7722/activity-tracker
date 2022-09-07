@@ -42,7 +42,7 @@ export class LoginComponent implements OnInit {
           console.log("responseData", resData)
           this.loginForm.reset()
           this.loading = false
-          // this.router.navigate(['/events'])
+          this.router.navigate(['/events'])
         }, error: () => {
           this.loading = false
         }
@@ -52,7 +52,7 @@ export class LoginComponent implements OnInit {
   onSubmitRegister() {
     this.loading = true
     if (this.registrationForm.value["password"] !== this.registrationForm.value["confirmation"]) {
-      //handle this as a validation error
+      //todo handle this as a validation error
       alert("Passwords do not match!")
       this.loading = false
       return
