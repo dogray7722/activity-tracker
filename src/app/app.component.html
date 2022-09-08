@@ -4,7 +4,7 @@
     Login
   </a>
 
-  <a routerLink="/" mat-button *ngIf="isLoggedIn">
+  <a routerLink="/" mat-button *ngIf="isLoggedIn" (click)="onLogout()">
     <mat-icon>account_box</mat-icon>
     Logout
   </a>  

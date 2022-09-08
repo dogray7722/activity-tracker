@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { catchError, throwError } from 'rxjs';
 import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
@@ -38,7 +37,8 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.value["password"]
     this.authService.login(email, password)
       .subscribe({
-        next: () => {
+        next: (res) => {
+          console.log("firebase id", res.idToken)
           this.loginForm.reset()
           this.loading = false
           this.router.navigate(['/events'])
@@ -62,8 +62,6 @@ export class LoginComponent implements OnInit {
       this.authService.register(email, password)
         .subscribe({
         next: resData => {
-          //Activity and Activity Type services should both
-          //subscribe and set the user token respectively
           console.log("responseData", resData)
           this.registrationForm.reset()
           this.router.navigate(['/events'])
