@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, tap, Subject, throwError } from 'rxjs';
+import { catchError, tap, Subject, throwError, BehaviorSubject } from 'rxjs';
 import { User } from '../components/auth/user.model';
 import { SnackBarService } from './snack-bar-service.service';
 
@@ -18,7 +18,7 @@ interface AuthResponseData {
   providedIn: 'root'
 })
 export class AuthService {
-  user = new Subject<User>()
+  user = new BehaviorSubject<User>(null)
 
   constructor(private http: HttpClient,
               private snackBarService: SnackBarService) { }
