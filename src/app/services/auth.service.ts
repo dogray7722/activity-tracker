@@ -78,6 +78,7 @@ export class AuthService {
     )
     if (loadedUser.token) {
       this.user.next(loadedUser)
+      this.router.navigate(['/events'])
     }
   }
 
