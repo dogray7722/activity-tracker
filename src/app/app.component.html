@@ -1,34 +1,3 @@
-<mat-toolbar color="accent">
-  <a routerLink="/" mat-button *ngIf="!isLoggedIn">
-    <mat-icon>account_circle</mat-icon>
-    Login
-  </a>
-
-  <a mat-button *ngIf="isLoggedIn" (click)="onLogout()">
-    <mat-icon>account_box</mat-icon>
-    Logout
-  </a>  
-  
-  <a routerLink="/events" mat-button *ngIf="isLoggedIn">
-    <mat-icon>home</mat-icon>
-    Home
-  </a>  
-  
-  <a routerLink="/create" mat-button *ngIf="isLoggedIn">
-    <mat-icon>add</mat-icon>
-    Add
-  </a>
-  
-  <a mat-button routerLink="/about">
-    <mat-icon>question_answer</mat-icon>
-    About
-  </a>
-
-  <a routerLink="/types" mat-button *ngIf="isLoggedIn">
-    <mat-icon>directions_bike</mat-icon>
-    Activities
-  </a>
-
-</mat-toolbar>
+<app-header></app-header>
 <router-outlet></router-outlet>
 <app-footer></app-footer>

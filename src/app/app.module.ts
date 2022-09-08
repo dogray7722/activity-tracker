@@ -44,6 +44,7 @@ import { ActivityTypeDeleteComponent } from './components/Types/activity-type-de
 import { LoginComponent } from './components/auth/login.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AboutComponent } from './components/about/about.component';
+import { HeaderComponent } from './components/header/header.component';
 
 @NgModule({
   declarations: [
@@ -60,7 +61,8 @@ import { AboutComponent } from './components/about/about.component';
     SnackBarComponent,
     ActivityTypeDeleteComponent,
     LoginComponent,
-    AboutComponent
+    AboutComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,

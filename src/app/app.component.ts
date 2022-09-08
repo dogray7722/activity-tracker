@@ -1,5 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from './services/auth.service';
 
 @Component({
@@ -7,24 +6,14 @@ import { AuthService } from './services/auth.service';
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
-export class AppComponent implements OnInit, OnDestroy {
+export class AppComponent implements OnInit{
   title = 'activity-tracker';
-  private userSub: Subscription;
-  isLoggedIn = false;
 
   constructor(private authService: AuthService) {}
 
   ngOnInit() {
-    this.userSub = this.authService.user.subscribe(user => {
-      this.isLoggedIn = !!user;
-    });
+    this.authService.autoLogin();
   }
 
-  onLogout() {
-    this.authService.logout()
-  }
 
-  ngOnDestroy() {
-    this.userSub.unsubscribe();
-  }
 }
