@@ -9,12 +9,12 @@
     Logout
   </a>  
   
-  <a routerLink="/events" mat-button>
+  <a routerLink="/events" mat-button *ngIf="isLoggedIn">
     <mat-icon>home</mat-icon>
     Home
   </a>  
   
-  <a routerLink="/create" mat-button>
+  <a routerLink="/create" mat-button *ngIf="isLoggedIn">
     <mat-icon>add</mat-icon>
     Add
   </a>
@@ -24,7 +24,7 @@
     About
   </a>
 
-  <a routerLink="/types" mat-button>
+  <a routerLink="/types" mat-button *ngIf="isLoggedIn">
     <mat-icon>directions_bike</mat-icon>
     Activities
   </a>
