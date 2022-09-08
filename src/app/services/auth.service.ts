@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { catchError, tap, Subject, throwError, BehaviorSubject } from 'rxjs';
 import { User } from '../components/auth/user.model';
 import { SnackBarService } from './snack-bar-service.service';
@@ -21,7 +22,8 @@ export class AuthService {
   user = new BehaviorSubject<User>(null)
 
   constructor(private http: HttpClient,
-              private snackBarService: SnackBarService) { }
+              private snackBarService: SnackBarService,
+              private router: Router) { }
 
   register(email: string, password: string) {
     const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBLi98jytycQ2mbV9s_Xrpj-j8HZQOcn_A`
@@ -95,6 +97,7 @@ export class AuthService {
 
   logout() {
     this.user.next(null)
+    this.router.navigate(['/'])
   }
 
   private handleAuthentication(email: string, userId: string, token: string, expiresIn: number) {
