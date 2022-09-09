@@ -5,4 +5,5 @@ export interface Activity {
   date: Date
   location: string
   notes: string
+  userId: string
 }

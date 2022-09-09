@@ -15,6 +15,7 @@ export class ActivityComponent implements OnInit {
   constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
+
   }
 
   editActivity(activity:Activity) {

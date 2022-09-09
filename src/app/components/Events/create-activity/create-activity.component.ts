@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { ActivityType } from 'src/app/ActivityType';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-create-activity',
@@ -26,7 +27,9 @@ export class CreateActivityComponent implements OnInit {
   constructor(private fb: FormBuilder, 
               private activityService: ActivityService,
               private activityTypeService: ActivityTypeService,
-              private router: Router, private datePipe: DatePipe,
+              private router: Router, 
+              private datePipe: DatePipe,
+              private authService: AuthService
               ) { }
 
   ngOnInit(): void {
@@ -36,6 +39,10 @@ export class CreateActivityComponent implements OnInit {
   onSubmit() {
     const body = this.activityForm.value
     body.date = this.datePipe.transform(body.date, 'mediumDate')
+    this.authService.user.subscribe(res => 
+      body.userId = res.id
+    )
+    
     this.addActivity(body)
     setTimeout(() => {
       this.router.navigate(['/events'])

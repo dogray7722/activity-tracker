@@ -61,8 +61,7 @@ export class LoginComponent implements OnInit {
       const password = this.registrationForm.value["password"]
       this.authService.register(email, password)
         .subscribe({
-        next: resData => {
-          console.log("responseData", resData)
+        next: () => {
           this.registrationForm.reset()
           this.router.navigate(['/events'])
         }, error: () => {

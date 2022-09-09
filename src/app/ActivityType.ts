@@ -3,4 +3,5 @@ export interface ActivityType {
   name: string
   photo: string
   fileName: string
+  userId: string
 }
