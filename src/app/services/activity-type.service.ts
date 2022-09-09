@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, EMPTY, map } from 'rxjs';
+import { catchError, EMPTY, map, tap } from 'rxjs';
 import { ActivityType } from '../ActivityType';
 import { SnackBarService } from './snack-bar-service.service';
 
@@ -8,6 +8,7 @@ import { SnackBarService } from './snack-bar-service.service';
   providedIn: 'root'
 })
 export class ActivityTypeService {
+  userId: string
   private baseUrl = 'https://activitytracker-21247-default-rtdb.firebaseio.com/activity_types'
 
   constructor(private http: HttpClient,
@@ -15,10 +16,14 @@ export class ActivityTypeService {
 
   getActivityTypes() {
     return this.http.get<{ [key: string]: ActivityType }>(`${this.baseUrl}.json`).pipe(
+      tap(() => {
+        const userData = JSON.parse(localStorage.getItem('userData'))
+        this.userId = userData.id
+      }),
       map(responseData => {
         const activityTypes: ActivityType[] = []
         for (const key in responseData) {
-          if (responseData.hasOwnProperty(key)) {
+          if (responseData.hasOwnProperty(key) && this.userId == responseData[key].userId) {
             activityTypes.push({ ...responseData[key], id: key})
           }
         }

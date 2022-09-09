@@ -18,7 +18,7 @@ export class ActivityService {
     return this.http.get<{ [key: string]: Activity }>(`${this.baseUrl}.json`).pipe(
       tap(() => {
         const userData = JSON.parse(localStorage.getItem('userData'))
-        this.userId = userData.id 
+        this.userId = userData.id
       }),
       map(responseData => {
         const activities: Activity[] = []

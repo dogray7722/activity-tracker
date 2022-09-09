@@ -8,6 +8,7 @@ import { v4 as uuid } from 'uuid';
 import { Router } from '@angular/router';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 import { catchError, EMPTY, finalize, tap } from 'rxjs';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-activity-type-create',
@@ -25,13 +26,15 @@ export class ActivityTypeCreateComponent {
   });
   isLoading = false;
   completed: number;
-  preview = null
+  preview = null;
+  userId: string;
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService, 
               private storage: AngularFireStorage,
               private router: Router,
-              private reloadService: ReloadComponentService    
+              private reloadService: ReloadComponentService,
+              private authService: AuthService
   ) { }
 
   addType(activityType: ActivityType) {
@@ -57,6 +60,9 @@ export class ActivityTypeCreateComponent {
 
   save(formValue) {
     if (this.filePath && this.file) {
+      this.authService.user.subscribe(res => {
+        this.userId = res.id
+      })
       const fileRef = this.storage.ref(this.filePath)
       this.isLoading = true
       this.storage.upload(this.filePath, this.file).snapshotChanges().pipe(
@@ -70,6 +76,7 @@ export class ActivityTypeCreateComponent {
           fileRef.getDownloadURL().subscribe((url) => {
             formValue['photo'] = url
             formValue['fileName'] = this.fileName
+            formValue['userId'] = this.userId
             this.addType(formValue)
             this.isLoading = false
             this.dialogRef.close()
