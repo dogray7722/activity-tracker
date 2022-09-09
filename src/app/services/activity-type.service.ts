@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { catchError, EMPTY, map } from 'rxjs';
 import { ActivityType } from '../ActivityType';
 import { SnackBarService } from './snack-bar-service.service';
-import { AuthService } from './auth.service';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +11,7 @@ export class ActivityTypeService {
   private baseUrl = 'https://activitytracker-21247-default-rtdb.firebaseio.com/activity_types'
 
   constructor(private http: HttpClient,
-              private snackBarService: SnackBarService,
-              private authService: AuthService) { }
+              private snackBarService: SnackBarService) { }
 
   getActivityTypes() {
     return this.http.get<{ [key: string]: ActivityType }>(`${this.baseUrl}.json`).pipe(
