@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
-import { catchError, tap, Subject, throwError, BehaviorSubject } from 'rxjs';
+import { catchError, tap, throwError, BehaviorSubject } from 'rxjs';
 import { User } from '../components/auth/user.model';
 import { SnackBarService } from './snack-bar-service.service';
 

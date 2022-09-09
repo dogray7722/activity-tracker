@@ -8,7 +8,6 @@ import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
-import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
   selector: 'app-edit-activity',
