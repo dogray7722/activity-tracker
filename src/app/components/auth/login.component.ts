@@ -37,8 +37,7 @@ export class LoginComponent implements OnInit {
     const password = this.loginForm.value["password"]
     this.authService.login(email, password)
       .subscribe({
-        next: (res) => {
-          console.log("firebase id", res.idToken)
+        next: () => {
           this.loginForm.reset()
           this.loading = false
           this.router.navigate(['/events'])
