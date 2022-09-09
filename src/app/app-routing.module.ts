@@ -5,13 +5,14 @@ import { ActivityTypesComponent } from './components/Types/activity-types/activi
 import { CreateActivityComponent } from './components/Events/create-activity/create-activity.component';
 import { LoginComponent } from './components/auth/login.component';
 import { AboutComponent } from './components/about/about.component';
+import { AuthGuard } from './components/auth/auth.guard';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
-  {path: 'events', component: ActivitiesComponent},
-  {path: 'create', component: CreateActivityComponent},
-  {path: 'types', component: ActivityTypesComponent},
-  {path: 'about', component: AboutComponent}
+  {path: 'about', component: AboutComponent},
+  {path: 'events', component: ActivitiesComponent, canActivate: [AuthGuard]},
+  {path: 'create', component: CreateActivityComponent, canActivate: [AuthGuard]},
+  {path: 'types', component: ActivityTypesComponent, canActivate: [AuthGuard]}
 ];
 
 @NgModule({
