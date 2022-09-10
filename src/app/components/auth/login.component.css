@@ -49,4 +49,5 @@ mat-form-field {
 .submit {
   display: flex;
   justify-content: center;
+  margin-top: 20px;
 }
