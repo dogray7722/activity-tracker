@@ -14,7 +14,6 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatInputModule } from "@angular/material/input";
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
 import { MatSelectModule } from "@angular/material/select";
-import { MatSortModule } from "@angular/material/sort";
 import { MatTableModule } from "@angular/material/table";
 import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatNativeDateModule } from '@angular/material/core';
@@ -28,7 +27,6 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
-
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { ActivitiesComponent } from './components/Events/activities/activities.component';
@@ -81,7 +79,6 @@ import { HeaderComponent } from './components/header/header.component';
     MatInputModule,
     MatProgressSpinnerModule,
     MatSelectModule,
-    MatSortModule,
     MatTableModule,
     MatNativeDateModule,
     DragDropModule,
