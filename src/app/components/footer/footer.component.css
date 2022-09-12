@@ -1,4 +1,27 @@
 footer {
-  margin-top: 30px;
+  position: fixed;
+  bottom: 0%;
+  width: 100%;
+}
+
+.company-info {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin: 20px;
+}
+
+.footer-top {
+  background-color: #f0f0f0 ;
+}
+
+.footer-bottom  {
+  background-color: rgba(178, 168, 168, 0.408);
+  display: flex;
+  justify-content: space-around;
+  margin-top: 20px;
+  padding-top: 20px;
+  padding-bottom: 5px;
   text-align: center;
 }
