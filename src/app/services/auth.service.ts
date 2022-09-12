@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { catchError, tap, throwError, BehaviorSubject } from 'rxjs';
 import { User } from '../components/auth/user.model';
 import { SnackBarService } from './snack-bar-service.service';
+import { environment } from '../../environments/environment'
 
 interface AuthResponseData {
   kind: string;
@@ -27,7 +28,7 @@ export class AuthService {
               private router: Router) { }
 
   register(email: string, password: string) {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyBLi98jytycQ2mbV9s_Xrpj-j8HZQOcn_A`
+    const url = 'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=' + environment.firebase.apiKey
     return this.http.post<AuthResponseData>(url,
       {
         email: email,
@@ -86,7 +87,7 @@ export class AuthService {
   }
 
   login(email: string, password: string) {
-    const url = `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyBLi98jytycQ2mbV9s_Xrpj-j8HZQOcn_A`
+    const url = 'https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=' + environment.firebase.apiKey
     return this.http.post<AuthResponseData>(url,
       {
         email: email,
