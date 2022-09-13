@@ -42,3 +42,7 @@ mat-icon:active {
 .icon {
   margin-top: -17px;
 }
+
+.last {
+  margin-bottom: 50px;
+}
