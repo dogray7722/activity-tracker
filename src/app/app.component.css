@@ -1,11 +1,15 @@
-body {
-  margin: 0;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  
+.content-outer-container {
+  min-height: 100%;
 }
 
-main {
-  
+/* .content-inner-container {
+  padding-bottom: 100px;
+} */
+
+.footer-container {
+  margin-top: -100px;
+}
+
+.footer-content {
+  margin: 0 auto;
 }

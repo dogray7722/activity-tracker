@@ -1,9 +1,3 @@
-footer {
-  width: 100%;
-  margin-top: 8%;
-  bottom: 0;
-}
-
 .company-info {
   display: flex;
   flex-direction: column;
