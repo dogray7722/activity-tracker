@@ -1,12 +1,20 @@
 <footer>
   <div class="footer-top">
-    <mat-grid-list cols="4" >
-      <mat-grid-tile>
+    <mat-grid-list cols="4" rowHeight="275px" >
+      <mat-grid-tile >
         <div class="company-info">
-          <!-- Logo placeholder -->
-          <mat-icon style="font-size: 40px; margin-bottom: 10px;">anchor</mat-icon>
           <h2 style="margin-top: 10px;">DG Enterprise Applications</h2>
           <p>Quality Application Development from Experienced Professionals.</p>
+        </div>
+      </mat-grid-tile>
+      
+      <mat-grid-tile>
+        <div class="company-info">
+          <h2>Services</h2>
+          <p>Web Application Development</p>
+          <p>Software Consulting</p>
+          <p>Automated Testing</p>
+          <p>Dev Ops</p>
         </div>
       </mat-grid-tile>
       
@@ -20,37 +28,28 @@
         </div>
       </mat-grid-tile>
       
-    <mat-grid-tile>
-      <div class="company-info">
-        <h2>Services</h2>
-        <p>Web Application Development</p>
-        <p>Software Consulting</p>
-        <p>Automated Testing</p>
-        <p>Dev Ops</p>
-      </div>
-    </mat-grid-tile>
-    
-    <mat-grid-tile>
-      <div class="company-info">
-        <h2>Contact</h2>
-        <div class="icons">
-          <mat-icon style="margin-right: 10px;">contact_phone</mat-icon>
-          <p>720 289 1900</p>
+      <mat-grid-tile>
+        <div class="company-info">
+          <h2>Contact</h2>
+          <div class="icons">
+            <fa-icon [icon]="faGithub" style="font-size: 20px;"></fa-icon>
+            <p>GitHub</p>
+          </div>
+          <div class="icons">
+            <fa-icon [icon]="faLinkedin" style="font-size: 20px;"></fa-icon>
+            <p>LinkedIn</p>
+          </div>
+          <div class="icons">
+            <fa-icon [icon]="faTwitter" style="font-size: 20px;"></fa-icon>
+            <p>Twitter</p>
+          </div>
         </div>
-        <div class="icons">
-          <mat-icon style="margin-right: 10px;">map</mat-icon>
-          <p>Littleton, CO</p>
-        </div>
-        <div class="icons">
-          <mat-icon style="margin-right: 10px;">twitter</mat-icon>
-          <fa-icon [icon]="faTwitter">Twitter</fa-icon>
-        </div>
-      </div>
-    </mat-grid-tile>
-  </mat-grid-list>
+      </mat-grid-tile>
+    </mat-grid-list>
     <div class="footer-bottom">
       <p>Copyright &copy; 2022 DG Enterprise Applications</p>
       <p>Privacy Policy</p>
     </div>
   </div>
 </footer>
+
