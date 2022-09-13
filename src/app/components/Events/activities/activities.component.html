@@ -1,5 +1,7 @@
 <h1 class="heading">Track Your Time Outdoors</h1>
+<div class="spinner-container">
   <mat-spinner *ngIf="loading" class="spinner-container"></mat-spinner>
+</div>
 <div class="activities">
   <app-activity *ngFor="let activity of activities" [activity]="activity"
   ></app-activity>

@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Activity } from 'src/app/Activity';
+import { ActivityType } from 'src/app/ActivityType';
+import { ActivityTypeService } from 'src/app/services/activity-type.service';
+import { map, pipe } from 'rxjs';
 
 @Component({
   selector: 'app-activities',
@@ -9,20 +12,51 @@ import { Activity } from 'src/app/Activity';
 })
 export class ActivitiesComponent implements OnInit {
   activities: Activity[] = []
+  activityTypes: ActivityType[] = []
   loading = false;
+  typePhoto: string;
   
-  constructor(private activityService: ActivityService) { }
+  constructor(private activityService: ActivityService,
+              private activityTypeService: ActivityTypeService) { }
 
   ngOnInit(): void {
     this.loading = true;
-    this.activityService.getActivities().subscribe({
+
+    this.activityTypeService.getActivityTypes().subscribe({
       next: res => {
-        this.loading = false
-        this.activities = res
+        this.loading = true
+        this.activityTypes = res
       },
       error: () => {
         this.loading = false
       }
-    })  
+    }) 
+
+    this.activityService.getActivities().pipe(
+      map(
+        (res) => {
+          const newResults: Activity[] = []
+          for (const act of res) {
+            let temp = this.activityTypes.find(type => type.name = act.type)
+            if (temp.photo) {
+              act.typePhoto = temp.photo
+              newResults.push(act)
+            }
+          }
+          this.activities = newResults
+        }
+      )
+    ).subscribe(() => this.loading = false)
+
+    }
   }
-}
+
+  // {
+  //   next: res => {
+  //     this.loading = false
+  //     this.activities = res
+  //   },
+  //   error: () => {
+  //       this.loading = false
+  //     }
+  //   }       
