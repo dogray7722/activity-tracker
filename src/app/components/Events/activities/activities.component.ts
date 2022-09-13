@@ -3,7 +3,7 @@ import { ActivityService } from 'src/app/services/activity.service';
 import { Activity } from 'src/app/Activity';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
-import { pipe, map, finalize } from 'rxjs';
+import { map, finalize } from 'rxjs';
 
 @Component({
   selector: 'app-activities',
