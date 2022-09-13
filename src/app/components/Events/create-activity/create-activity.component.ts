@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { UntypedFormBuilder, Validators } from '@angular/forms';
 import { Activity } from 'src/app/Activity';
 import { ActivityService } from 'src/app/services/activity.service';
 import { Router } from '@angular/router';
@@ -24,7 +24,7 @@ export class CreateActivityComponent implements OnInit {
     notes: ['']
   })
 
-  constructor(private fb: FormBuilder, 
+  constructor(private fb: UntypedFormBuilder, 
               private activityService: ActivityService,
               private activityTypeService: ActivityTypeService,
               private router: Router, 

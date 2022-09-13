@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, UntypedFormBuilder } from '@angular/forms';
 import { MatDialog, MatDialogRef, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Activity } from 'src/app/Activity';
 import { ActivityType } from 'src/app/ActivityType';
@@ -17,7 +17,7 @@ import { ReloadComponentService } from 'src/app/services/reload-component.servic
 export class EditActivityComponent implements OnInit {
   activityTypes: ActivityType[] = [];
 
-  constructor(private fb: FormBuilder, 
+  constructor(private fb: UntypedFormBuilder, 
     @Inject(MAT_DIALOG_DATA) private activity: Activity,
     private dialogRef: MatDialogRef<EditActivityComponent>,
     private activityService: ActivityService,

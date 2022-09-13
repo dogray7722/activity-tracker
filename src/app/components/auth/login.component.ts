@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms'
+import { UntypedFormBuilder, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
 import { SnackBarService } from 'src/app/services/snack-bar-service.service';
@@ -12,7 +12,7 @@ import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 export class LoginComponent implements OnInit {
   loading = false
 
-  constructor(private fb: FormBuilder,
+  constructor(private fb: UntypedFormBuilder,
               private authService: AuthService,
               private router: Router,
               private snackBarService: SnackBarService) { }

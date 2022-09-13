@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef } from '@angular/material/dialog';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
@@ -19,10 +19,10 @@ export class ActivityTypeCreateComponent {
   fileName: string;
   file: File;
   filePath: string;
-  activityTypeForm = new FormGroup({
-    name: new FormControl('', Validators.required),
-    photo: new FormControl(null),
-    fileName: new FormControl('')
+  activityTypeForm = new UntypedFormGroup({
+    name: new UntypedFormControl('', Validators.required),
+    photo: new UntypedFormControl(null),
+    fileName: new UntypedFormControl('')
   });
   isLoading = false;
   completed: number;

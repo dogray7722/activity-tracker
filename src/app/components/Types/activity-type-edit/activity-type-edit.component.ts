@@ -1,5 +1,5 @@
 import { Component, Inject } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { UntypedFormControl, UntypedFormGroup, Validators } from '@angular/forms';
 import { MatDialog, MatDialogConfig, MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
@@ -74,11 +74,11 @@ export class ActivityTypeEditComponent {
     ).subscribe()
   }
 
-  activityTypeForm = new FormGroup({
-    name: new FormControl(this.type.name, Validators.required),
-    photo: new FormControl(this.type.photo),
-    fileName: new FormControl(this.type.fileName),
-    id: new FormControl(this.type.id)
+  activityTypeForm = new UntypedFormGroup({
+    name: new UntypedFormControl(this.type.name, Validators.required),
+    photo: new UntypedFormControl(this.type.photo),
+    fileName: new UntypedFormControl(this.type.fileName),
+    id: new UntypedFormControl(this.type.id)
   })
 }
 

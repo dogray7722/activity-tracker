@@ -114,5 +114,7 @@
       }
     }
   },
-  "defaultProject": "activity-tracker"
+  "cli": {
+    "analytics": false
+  }
 }
