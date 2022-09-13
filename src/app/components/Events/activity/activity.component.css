@@ -1,11 +1,22 @@
 .activity-card {
   cursor: pointer;
   margin: 20px 10px;
-  width:300px;
+  width:320px;
 }
 
 .activity-actions {
   text-align: right;
+}
+
+.type {
+  display: flex;
+  justify-items: center;
+  align-items: center;
+}
+
+img {
+  margin-left: 20px;
+  margin-bottom: 10px;
 }
 
 mat-icon {

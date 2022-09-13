@@ -5,6 +5,9 @@
   color: rgb(103,58,183);
 }
 
+form {
+  margin-bottom: 50px;
+}
 
 .activity-details-form {
   margin-top: 50px;
