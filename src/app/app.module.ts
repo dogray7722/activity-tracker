@@ -43,6 +43,7 @@ import { LoginComponent } from './components/auth/login.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @NgModule({
   declarations: [
@@ -88,7 +89,8 @@ import { HeaderComponent } from './components/header/header.component';
     AngularFireAuthModule,
     AngularFireStorageModule,
     MatSnackBarModule,
-    MatTabsModule
+    MatTabsModule,
+    FontAwesomeModule
   ],
   providers: [ DatePipe, {
     provide: HTTP_INTERCEPTORS,
