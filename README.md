@@ -4,7 +4,7 @@ Activity Tracker is an application for tracking your outdoor activities.  Whethe
 
 ### Details
 
-This application demonstrates competency in writing Front End projects using the Angular Javascript Framework and the Angular Material Component Library, as well as implmenting Firebase as a backend server and hosting environment.  
+This application demonstrates competency in writing Front End projects using the Angular Framework and the Angular Material Component Library, as well as implmenting Firebase as a backend server and hosting environment.  
 
 ## Usage
 
