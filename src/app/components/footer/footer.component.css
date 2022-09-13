@@ -1,9 +1,14 @@
+footer {
+  position: relative;
+  margin-top: -290px;
+  clear: both;
+}
+
 .company-info {
   display: flex;
   flex-direction: column;
   align-items: center;
   text-align: center;
-  margin: 15px;
 }
 
 .footer-top {
@@ -12,7 +17,6 @@
 
 .icons {
   display: flex;
-  justify-content: space-around;
 }
 
 mat-icon, fa-icon {
@@ -23,6 +27,5 @@ mat-icon, fa-icon {
   background-color: rgba(178, 168, 168, 0.408);
   display: flex;
   justify-content: space-around;
-  padding-top: 20px;
-  text-align: center;
+  padding-top: 10px;
 }
