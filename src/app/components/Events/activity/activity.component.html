@@ -6,7 +6,10 @@
     {{activity.date | date}}
   </mat-card-subtitle>
   <mat-card-content>
-    <h2 style="color:rgb(30, 21, 138);">{{activity.type}}</h2>
+    <div>
+      <h2 style="color:rgb(30, 21, 138);">{{activity.type}}</h2>
+      <img [src]="activity.typePhoto" alt="">
+    </div>
     <p>{{activity.location}}</p>
   </mat-card-content>
 

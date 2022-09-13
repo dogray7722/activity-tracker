@@ -37,7 +37,7 @@ export class ActivitiesComponent implements OnInit {
         (res) => {
           const newResults: Activity[] = []
           for (const act of res) {
-            let temp = this.activityTypes.find(type => type.name = act.type)
+            let temp = this.activityTypes.find(type => type.name === act.type)
             if (temp.photo) {
               act.typePhoto = temp.photo
               newResults.push(act)
@@ -50,13 +50,4 @@ export class ActivitiesComponent implements OnInit {
 
     }
   }
-
-  // {
-  //   next: res => {
-  //     this.loading = false
-  //     this.activities = res
-  //   },
-  //   error: () => {
-  //       this.loading = false
-  //     }
-  //   }       
+    
