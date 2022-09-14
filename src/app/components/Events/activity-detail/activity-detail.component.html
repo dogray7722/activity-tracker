@@ -14,4 +14,8 @@
     </div>
     <!-- todo: add ngIf div here when activity file uploader is complete -->
   </mat-card-content>
+  <mat-card-actions class="activity-detail-actions">
+    <mat-icon style="color:rgb(30, 21, 138)" (click)="editActivity(activity)">build</mat-icon>
+    <mat-icon style="color:red" (click)="deleteActivity(activity)">delete</mat-icon>
+  </mat-card-actions>
 </mat-card>

@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Activity } from 'src/app/Activity';
+import { openDeleteActivity } from '../delete-activity/delete-activity.component';
+import { openEditActivity } from '../edit-activity/edit-activity.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-activity-detail',
@@ -8,9 +11,17 @@ import { Activity } from 'src/app/Activity';
 })
 export class ActivityDetailComponent implements OnInit {
   @Input() activity: Activity
-  constructor() { }
+  constructor(private dialog: MatDialog) { }
 
   ngOnInit(): void {
+  }
+
+  editActivity(activity:Activity) {
+    openEditActivity(this.dialog, activity)
+  }
+
+  deleteActivity(activity:Activity) {
+    openDeleteActivity(this.dialog, activity)
   }
 
 }
