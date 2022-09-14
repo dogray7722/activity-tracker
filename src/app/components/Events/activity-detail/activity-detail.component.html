@@ -1,0 +1,17 @@
+<mat-card class="activity-details-card mat-elevation-z10">
+  <mat-card-title>
+   {{activity.title}}
+  </mat-card-title>
+  <mat-card-content>
+    <div>
+      <h3>{{activity.date}}</h3>
+      <div>
+        <h1>{{activity.type}}</h1>
+        <img [src]="activity.typePhoto" matCardImageMedium>
+      </div>
+      <h4>{{activity.location}}</h4>
+      <p>{{activity.notes}}</p>
+    </div>
+    <!-- todo: add ngIf div here when activity file uploader is complete -->
+  </mat-card-content>
+</mat-card>

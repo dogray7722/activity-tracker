@@ -44,6 +44,7 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { ActivityDetailComponent } from './components/Events/activity-detail/activity-detail.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     ActivityTypeDeleteComponent,
     LoginComponent,
     AboutComponent,
-    HeaderComponent
+    HeaderComponent,
+    ActivityDetailComponent
   ],
   imports: [
     BrowserModule,
