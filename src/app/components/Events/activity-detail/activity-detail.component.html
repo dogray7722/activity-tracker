@@ -1,21 +1,25 @@
-<mat-card class="activity-details-card mat-elevation-z10">
-  <mat-card-title>
-   {{activity.title}}
-  </mat-card-title>
-  <mat-card-content>
-    <div>
-      <h3>{{activity.date}}</h3>
+<div>
+
+  <mat-card class="mat-elevation-z10">
+    <mat-card-title>
+      {{activity.title}}
+    </mat-card-title>
+    <mat-card-content>
       <div>
-        <h1>{{activity.type}}</h1>
-        <img [src]="activity.typePhoto" matCardImageMedium>
+        <h3>{{activity.date}}</h3>
+        <div>
+          <h1>{{activity.type}}</h1>
+          <img [src]="activity.typePhoto" matCardImageMedium>
+        </div>
+        <h4>{{activity.location}}</h4>
+        <p>{{activity.notes}}</p>
       </div>
-      <h4>{{activity.location}}</h4>
-      <p>{{activity.notes}}</p>
-    </div>
-    <!-- todo: add ngIf div here when activity file uploader is complete -->
-  </mat-card-content>
-  <mat-card-actions class="activity-detail-actions">
-    <mat-icon style="color:rgb(30, 21, 138)" (click)="editActivity(activity)">build</mat-icon>
-    <mat-icon style="color:red" (click)="deleteActivity(activity)">delete</mat-icon>
-  </mat-card-actions>
-</mat-card>
+      <!-- todo: add ngIf div here when activity file uploader is complete -->
+    </mat-card-content>
+    <mat-card-actions class="activity-detail-actions">
+      <mat-icon style="color:rgb(30, 21, 138)" (click)="editActivity(activity)">build</mat-icon>
+      <mat-icon style="color:red" (click)="deleteActivity(activity)">delete</mat-icon>
+    </mat-card-actions>
+  </mat-card>
+</div>
+  
