@@ -21,10 +21,13 @@ export class ActivityDetailComponent implements OnInit{
 
   ngOnInit(): void {
     //get id off the route
-    const id = this.activatedRoute.params.pipe(map(
-      p => console.log(p)
-    ))
-    // this.activityService.getActivity("1").subscribe
+    const id = this.activatedRoute.snapshot.params['id']
+    console.log('all params', this.activatedRoute.snapshot.params)
+    console.log('id param', id)
+    
+    this.activityService.getActivity(id).subscribe(res => {
+      this.activity = res
+    })
   }
 
   editActivity(activity:Activity) {

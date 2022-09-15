@@ -11,8 +11,8 @@ import { ActivityDetailComponent } from './components/Events/activity-detail/act
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'about', component: AboutComponent},
-  {path: 'events', component: ActivitiesComponent, canActivate: [AuthGuard]},
   {path: 'events/:id', component: ActivityDetailComponent},
+  {path: 'events', component: ActivitiesComponent, canActivate: [AuthGuard]},
   {path: 'create', component: CreateActivityComponent, canActivate: [AuthGuard]},
   {path: 'types', component: ActivityTypesComponent, canActivate: [AuthGuard]}
 ];
