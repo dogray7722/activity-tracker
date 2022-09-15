@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Activity } from 'src/app/Activity';
 import { openDeleteActivity } from '../delete-activity/delete-activity.component';
 import { openEditActivity } from '../edit-activity/edit-activity.component';
@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   templateUrl: './activity-detail.component.html',
   styleUrls: ['./activity-detail.component.css']
 })
-export class ActivityDetailComponent implements OnInit{
+export class ActivityDetailComponent {
   activity: Activity
 
   constructor(private dialog: MatDialog,
@@ -19,10 +19,6 @@ export class ActivityDetailComponent implements OnInit{
               ) { 
                 this.activity = this.router.getCurrentNavigation().extras.state['act']
               }
-
-  ngOnInit(): void {
-   
-  }
 
   editActivity(activity:Activity) {
     openEditActivity(this.dialog, activity)
