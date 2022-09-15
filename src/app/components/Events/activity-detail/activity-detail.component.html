@@ -1,24 +1,28 @@
 <div>
 
   <mat-card class="mat-elevation-z10">
-    <mat-card-title>
-      {{activity.title}}
-    </mat-card-title>
+    <div class="header">
+      <mat-card-title>
+        {{activity.title}}
+      </mat-card-title>
+      <h3>{{activity.date}}</h3>
+    </div>
     <mat-card-content>
-      <div>
-        <h3>{{activity.date}}</h3>
-        <div>
-          <h1>{{activity.type}}</h1>
-          <img [src]="activity.typePhoto" matCardImageMedium>
-        </div>
-        <h4>{{activity.location}}</h4>
-        <p>{{activity.notes}}</p>
+      <div class="content">
+        <h2>{{activity.type}}</h2>
+        <img [src]="activity.typePhoto" matCardImageMedium>
       </div>
+      <h3>{{activity.location}}</h3>
+      <p>{{activity.notes}}</p>
       <!-- todo: add ngIf div here when activity file uploader is complete -->
     </mat-card-content>
     <mat-card-actions class="activity-detail-actions">
-      <mat-icon style="color:rgb(30, 21, 138)" (click)="editActivity(activity)">build</mat-icon>
-      <mat-icon style="color:red" (click)="deleteActivity(activity)">delete</mat-icon>
+      <button mat-icon-button style="color:rgb(30, 21, 138)" (click)="editActivity(activity)">
+        <mat-icon>build</mat-icon>
+      </button>
+      <button mat-icon-button style="color:red" (click)="deleteActivity(activity)">
+        <mat-icon>delete</mat-icon>
+      </button>
     </mat-card-actions>
   </mat-card>
 </div>

@@ -1,5 +1,4 @@
 .main {
-
   display: flex;
   justify-content: center;
   align-items: center;
@@ -9,3 +8,28 @@ mat-card {
   margin: 10% 20%;
   width: auto;
 }
+
+.header {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+mat-card-title {
+  font-size: 30px;
+}
+
+/* .content {
+  display: flex;
+  align-items: center;
+} */
+
+mat-card-actions {
+  display: flex;
+  flex-direction: row-reverse;
+}
+
+mat-icon:hover {
+  color: #ffd63f;
+}
+
