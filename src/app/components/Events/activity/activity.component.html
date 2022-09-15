@@ -1,5 +1,5 @@
 <mat-card class="activity-card mat-elevation-z8">
-  <mat-card-title>
+  <mat-card-title (click)="openDetail(activity.id)">
     {{activity.title}}
   </mat-card-title>
   <mat-card-subtitle>

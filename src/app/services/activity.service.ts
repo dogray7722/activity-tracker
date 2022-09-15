@@ -15,8 +15,7 @@ export class ActivityService {
   constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 
   getActivity(id: string) {
-    return this.http.get<Activity>(`${this.baseUrl}/${id}.json`
-    + '?auth=eyJhbGciOiJSUzI1NiIsImtpZCI6IjJkMjNmMzc0MDI1ZWQzNTNmOTg0YjUxMWE3Y2NlNDlhMzFkMzFiZDIiLCJ0eXAiOiJKV1QifQ.eyJpc3MiOiJodHRwczovL3NlY3VyZXRva2VuLmdvb2dsZS5jb20vYWN0aXZpdHl0cmFja2VyLTIxMjQ3IiwiYXVkIjoiYWN0aXZpdHl0cmFja2VyLTIxMjQ3IiwiYXV0aF90aW1lIjoxNjYzMjA2OTAzLCJ1c2VyX2lkIjoiTEswZTZ1WUFVY1FNcE9hMm53SmFuN1liR2l4MSIsInN1YiI6IkxLMGU2dVlBVWNRTXBPYTJud0phbjdZYkdpeDEiLCJpYXQiOjE2NjMyMDY5MDMsImV4cCI6MTY2MzIxMDUwMywiZW1haWwiOiJkb2dyYXk3N0BnbWFpbC5jb20iLCJlbWFpbF92ZXJpZmllZCI6ZmFsc2UsImZpcmViYXNlIjp7ImlkZW50aXRpZXMiOnsiZW1haWwiOlsiZG9ncmF5NzdAZ21haWwuY29tIl19LCJzaWduX2luX3Byb3ZpZGVyIjoicGFzc3dvcmQifX0.QGn-LR9E8K-3oqUCGSgj4s4jY8ZjH4cZYsxCamLyn0aT4pJq1CTqS3jm3d70I0HCeKGaL0QiCLNkBIAuyC0x9WfGoDuaNNNEyY8QJ39ZC9uk_NL9GJonnAhgN1oFxH_4dfs96oWycx_2wvDO0EpKisrfCaJOksuBLt_H24Mtk_Sshmq5N_jQCQSOYVL-tDOCKhui8jP0v9P2SVF-X6SSTBKOyhJPMDJQfeXXtcbqCbUCo6p4QPtjhZwsiXrRhbfRgnhAImHMvtHJG2KW00RltVpLM4zeB9xlfeTFE262OoDcjL1vfqolWJwMu-e-U6wJIcP0jc6Js3GO9ZQ3_u-8ug').pipe(
+    return this.http.get<Activity>(`${this.baseUrl}/${id}.json`).pipe(
       tap((res) => {
         console.log(res)
       }),
