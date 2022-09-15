@@ -19,10 +19,13 @@ mat-card-title {
   font-size: 30px;
 }
 
-/* .content {
+mat-card-content {
   display: flex;
-  align-items: center;
-} */
+}
+
+.details {
+  margin-left: 15px;
+}
 
 mat-card-actions {
   display: flex;

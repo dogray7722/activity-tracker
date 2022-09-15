@@ -9,11 +9,13 @@
     </div>
     <mat-card-content>
       <div class="content">
-        <h2>{{activity.type}}</h2>
         <img [src]="activity.typePhoto" matCardImageMedium>
+        <h2>{{activity.type}}</h2>
       </div>
-      <h3>{{activity.location}}</h3>
-      <p>{{activity.notes}}</p>
+      <div class="details">
+        <h2>{{activity.location}}</h2>
+        <p>{{activity.notes}}</p>
+      </div>
       <!-- todo: add ngIf div here when activity file uploader is complete -->
     </mat-card-content>
     <mat-card-actions class="activity-detail-actions">
