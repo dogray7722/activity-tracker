@@ -14,18 +14,6 @@ export class ActivityService {
   
   constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 
-  getActivity(id: string) {
-    return this.http.get<Activity>(`${this.baseUrl}/${id}.json`).pipe(
-      tap((res) => {
-        console.log(res)
-      }),
-      catchError((error) => {
-        this.snackBarService.snackBarMessage(false, "getActivityError")
-        return throwError(() => new Error(error))
-      })
-    )
-  }
-  
   getActivities() {
     return this.http.get<{ [key: string]: Activity }>(`${this.baseUrl}.json`).pipe(
       tap(() => {

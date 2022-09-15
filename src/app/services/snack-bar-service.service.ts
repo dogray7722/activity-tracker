@@ -18,10 +18,6 @@ export class SnackBarService {
         this.message = "There was a problem listing activities.  Please try again later."
         break;
       }
-      case "getActivityError": {
-        this.message = "There was a problem retrieving activity.  Please try again later."
-        break;
-      }
       case "createActivitySuccess": {
         this.message = "New Activity Created Successfully!"
         break

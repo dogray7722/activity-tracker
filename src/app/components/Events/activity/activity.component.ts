@@ -23,7 +23,7 @@ export class ActivityComponent {
     openDeleteActivity(this.dialog, activity)
   }
 
-  openDetail(activityId: string) {
-    this.router.navigate(['/events', `/${activityId}`])
+  openDetail(activity: Activity) {
+    this.router.navigate(['/events', 'detail'], {state: {act: activity}})
   }
 }
