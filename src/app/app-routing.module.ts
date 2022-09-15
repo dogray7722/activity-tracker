@@ -6,11 +6,13 @@ import { CreateActivityComponent } from './components/Events/create-activity/cre
 import { LoginComponent } from './components/auth/login.component';
 import { AboutComponent } from './components/about/about.component';
 import { AuthGuard } from './components/auth/auth.guard';
+import { ActivityDetailComponent } from './components/Events/activity-detail/activity-detail.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
   {path: 'about', component: AboutComponent},
   {path: 'events', component: ActivitiesComponent, canActivate: [AuthGuard]},
+  {path: 'events/:id', component: ActivityDetailComponent},
   {path: 'create', component: CreateActivityComponent, canActivate: [AuthGuard]},
   {path: 'types', component: ActivityTypesComponent, canActivate: [AuthGuard]}
 ];

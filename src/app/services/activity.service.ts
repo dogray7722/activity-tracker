@@ -4,6 +4,7 @@ import { EMPTY, throwError, tap} from 'rxjs';
 import { Activity } from '../Activity';
 import { map, catchError} from 'rxjs/operators';
 import { SnackBarService } from './snack-bar-service.service';
+import { keyframes } from '@angular/animations';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,18 @@ export class ActivityService {
   
   constructor(private http: HttpClient, private snackBarService: SnackBarService) { }
 
+  getActivity(id: string) {
+    return this.http.get<{ key: Activity}>(`${this.baseUrl}/${id}.json`).pipe(
+      tap((res) => {
+        console.log(res.key)
+      }),
+      catchError((error) => {
+        this.snackBarService.snackBarMessage(false, "getActivityError")
+        return throwError(() => new Error(error))
+      })
+    )
+  }
+  
   getActivities() {
     return this.http.get<{ [key: string]: Activity }>(`${this.baseUrl}.json`).pipe(
       tap(() => {

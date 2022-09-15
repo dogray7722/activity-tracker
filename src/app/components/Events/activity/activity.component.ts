@@ -14,11 +14,11 @@ export class ActivityComponent {
 
   constructor(private dialog: MatDialog) { }
 
-  editActivity(activity:Activity) {
+  editActivity(activity: Activity) {
     openEditActivity(this.dialog, activity)
   }
 
-  deleteActivity(activity:Activity) {
+  deleteActivity(activity: Activity) {
     openDeleteActivity(this.dialog, activity)
   }
 }
