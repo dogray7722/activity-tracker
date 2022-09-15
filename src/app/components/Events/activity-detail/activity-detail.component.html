@@ -10,7 +10,7 @@
     <mat-card-content>
       <div class="content">
         <img [src]="activity.typePhoto" matCardImageMedium>
-        <h2>{{activity.type}}</h2>
+        <h3>{{activity.type}}</h3>
       </div>
       <div class="details">
         <h2>{{activity.location}}</h2>
@@ -19,12 +19,20 @@
       <!-- todo: add ngIf div here when activity file uploader is complete -->
     </mat-card-content>
     <mat-card-actions class="activity-detail-actions">
-      <button mat-icon-button style="color:rgb(30, 21, 138)" (click)="editActivity(activity)">
-        <mat-icon>build</mat-icon>
-      </button>
-      <button mat-icon-button style="color:red" (click)="deleteActivity(activity)">
-        <mat-icon>delete</mat-icon>
-      </button>
+      <div>
+        <button mat-icon-button color="primary" (click)="return()">
+          <mat-icon>arrow_back</mat-icon>
+        </button>
+        <span style="text-align: center;">Back</span>
+      </div>
+      <div>
+        <button mat-icon-button color="primary" (click)="editActivity(activity)">
+          <mat-icon>build</mat-icon>
+        </button>
+        <button mat-icon-button color="warn" (click)="deleteActivity(activity)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
     </mat-card-actions>
   </mat-card>
 </div>

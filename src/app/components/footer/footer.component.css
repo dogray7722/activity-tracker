@@ -28,6 +28,10 @@ mat-icon, fa-icon {
   padding-top: 10px;
 }
 
-a, a:visited, a:hover, a:active {
+a, a:visited {
   color: inherit;
+}
+
+a:hover, a:active {
+  color: blue;
 }

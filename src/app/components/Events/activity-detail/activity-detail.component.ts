@@ -27,4 +27,9 @@ export class ActivityDetailComponent {
   deleteActivity(activity:Activity) {
     openDeleteActivity(this.dialog, activity)
   }
+
+  return() {
+    this.router.navigate(['/events'])
+  }
+
 }

@@ -1,8 +1,12 @@
 .activity-card {
   cursor: pointer;
   margin: 20px 10px;
-  width:320px;
+  width: 320px;
 }
+
+mat-card-title:hover, :active {
+  color: #673ab6
+} 
 
 .activity-actions {
   text-align: right;
