@@ -23,6 +23,14 @@
   justify-content: center;
 }
 
+.activity {
+  flex-direction: row;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
 .card {
   margin: 15px;
   display: flex;

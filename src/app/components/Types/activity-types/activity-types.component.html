@@ -2,18 +2,18 @@
   <h1 class="heading">Activity Types</h1>
   <button mat-raised-button class="newType" (click)="createType()">New Type</button>
 </div>
-<div>
-  <div *ngFor="let type of activityTypes" class="activity">
+<div class="activity">
+  <div *ngFor="let type of activityTypes">
     <div class="align">
       <mat-card class="card">
         <img mat-card-sm-image src={{type.photo}} >
         <mat-card-title class="title">{{type.name}}</mat-card-title>  
         <mat-card-actions>
-          <button mat-icon-button disableRipple="true">
-            <mat-icon class="icon" style="color: #8b41ff;" (click)="editType(type)">mode_edit</mat-icon>
+          <button mat-icon-button color="primary" disableRipple="true">
+            <mat-icon class="icon" (click)="editType(type)">mode_edit</mat-icon>
           </button>
-          <button mat-icon-button disableRipple="true">
-            <mat-icon class="icon" style="color: #ff8b41" (click)="deleteType(type)">delete</mat-icon>
+          <button mat-icon-button color="warn" disableRipple="true">
+            <mat-icon class="icon" (click)="deleteType(type)">delete</mat-icon>
           </button>
         </mat-card-actions>
       </mat-card>
