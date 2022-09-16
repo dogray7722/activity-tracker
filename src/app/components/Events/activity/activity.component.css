@@ -26,3 +26,7 @@ img {
 mat-icon {
   padding-left: 5px;
 }
+
+mat-icon:hover {
+  color: #ffd63f;
+}
