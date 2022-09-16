@@ -16,14 +16,15 @@ export class ActivityService {
 
   getActivities() {
     return this.http.get<{ [key: string]: Activity }>(`${this.baseUrl}.json`).pipe(
-      tap(() => {
+      tap((res) =>{
+        console.log('activities in get', res)
         const userData = JSON.parse(localStorage.getItem('userData'))
         this.userId = userData.id
       }),
       map(responseData => {
         const activities: Activity[] = []
         for (const key in responseData) {
-          if (responseData.hasOwnProperty(key) && this.userId == responseData[key].userId) {
+          if (this.userId === responseData[key].userId) {
             activities.push({ ...responseData[key], id: key })
           }
         }
@@ -38,6 +39,10 @@ export class ActivityService {
 
   addActivity(activity: Activity) {
     this.http.post<Activity>(`${this.baseUrl}.json`, activity).pipe(
+      tap((res) => {
+        const userData = JSON.parse(localStorage.getItem('userData'))
+        res.userId = userData.id
+      }),
       catchError(() => {
         this.snackBarService.snackBarMessage(false, "createActivityError")
         return EMPTY
@@ -48,13 +53,18 @@ export class ActivityService {
   }
 
   putActivity(activity: Activity) {
+    if (activity.userId == null ) {
+      const userData = JSON.parse(localStorage.getItem('userData'))
+      activity.userId = userData.id
+    }
     const url = `${this.baseUrl}/${activity.id}.json`
     return this.http.put<Activity>(url, activity).pipe(
       catchError(() => {
         this.snackBarService.snackBarMessage(false, "editActivityError")
         return EMPTY
       })
-    ).subscribe(() => {
+    ).subscribe((res) => {
+      console.log('after subscribe', res)
       this.snackBarService.snackBarMessage(true, "editActivitySuccess")
     })
   }
