@@ -5,7 +5,7 @@ import { Activity } from 'src/app/Activity';
 import { ActivityType } from 'src/app/ActivityType';
 import { ActivityService } from 'src/app/services/activity.service';
 import { DatePipe } from '@angular/common';
-import { Router } from '@angular/router';
+import { Router, } from '@angular/router';
 import { ActivityTypeService } from 'src/app/services/activity-type.service';
 import { ReloadComponentService } from 'src/app/services/reload-component.service';
 
@@ -37,7 +37,11 @@ export class EditActivityComponent implements OnInit {
     this.activityService.putActivity(this.form.value)
     this.dialogRef.close();
     setTimeout(() => {
-      this.reloadService.reloadComponent(this.router.url)
+      if (this.router.url === '/events') {
+        this.reloadService.reloadComponent(this.router.url)
+      } else {
+        this.router.navigate(['/events'])
+      }
     }, 500);
   }
 

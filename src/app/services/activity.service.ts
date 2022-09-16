@@ -16,8 +16,7 @@ export class ActivityService {
 
   getActivities() {
     return this.http.get<{ [key: string]: Activity }>(`${this.baseUrl}.json`).pipe(
-      tap((res) =>{
-        console.log('activities in get', res)
+      tap(() =>{
         const userData = JSON.parse(localStorage.getItem('userData'))
         this.userId = userData.id
       }),
@@ -53,7 +52,7 @@ export class ActivityService {
   }
 
   putActivity(activity: Activity) {
-    if (activity.userId == null ) {
+    if (activity.userId === null || activity.userId === undefined) {
       const userData = JSON.parse(localStorage.getItem('userData'))
       activity.userId = userData.id
     }
@@ -63,8 +62,7 @@ export class ActivityService {
         this.snackBarService.snackBarMessage(false, "editActivityError")
         return EMPTY
       })
-    ).subscribe((res) => {
-      console.log('after subscribe', res)
+    ).subscribe(() => {
       this.snackBarService.snackBarMessage(true, "editActivitySuccess")
     })
   }
