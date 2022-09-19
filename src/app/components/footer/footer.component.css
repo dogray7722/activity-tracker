@@ -15,10 +15,7 @@ footer {
 
 .icons {
   display: flex;
-}
-
-mat-icon, fa-icon {
-  margin-right: 10px;
+  gap: 10px;
 }
 
 .footer-bottom  {
