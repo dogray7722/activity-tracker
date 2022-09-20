@@ -18,11 +18,6 @@
   margin-bottom: 20px;
 }
 
-.align {
-  display: flex;
-  justify-content: center;
-}
-
 .activity {
   display: flex;
   flex-flow: row wrap;
@@ -30,24 +25,29 @@
   align-items: center;
 }
 
-.card {
-  margin: 15px;
+.align {
   display: flex;
-  align-items: center;
+  justify-content: center;
 }
 
-.title.mat-card-title {
+.card {
+  display: flex;
+  margin: 15px;
+  align-items: center;
+  gap: 12px;
+}
+
+.title {
   margin-top: 6px;
   margin-left: 12px;
-  margin-right: 12px;
-}
-
-mat-icon:active {
-  color: #4169ff !important;
 }
 
 .icon {
   margin-top: -17px;
+}
+
+mat-icon:active, mat-icon:hover {
+  color: #ffd741;
 }
 
 .last {
