@@ -12,5 +12,5 @@ export class ReloadComponentService {
       this.router.routeReuseStrategy.shouldReuseRoute = () => false;
       this.router.onSameUrlNavigation = 'reload';
       return this.router.navigate([routeUrl]);
-    }
+  }
 }

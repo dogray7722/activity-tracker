@@ -98,7 +98,3 @@ export function openCreateActivityType(dialog: MatDialog) {
   const dialogRef = dialog.open(ActivityTypeCreateComponent, dialogConfig)
   return dialogRef.afterClosed();
 }
-
-
-
-

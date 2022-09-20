@@ -12,8 +12,7 @@ import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
   selector: 'app-activity-type-delete',
-  templateUrl: './activity-type-delete.component.html',
-  styleUrls: ['./activity-type-delete.component.css']
+  templateUrl: './activity-type-delete.component.html'
 })
 export class ActivityTypeDeleteComponent {
   type = this.activityType

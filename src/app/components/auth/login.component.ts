@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { UntypedFormBuilder, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
@@ -9,16 +9,12 @@ import { SnackBarService } from 'src/app/services/snack-bar-service.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent implements OnInit {
+export class LoginComponent {
   loading = false
 
   constructor(private fb: UntypedFormBuilder,
               private authService: AuthService,
-              private router: Router,
-              private snackBarService: SnackBarService) { }
-
-  ngOnInit(): void {
-  }
+              private router: Router) {}
 
   loginForm = this.fb.group({
     email: ['', [Validators.required, Validators.email]],

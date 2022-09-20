@@ -5,7 +5,6 @@ import { openEditActivity } from '../edit-activity/edit-activity.component';
 import { MatDialog } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 
-
 @Component({
   selector: 'app-activity-detail',
   templateUrl: './activity-detail.component.html',
@@ -31,5 +30,4 @@ export class ActivityDetailComponent {
   return() {
     this.router.navigate(['/events'])
   }
-
 }

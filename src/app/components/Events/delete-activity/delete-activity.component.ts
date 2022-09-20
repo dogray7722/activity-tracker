@@ -38,5 +38,3 @@ export function openDeleteActivity(dialog: MatDialog, activity: Activity) {
   const dialogRef = dialog.open(DeleteActivityComponent, dialogConfig)
   return dialogRef.afterClosed();
 }
-
-

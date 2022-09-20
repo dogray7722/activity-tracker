@@ -2,8 +2,9 @@
   text-align: center; 
   margin-top: 50px; 
   font-size: 50px; 
-  color: rgb(103,58,183);
+  color: #673ab7;
 }
+
 .activities {
   display: flex;
   justify-content: space-around;
