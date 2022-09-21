@@ -1,20 +1,29 @@
 <h1 class="heading">Add A New Event</h1>
 <div class="main">
   <form [formGroup]="activityForm" class="activity-details-form">
-      <mat-stepper class="form-field" orientation="vertical" linear="true">
+      <mat-stepper class="form-field" orientation="horizontal" linear="true">
         <mat-step>
-          <ng-template matStepLabel>Activity Details</ng-template>
+          <ng-template matStepLabel>Event Type</ng-template>
           <ng-template matStepContent>
             <div>
+              <p>New activities can be created by clicking the Activities link in the navigation bar.</p>
               <mat-form-field style="margin-top: 20px;">
-                <mat-select formControlName="type" placeholder="select activity type">
+                <mat-select formControlName="type" placeholder="select event type">
                   <mat-option *ngFor="let type of activityTypes" [value]="type.name">{{type.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
             <div>
+              <button mat-raised-button color="primary" matStepperNext>Next</button>
+            </div>
+          </ng-template>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>Title</ng-template>
+          <ng-template matStepContent>
+            <div>
               <mat-form-field>
-                <input matInput formControlName="title" placeholder="activity title">
+                <input matInput formControlName="title" placeholder="event title">
               </mat-form-field>
             </div>
             <div>
@@ -74,7 +83,7 @@
               <button 
                 mat-raised-button color="primary" 
                 [disabled]="activityForm.invalid" 
-                (click)="onSubmit()">Submit</button>
+                (click)="onSubmit()">Create</button>
             </div>
           </ng-template>
         </mat-step>
