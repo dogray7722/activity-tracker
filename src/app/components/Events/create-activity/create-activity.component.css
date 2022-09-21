@@ -27,11 +27,12 @@ mat-card {
   border-radius: 8px;
 }
 
-mat-form-field {
-  width:400px;
-}
-
 .form-field {
   flex-direction: column;
   align-items: center;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
 }
