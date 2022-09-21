@@ -40,7 +40,7 @@ export class ActivitiesComponent implements OnInit {
         ).subscribe({
             next: () => this.loading = false,
             error: () => this.loading = false  
-          }) 
+        }) 
       })
     ).subscribe({
         next: res => {

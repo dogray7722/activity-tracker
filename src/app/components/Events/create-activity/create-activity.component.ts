@@ -15,6 +15,14 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class CreateActivityComponent implements OnInit {
   activityTypes: ActivityType[] = [];
+  
+  constructor(private fb: UntypedFormBuilder, 
+              private activityService: ActivityService,
+              private activityTypeService: ActivityTypeService,
+              private router: Router, 
+              private datePipe: DatePipe,
+              private authService: AuthService
+              ) { }
 
   activityForm = this.fb.group({
     type: ['', Validators.required],
@@ -23,14 +31,6 @@ export class CreateActivityComponent implements OnInit {
     location: ['', Validators.required],
     notes: ['']
   })
-
-  constructor(private fb: UntypedFormBuilder, 
-              private activityService: ActivityService,
-              private activityTypeService: ActivityTypeService,
-              private router: Router, 
-              private datePipe: DatePipe,
-              private authService: AuthService
-              ) { }
 
   ngOnInit(): void {
     this.activityTypeService.getActivityTypes().subscribe(resp => this.activityTypes = resp)

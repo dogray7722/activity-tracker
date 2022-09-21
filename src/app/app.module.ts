@@ -26,6 +26,7 @@ import { AngularFireAuthModule } from '@angular/fire/compat/auth';
 import { AngularFireStorageModule } from '@angular/fire/compat/storage'
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatStepperModule}  from '@angular/material/stepper';
 
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -92,7 +93,8 @@ import { ActivityDetailComponent } from './components/Events/activity-detail/act
     AngularFireStorageModule,
     MatSnackBarModule,
     MatTabsModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    MatStepperModule
   ],
   providers: [ DatePipe, {
     provide: HTTP_INTERCEPTORS,
