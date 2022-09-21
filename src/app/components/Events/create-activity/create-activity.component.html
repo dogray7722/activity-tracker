@@ -7,14 +7,14 @@
           <ng-template matStepContent>
             <div>
               <mat-form-field style="margin-top: 20px;">
-                <mat-select formControlName="type" placeholder="Select activity type">
+                <mat-select formControlName="type" placeholder="select activity type">
                   <mat-option *ngFor="let type of activityTypes" [value]="type.name">{{type.name}}</mat-option>
                 </mat-select>
               </mat-form-field>
             </div>
             <div>
               <mat-form-field>
-                <input matInput formControlName="title" placeholder="Activity Title">
+                <input matInput formControlName="title" placeholder="activity title">
               </mat-form-field>
             </div>
             <div>
@@ -27,7 +27,7 @@
           <ng-template matStepContent>
             <div>
               <mat-form-field>
-                <input matInput formControlName="location" placeholder="Activity Location">
+                <input matInput formControlName="location" placeholder="location">
               </mat-form-field>
             </div>
             <div>
@@ -64,13 +64,16 @@
               <mat-form-field>
                 <textarea 
                 matInput 
-                placeholder="Add Notes" 
+                placeholder="add notes" 
                 formControlName="notes"
                 cdkTextareaAutosize></textarea>
               </mat-form-field>
             </div>
             <button mat-raised-button color="accent" matStepperPrevious>Back</button>
-            <button mat-raised-button color="primary" [disabled]="activityForm.invalid" (click)="onSubmit()">Submit</button>
+            <button 
+              mat-raised-button color="primary" 
+              [disabled]="activityForm.invalid" 
+              (click)="onSubmit()">Submit</button>
           </ng-template>
         </mat-step>
       </mat-stepper>
