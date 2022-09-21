@@ -1,6 +1,7 @@
-<h1 class="heading">Add A New Event</h1>
-<div class="main">
-  <form [formGroup]="activityForm" class="activity-details-form">
+<div class="container">
+  <h1 class="heading">Add A New Event</h1>
+  <div class="main">
+    <form [formGroup]="activityForm" class="activity-details-form">
       <mat-stepper class="form-field" orientation="horizontal" linear="true">
         <mat-step>
           <ng-template matStepLabel>Event Type</ng-template>
@@ -81,12 +82,13 @@
             <div class="buttons">
               <button mat-raised-button color="accent" matStepperPrevious>Back</button>
               <button 
-                mat-raised-button color="primary" 
-                [disabled]="activityForm.invalid" 
-                (click)="onSubmit()">Create</button>
+              mat-raised-button color="primary" 
+              [disabled]="activityForm.invalid" 
+              (click)="onSubmit()">Create</button>
             </div>
           </ng-template>
         </mat-step>
       </mat-stepper>
     </form>
+  </div>
 </div>
