@@ -5,7 +5,7 @@
       <mat-stepper 
         class="form-field" 
         orientation="vertical" 
-        linear="true" 
+        linear="false"
         animationDuration="1000"
         labelPosition="end"
         #stepper
@@ -22,7 +22,7 @@
               </mat-form-field>
             </div>
             <div>
-              <button mat-raised-button color="primary" matStepperNext>Next</button>
+              <button mat-raised-button color="accent" matStepperNext>Next</button>
             </div>
           </ng-template>
         </mat-step>
@@ -34,8 +34,9 @@
                 <input matInput formControlName="title" placeholder="event title">
               </mat-form-field>
             </div>
-            <div>
-              <button mat-raised-button color="primary" matStepperNext>Next</button>
+            <div class="buttons">
+              <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+              <button mat-raised-button color="accent" matStepperNext>Next</button>
             </div>
           </ng-template>
         </mat-step>
@@ -48,8 +49,8 @@
               </mat-form-field>
             </div>
             <div class="buttons">
-              <button mat-raised-button color="accent" matStepperPrevious>Back</button>
-              <button mat-raised-button color="primary" matStepperNext>Next</button>
+              <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+              <button mat-raised-button color="accent" matStepperNext>Next</button>
             </div>
           </ng-template>
         </mat-step>
@@ -69,28 +70,28 @@
               </mat-form-field>
             </div>
             <div class="buttons">
-              <button mat-raised-button color="accent" matStepperPrevious>Back</button>
-              <button mat-raised-button color="primary" matStepperNext>Next</button>
+              <button mat-raised-button color="primary" matStepperPrevious>Back</button>
+              <button mat-raised-button color="accent" matStepperNext>Next</button>
             </div>
           </ng-template>    
         </mat-step>
         <mat-step>
-          <ng-template matStepLabel>Activity Notes</ng-template>
+          <ng-template matStepLabel>Notes</ng-template>
           <ng-template matStepContent>
             <div>
-              <mat-form-field>
-                <textarea 
-                matInput 
-                placeholder="add notes" 
+              <mat-form-field  [style.width.px]=400>
+                <mat-label>add notes</mat-label>
+                <textarea style="height: 100px;"
+                matInput
                 formControlName="notes"
                 cdkTextareaAutosize></textarea>
               </mat-form-field>
             </div>
             <div class="buttons">
-              <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+              <button mat-raised-button color="primary" matStepperPrevious>Back</button>
               <button mat-raised-button color="basic" (click)="activityForm.reset(); stepper.reset();">Reset</button>
               <button 
-              mat-raised-button color="primary" 
+              mat-raised-button color="accent" 
               [disabled]="activityForm.invalid" 
               (click)="onSubmit()">Create</button>
             </div>
