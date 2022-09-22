@@ -31,7 +31,10 @@
           <ng-template matStepContent>
             <div>
               <mat-form-field>
-                <input matInput formControlName="title" placeholder="event title">
+                <input matInput formControlName="title" placeholder="event title" #title>
+                <mat-hint align="end">
+                  {{title.value.length}} / 30
+                </mat-hint>
               </mat-form-field>
             </div>
             <div class="buttons">
@@ -89,7 +92,7 @@
                 >
               </textarea>
               <mat-hint align="end">
-                {{notes.value.length}} / 200
+                {{notes.value.length}} / 500
               </mat-hint>
               </mat-form-field>
             </div>

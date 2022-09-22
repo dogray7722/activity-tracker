@@ -29,7 +29,7 @@ export class CreateActivityComponent implements OnInit {
     title: ['', [Validators.required, Validators.maxLength(30)]],
     date: [new Date(2022, 0, 1), Validators.required],
     location: ['', Validators.required],
-    notes: ['']
+    notes: ['', Validators.maxLength(500)]
   })
 
   ngOnInit(): void {
