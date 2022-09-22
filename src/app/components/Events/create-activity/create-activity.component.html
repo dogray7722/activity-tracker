@@ -2,7 +2,7 @@
   <h1 class="heading">Add A New Event</h1>
   <div class="main">
     <form [formGroup]="activityForm" class="activity-details-form">
-      <mat-stepper class="form-field" orientation="horizontal" linear="true">
+      <mat-stepper class="form-field" orientation="vertical" linear="true" #stepper>
         <mat-step>
           <ng-template matStepLabel>Event Type</ng-template>
           <ng-template matStepContent>
@@ -81,6 +81,7 @@
             </div>
             <div class="buttons">
               <button mat-raised-button color="accent" matStepperPrevious>Back</button>
+              <button mat-raised-button color="basic" (click)="activityForm.reset(); stepper.reset();">Reset</button>
               <button 
               mat-raised-button color="primary" 
               [disabled]="activityForm.invalid" 

@@ -6,13 +6,13 @@
 }
 
 .main {
-  margin-top: 50px;
   width: fit-content;
 }
 
 mat-stepper {
-  background-color: rgba(248, 242, 247, 0.282);
+  background-color: #f0f0f0;
   padding: 50px;
+  border-radius: 5%;
 }
 
 .heading {
