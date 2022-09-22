@@ -2,7 +2,14 @@
   <h1 class="heading">Add A New Event</h1>
   <div class="main">
     <form [formGroup]="activityForm" class="activity-details-form">
-      <mat-stepper class="form-field" orientation="vertical" linear="true" #stepper>
+      <mat-stepper 
+        class="form-field" 
+        orientation="vertical" 
+        linear="true" 
+        animationDuration="1000"
+        labelPosition="end"
+        #stepper
+        >
         <mat-step>
           <ng-template matStepLabel>Event Type</ng-template>
           <ng-template matStepContent>
