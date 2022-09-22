@@ -79,12 +79,18 @@
           <ng-template matStepLabel>Notes</ng-template>
           <ng-template matStepContent>
             <div>
-              <mat-form-field  [style.width.px]=400>
+              <mat-form-field  [style.width.px]=500>
                 <mat-label>add notes</mat-label>
                 <textarea style="height: 100px;"
                 matInput
                 formControlName="notes"
-                cdkTextareaAutosize></textarea>
+                cdkTextareaAutosize
+                #notes
+                >
+              </textarea>
+              <mat-hint align="end">
+                {{notes.value.length}} / 200
+              </mat-hint>
               </mat-form-field>
             </div>
             <div class="buttons">
