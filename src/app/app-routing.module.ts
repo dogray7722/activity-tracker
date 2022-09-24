@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ActivitiesComponent } from './components/Events/activities/activities.component';
-import { ActivityTypesComponent } from './components/Types/activity-types/activity-types.component';
-import { CreateActivityComponent } from './components/Events/create-activity/create-activity.component';
+import { ActivitiesComponent } from './components/events/activities/activities.component';
+import { ActivityTypesComponent } from './components/activities/activity-types/activity-types.component';
+import { CreateActivityComponent } from './components/events/create-activity/create-activity.component';
 import { LoginComponent } from './components/auth/login.component';
 import { AboutComponent } from './components/about/about.component';
 import { AuthGuard } from './components/auth/auth.guard';
-import { ActivityDetailComponent } from './components/Events/activity-detail/activity-detail.component';
+import { ActivityDetailComponent } from './components/events/activity-detail/activity-detail.component';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
