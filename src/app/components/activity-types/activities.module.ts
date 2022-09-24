@@ -24,5 +24,4 @@ import { SharedModule } from "../shared/shared.module";
     ActivityTypeDeleteComponent,
   ]
 })
-
 export class ActivitiesModule {}
