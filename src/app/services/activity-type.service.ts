@@ -38,6 +38,10 @@ export class ActivityTypeService {
 
   createActivityType(activityType: ActivityType){
     this.http.post<ActivityType>(`${this.baseUrl}.json`, activityType).pipe(
+      tap((res) => {
+        const userData = JSON.parse(localStorage.getItem('userData'))
+        res.userId = userData.id
+      }),
       catchError(() => {
         this.snackBarService.snackBarMessage(false, "activityTypeCreateError")
         return EMPTY
@@ -64,6 +68,10 @@ export class ActivityTypeService {
   }
 
   updateActivityType(activityType: ActivityType) {
+    if (activityType.userId === null || activityType.userId === undefined) {
+      const userData = JSON.parse(localStorage.getItem('userData'))
+      activityType.userId = userData.id
+    }
     const url = `${this.baseUrl}/${activityType.id}.json`
     this.http.put<ActivityType>(url, activityType).pipe(
       catchError(() => {
