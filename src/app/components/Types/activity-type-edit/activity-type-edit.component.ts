@@ -34,7 +34,6 @@ export class ActivityTypeEditComponent {
 
   fileChangeEvent(event) {
     const newFile: File = event.target.files[0]
-    console.log(newFile)
     if (newFile) {
       const picFileName = uuid()
       const reader = new FileReader();
