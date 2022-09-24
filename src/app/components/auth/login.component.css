@@ -17,10 +17,11 @@
 }
 
 .registration-form {
-  margin-top: 50px;
+  margin-top: 10%;
   display: flex;
   justify-content: center;
-  margin-bottom: 50px;
+  align-items: center;
+  height: fit-content;
 }
 
 .login, .register {
