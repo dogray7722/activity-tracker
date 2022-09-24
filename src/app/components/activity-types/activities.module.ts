@@ -4,7 +4,6 @@ import { ActivityTypeEditComponent } from "./activity-type-edit/activity-type-ed
 import { ActivityTypeCreateComponent } from "./activity-type-create/activity-type-create.component";
 import { ActivityTypeDeleteComponent } from "./activity-type-delete/activity-type-delete.component";
 import { CommonModule } from "@angular/common";
-import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 
 @NgModule({
@@ -15,8 +14,7 @@ import { SharedModule } from "../shared/shared.module";
     ActivityTypeDeleteComponent
   ],
   imports: [
-    CommonModule, 
-    RouterModule,
+    CommonModule,
     SharedModule
   ],
   exports: [

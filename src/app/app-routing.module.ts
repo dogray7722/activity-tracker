@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { ActivitiesComponent } from './components/events/activities/activities.component';
-import { ActivityTypesComponent } from './components/activities/activity-types/activity-types.component';
+import { ActivityTypesComponent } from './components/activity-types/activity-types/activity-types.component';
 import { CreateActivityComponent } from './components/events/create-activity/create-activity.component';
 import { LoginComponent } from './components/auth/login.component';
 import { AboutComponent } from './components/about/about.component';

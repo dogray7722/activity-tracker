@@ -10,13 +10,19 @@ import { MatCardModule } from "@angular/material/card";
 import { MatSnackBarModule } from "@angular/material/snack-bar";
 import { MatButtonModule } from "@angular/material/button";
 import { MatInputModule } from "@angular/material/input";
-
+import { AngularFireStorageModule } from '@angular/fire/compat/storage'
+import { AngularFireAuthModule } from "@angular/fire/compat/auth";
+import { AngularFireModule } from "@angular/fire/compat";
+import { environment } from "src/environments/environment";
 
 @NgModule({
   declarations: [
     SnackBarComponent
   ],
   imports: [
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFireStorageModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
@@ -29,6 +35,8 @@ import { MatInputModule } from "@angular/material/input";
     ReactiveFormsModule
   ],
   exports: [
+    AngularFireAuthModule,
+    AngularFireStorageModule,
     BrowserAnimationsModule,
     MatButtonModule,
     MatCardModule,
