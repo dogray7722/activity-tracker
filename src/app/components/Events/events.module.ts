@@ -3,6 +3,7 @@ import { NgModule } from "@angular/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatSelectModule } from "@angular/material/select";
 import { MatStepperModule } from "@angular/material/stepper";
+import { RouterModule } from "@angular/router";
 import { SharedModule } from "../shared/shared.module";
 import { ActivitiesComponent } from "./activities/activities.component";
 import { ActivityDetailComponent } from "./activity-detail/activity-detail.component";
@@ -22,6 +23,7 @@ import { EditActivityComponent } from "./edit-activity/edit-activity.component";
   ],
   imports: [
     CommonModule,
+    RouterModule,
     SharedModule,
     MatDatepickerModule,
     MatSelectModule,
