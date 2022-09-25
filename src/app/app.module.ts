@@ -8,6 +8,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DatePipe } from '@angular/common';
 import { MatTabsModule } from '@angular/material/tabs';
+import { EventsModule } from './components/events/events.module';
+import { SharedModule } from './components/shared/shared.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { LoginComponent } from './components/auth/login.component';
@@ -16,8 +18,7 @@ import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ActivitiesModule } from './components/activity-types/activities.module';
-import { SharedModule } from './components/shared/shared.module';
-import { EventsModule } from './components/events/events.module';
+
 
 @NgModule({
   declarations: [
@@ -33,13 +34,13 @@ import { EventsModule } from './components/events/events.module';
     MatToolbarModule,
     HttpClientModule,
     FormsModule,
+    EventsModule,
+    SharedModule,
     MatNativeDateModule,
     MatGridListModule,
     MatTabsModule,
     FontAwesomeModule,
     ActivitiesModule,
-    EventsModule,
-    SharedModule
   ],
   providers: [ DatePipe, {
     provide: HTTP_INTERCEPTORS,
