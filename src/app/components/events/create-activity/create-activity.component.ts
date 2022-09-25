@@ -13,6 +13,7 @@ import { AuthService } from 'src/app/services/auth.service';
   templateUrl: './create-activity.component.html',
   styleUrls: ['./create-activity.component.css']
 })
+
 export class CreateActivityComponent implements OnInit {
   activityTypes: ActivityType[] = [];
   
