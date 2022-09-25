@@ -11,6 +11,7 @@ import { ActivityComponent } from "./activity/activity.component";
 import { CreateActivityComponent } from "./create-activity/create-activity.component";
 import { DeleteActivityComponent } from "./delete-activity/delete-activity.component";
 import { EditActivityComponent } from "./edit-activity/edit-activity.component";
+import { EventsRoutingModule } from "./events-routing.module";
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { EditActivityComponent } from "./edit-activity/edit-activity.component";
   ],
   imports: [
     CommonModule,
+    EventsRoutingModule,
     RouterModule,
     SharedModule,
     MatDatepickerModule,
@@ -30,12 +32,9 @@ import { EditActivityComponent } from "./edit-activity/edit-activity.component";
     MatStepperModule,
   ],
   exports: [
-    ActivitiesComponent,
     ActivityComponent,
-    CreateActivityComponent,
     EditActivityComponent,
     DeleteActivityComponent,
-    ActivityDetailComponent
   ]
 })
 
