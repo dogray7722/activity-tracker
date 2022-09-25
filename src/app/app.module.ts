@@ -12,19 +12,17 @@ import { EventsModule } from './components/events/events.module';
 import { SharedModule } from './components/shared/shared.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
-import { LoginComponent } from './components/auth/login.component';
 import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { ActivitiesModule } from './components/activity-types/activities.module';
-
+import { AuthModule } from './components/auth/auth.module';
 
 @NgModule({
   declarations: [
     AppComponent,
     FooterComponent,
-    LoginComponent,
     AboutComponent,
     HeaderComponent,
   ],
@@ -41,6 +39,7 @@ import { ActivitiesModule } from './components/activity-types/activities.module'
     MatTabsModule,
     FontAwesomeModule,
     ActivitiesModule,
+    AuthModule
   ],
   providers: [ DatePipe, {
     provide: HTTP_INTERCEPTORS,
