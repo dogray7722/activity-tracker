@@ -7,6 +7,8 @@ import { LoginComponent } from './components/auth/login.component';
 import { AboutComponent } from './components/about/about.component';
 import { AuthGuard } from './components/auth/auth.guard';
 import { ActivityDetailComponent } from './components/events/activity-detail/activity-detail.component';
+import { EventsModule } from './components/events/events.module';
+import { ActivitiesModule } from './components/activity-types/activities.module';
 
 const routes: Routes = [
   {path: '', component: LoginComponent},
@@ -18,7 +20,7 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes)],
+  imports: [RouterModule.forRoot(routes), EventsModule, ActivitiesModule],
   exports: [RouterModule]
 })
 
