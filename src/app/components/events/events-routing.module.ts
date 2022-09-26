@@ -7,8 +7,8 @@ import { ActivityDetailComponent } from "./activity-detail/activity-detail.compo
 import { CreateActivityComponent } from "./create-activity/create-activity.component";
 
 const routes: Routes = [
-  {path: 'events', component: ActivitiesComponent, canActivate: [AuthGuard]},
-  {path: 'events/detail', component: ActivityDetailComponent, canActivate: [AuthGuard]},
+  {path: '', component: ActivitiesComponent, canActivate: [AuthGuard]},
+  {path: 'detail', component: ActivityDetailComponent, canActivate: [AuthGuard]},
   {path: 'create', component: CreateActivityComponent, canActivate: [AuthGuard]},
 ]
 

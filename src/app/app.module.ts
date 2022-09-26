@@ -8,7 +8,6 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DatePipe } from '@angular/common';
-import { EventsModule } from './components/events/events.module';
 import { SharedModule } from './components/shared/shared.module';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -33,7 +32,6 @@ import { AuthModule } from './components/auth/auth.module';
     MatToolbarModule,
     HttpClientModule,
     FormsModule,
-    EventsModule,
     SharedModule,
     MatNativeDateModule,
     MatGridListModule,
