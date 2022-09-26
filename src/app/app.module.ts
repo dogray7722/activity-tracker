@@ -7,7 +7,6 @@ import { MatToolbarModule } from "@angular/material/toolbar";
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { DatePipe } from '@angular/common';
-import { MatTabsModule } from '@angular/material/tabs';
 import { EventsModule } from './components/events/events.module';
 import { SharedModule } from './components/shared/shared.module';
 import { AppComponent } from './app.component';
@@ -36,7 +35,6 @@ import { AuthModule } from './components/auth/auth.module';
     SharedModule,
     MatNativeDateModule,
     MatGridListModule,
-    MatTabsModule,
     FontAwesomeModule,
     ActivitiesModule,
     AuthModule

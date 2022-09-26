@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { MatTabsModule } from "@angular/material/tabs";
 import { SharedModule } from "../shared/shared.module";
@@ -9,7 +8,6 @@ import { LoginComponent } from "./login.component";
     LoginComponent
   ],
   imports: [ 
-    CommonModule,
     SharedModule,
     MatTabsModule
    ],

@@ -1,4 +1,3 @@
-import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { MatDatepickerModule } from "@angular/material/datepicker";
 import { MatSelectModule } from "@angular/material/select";
@@ -23,7 +22,6 @@ import { EventsRoutingModule } from "./events-routing.module";
     ActivityDetailComponent
   ],
   imports: [
-    CommonModule,
     EventsRoutingModule,
     RouterModule,
     SharedModule,

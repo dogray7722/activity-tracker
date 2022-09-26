@@ -1,7 +1,6 @@
 import { NgModule } from "@angular/core";
 import { MatIconModule } from "@angular/material/icon";
 import { SnackBarComponent } from "./snack-bar/snack-bar.component";
-import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { MatDialogModule } from "@angular/material/dialog";
 import { ReactiveFormsModule } from "@angular/forms";
 import { MatFormFieldModule } from "@angular/material/form-field";
@@ -14,6 +13,7 @@ import { AngularFireStorageModule } from '@angular/fire/compat/storage'
 import { AngularFireAuthModule } from "@angular/fire/compat/auth";
 import { AngularFireModule } from "@angular/fire/compat";
 import { environment } from "src/environments/environment";
+import { CommonModule } from "@angular/common";
 
 @NgModule({
   declarations: [
@@ -23,7 +23,7 @@ import { environment } from "src/environments/environment";
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
     AngularFireStorageModule,
-    BrowserAnimationsModule,
+    CommonModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
@@ -37,7 +37,7 @@ import { environment } from "src/environments/environment";
   exports: [
     AngularFireAuthModule,
     AngularFireStorageModule,
-    BrowserAnimationsModule,
+    CommonModule,
     MatButtonModule,
     MatCardModule,
     MatDialogModule,
