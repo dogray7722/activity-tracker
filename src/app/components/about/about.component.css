@@ -1,3 +1,26 @@
+.heading {
+  text-align: center; 
+  margin-top: 50px; 
+  font-size: 50px; 
+  color: rgb(103,58,183);
+}
+
 .main-div {
   margin-bottom: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.first {
+  margin: 30px;
+  padding: 30px;
+  background-color: #3e96f2;
+  color: white;
+  display: flex;
+  gap: 20px;
+}
+
+img {
+  max-height: 250px;
 }
