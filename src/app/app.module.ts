@@ -15,7 +15,6 @@ import { AuthInterceptorService } from './services/auth-interceptor.service';
 import { AboutComponent } from './components/about/about.component';
 import { HeaderComponent } from './components/header/header.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { ActivitiesModule } from './components/activity-types/activities.module';
 import { AuthModule } from './components/auth/auth.module';
 
 @NgModule({
@@ -36,7 +35,6 @@ import { AuthModule } from './components/auth/auth.module';
     MatNativeDateModule,
     MatGridListModule,
     FontAwesomeModule,
-    ActivitiesModule,
     AuthModule
   ],
   providers: [ DatePipe, {
