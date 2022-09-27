@@ -8,7 +8,7 @@
       <input matInput placeholder="New Type Name" name="name" formControlName="name" />
     </mat-form-field>
     <div *ngIf="preview">
-      <img [src]="preview" style="height: 200px; width: 200px" alt="">
+      <img [src]="preview" class="image" alt="">
     </div>
       <input class="upload" type="file" #UploadFileInput (change)="fileChangeEvent($event)" accept="image/*"/>
       <div class="file-upload">
@@ -24,7 +24,7 @@
         type="submit" 
         color="accent" 
         [disabled]="activityTypeForm.invalid"
-        (click)="save(activityTypeForm.value)">Submit</button>
+        (click)="save(activityTypeForm.value)">Save</button>
     </mat-dialog-actions>
 </div>
 <ng-template #spinner>
