@@ -28,6 +28,7 @@ export class ActivityTypeCreateComponent {
   completed: number;
   preview = null;
   userId: string;
+  tooLarge = false;
 
   constructor(private dialogRef: MatDialogRef<ActivityTypeCreateComponent>,
               private activityTypeService: ActivityTypeService, 
@@ -44,6 +45,9 @@ export class ActivityTypeCreateComponent {
   fileChangeEvent(event) {
     const newFile: File = event.target.files[0]
     if (newFile) {
+      if (newFile.size > 7 * 1024 * 1024) {
+        this.tooLarge = true
+      }
       const reader = new FileReader();
       const picFileName = uuid()
       this.fileName = newFile.name

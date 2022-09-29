@@ -17,6 +17,7 @@
         <mat-icon>attach_file</mat-icon>
       </button>
     </div>
+    <mat-error *ngIf="tooLarge">File size must be less than 7 MBs</mat-error>
   </mat-dialog-content>
     <mat-dialog-actions align="center">
       <button class="submit" (click)="save()" mat-raised-button color="accent" [disabled]="activityTypeForm.invalid">Save</button>

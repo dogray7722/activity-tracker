@@ -22,6 +22,7 @@ export class ActivityTypeEditComponent {
   snackBarData: {}
   completed: number;
   isLoading = false;
+  tooLarge = false;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public type: ActivityType,
@@ -35,6 +36,9 @@ export class ActivityTypeEditComponent {
   fileChangeEvent(event) {
     const newFile: File = event.target.files[0]
     if (newFile) {
+      if (newFile.size > 7 * 1024 * 1024) {
+        this.tooLarge = true
+      }
       const picFileName = uuid()
       const reader = new FileReader();
       const fileExt = newFile.name.split('.').pop();
