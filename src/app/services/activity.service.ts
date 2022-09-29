@@ -23,7 +23,7 @@ export class ActivityService {
       map(responseData => {
         const activities: Activity[] = []
         for (const key in responseData) {
-          if (this.userId === responseData[key].userId) {
+          if (this.userId === responseData[key].userId || responseData[key].userId === "starter") {
             activities.push({ ...responseData[key], id: key })
           }
         }

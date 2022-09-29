@@ -23,7 +23,7 @@ export class ActivityTypeService {
       map(responseData => {
         const activityTypes: ActivityType[] = []
         for (const key in responseData) {
-          if (responseData.hasOwnProperty(key) && this.userId == responseData[key].userId) {
+          if (responseData.hasOwnProperty(key) && this.userId == responseData[key].userId || responseData[key].userId === "starter") {
             activityTypes.push({ ...responseData[key], id: key})
           }
         }
