@@ -51,7 +51,8 @@ export class EditActivityComponent implements OnInit {
     title: [this.activity.title, Validators.required],
     location: [this.activity.location, Validators.required],
     date: [new Date(this.activity.date), Validators.required],
-    notes: [this.activity.notes]
+    notes: [this.activity.notes],
+    userId: [this.activity.userId ? this.activity.userId : '']
   })
 }
 

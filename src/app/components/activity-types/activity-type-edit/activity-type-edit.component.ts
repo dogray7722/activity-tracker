@@ -77,7 +77,8 @@ export class ActivityTypeEditComponent {
     name: new UntypedFormControl(this.type.name, Validators.required),
     photo: new UntypedFormControl(this.type.photo),
     fileName: new UntypedFormControl(this.type.fileName),
-    id: new UntypedFormControl(this.type.id)
+    id: new UntypedFormControl(this.type.id),
+    userid: new UntypedFormControl(this.type.userId ? this.type.userId : '')
   })
 }
 

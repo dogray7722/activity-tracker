@@ -49,6 +49,7 @@ export class ActivityTypeCreateComponent {
       this.fileName = newFile.name
       let fileExt = newFile.name.split('.').pop();
       let newFilePath = `activityTypes/${picFileName}.${fileExt}`
+
       reader.readAsDataURL(newFile)
       reader.onload = () => {
         this.preview = reader.result as string;
