@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { UntypedFormBuilder, Validators } from '@angular/forms'
+import { FormGroup, UntypedFormBuilder, ValidationErrors, ValidatorFn, Validators } from '@angular/forms'
 import { AuthService } from 'src/app/services/auth.service';
 import { Router } from '@angular/router';
-import { SnackBarService } from 'src/app/services/snack-bar-service.service';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +24,7 @@ export class LoginComponent {
     email: ['', [Validators.required, Validators.email]],
     password: ['', [Validators.required, Validators.minLength(6)]],
     confirmation: ['', [Validators.required, Validators.minLength(6)]]
-  })
+  }, {validator: confirmationValidator})
 
   onSubmitLogin() {
     this.loading = true
@@ -45,24 +44,37 @@ export class LoginComponent {
 
   onSubmitRegister() {
     this.loading = true
-    if (this.registrationForm.value["password"] !== this.registrationForm.value["confirmation"]) {
-      //todo handle this as a validation error
-      alert("Passwords do not match!")
-      this.loading = false
-      return
+    const email = this.registrationForm.value["email"]
+    const password = this.registrationForm.value["password"]
+    this.authService.register(email, password)
+      .subscribe({
+      next: () => {
+        this.loading = false
+        this.registrationForm.reset()
+        this.router.navigate(['/events'])
+      }, error: () => {
+        this.loading = false
+      }
+    })
+  }
+
+  get password() { return this.registrationForm.get('password')}
+  get confirmation() { return this.registrationForm.get('confirmation')}
+
+  onPasswordInput() {
+    if (this.registrationForm.hasError('passwordMismatch')) {
+      this.confirmation.setErrors([{'passwordMismatch': true}])
     } else {
-      this.loading = true
-      const email = this.registrationForm.value["email"]
-      const password = this.registrationForm.value["password"]
-      this.authService.register(email, password)
-        .subscribe({
-        next: () => {
-          this.registrationForm.reset()
-          this.router.navigate(['/events'])
-        }, error: () => {
-          this.loading = false
-        }
-      })
+      this.confirmation.setErrors(null)
     }
   }
 }
+
+export const confirmationValidator: ValidatorFn = (formGroup: FormGroup): ValidationErrors | null =>  {
+  if (formGroup.get('password').value === formGroup.get('confirmation').value){
+    return null
+  } else {
+    return {passwordMismatch: true}
+  } 
+}
+  
