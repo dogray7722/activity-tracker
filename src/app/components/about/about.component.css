@@ -22,6 +22,14 @@
   border-radius: 12px;
 }
 
+.triptych {
+  display: flex;
+  margin: 20px;
+  padding: 20px;
+  gap: 10px;
+
+}
+
 img {
   max-height: 250px;
   border-radius: 12px;
