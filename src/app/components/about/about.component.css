@@ -16,10 +16,14 @@
   margin: 20px 25px;
   padding: 25px;
   background-color: #3e96f2;
-  color: white;
+  color: #f0f0f0;
   display: flex;
   gap: 20px;
   border-radius: 12px;
+}
+
+.showcase p {
+  font-size: 16px;
 }
 
 .triptych {
@@ -32,6 +36,10 @@
 .detail {
   display: flex;
   flex-direction: column;
+}
+
+.detail p {
+  color: #626161;
 }
 
 mat-icon {
